@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Team.HobbyRobot.ASCS.Core.Physical
 {
+    /// <summary>
+    /// Stationary object
+    /// </summary>
     interface IStaticObject
     {
         /// <summary>

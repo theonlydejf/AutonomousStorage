@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace Team.HobbyRobot.ASCS.Core.Physical
 {
+    /// <summary>
+    /// Model of the storage vehicle
+    /// </summary>
     public struct StorageVehicleModel : IDynamicObject
     {
+        /// <summary>
+        /// ID of the storage vehicle
+        /// </summary>
         public int ID { get; }
         public double Orientation { get; set; }
         public float Speed { get; set; }

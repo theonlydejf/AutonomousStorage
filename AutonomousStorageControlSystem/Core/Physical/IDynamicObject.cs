@@ -7,11 +7,18 @@ using System.Threading.Tasks;
 
 namespace Team.HobbyRobot.ASCS.Core.Physical
 {
-    interface IDynamicObject
+    /// <summary>
+    /// Moving Object
+    /// </summary>
+    interface IDynamicObject : IStaticObject
     {
-        public double Orientation { get; set; }
+        /// <summary>
+        /// The speed at which the object moves
+        /// </summary>
         public float Speed { get; set; }
-        public PointF Location { get; set; }
+        /// <summary>
+        /// The speed and the direction at which the object moves
+        /// </summary>
         public SizeF Velocity { get; }
     }
 }
