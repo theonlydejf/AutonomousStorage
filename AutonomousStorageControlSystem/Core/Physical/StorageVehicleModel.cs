@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,8 +12,8 @@ namespace Team.HobbyRobot.ASCS.Core.Physical
         public int ID { get; }
         public double Orientation { get; set; }
         public float Speed { get; set; }
-        public PointF Location { get; set; }
-        public SizeF Velocity => new SizeF
+        public Vector2 Location { get; set; }
+        public Vector2 Velocity => new Vector2
         (
             (float)(Math.Cos(Orientation) * Speed),
             (float)(Math.Sin(Orientation) * Speed)

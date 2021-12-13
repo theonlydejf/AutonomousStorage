@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Team.HobbyRobot.ASCS.Core;
@@ -20,11 +20,11 @@ namespace Team.HobbyRobot.ASCS.CellStorage.Physical
         public PhysicalCellStorageProperties Properties { get; set; }
 
         public double Orientation { get; set; }
-        public PointF Location { get; set; }
+        public Vector2 Location { get; set; }
         /// <summary>
         /// Approach point associated with the storage cell
         /// </summary>
-        public PointF ApproachPoint => Location - new SizeF
+        public Vector2 ApproachPoint => Location - new Vector2
         (
             (float)(Math.Cos(Orientation) * Properties.ApproachPointDistance),
             (float)(Math.Sin(Orientation) * Properties.ApproachPointDistance)
