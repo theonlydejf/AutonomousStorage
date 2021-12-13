@@ -9,7 +9,7 @@ namespace Team.HobbyRobot.ASCS.Core
 {
     public interface IStorage : IEnumerable<IStorageItem>, IEnumerable
     {
-        IStorageItem this[int ID] { get; set; }
+        object this[int index] { get; set; }
 
         /// <summary>
         /// All contents currently in the storage
@@ -22,7 +22,7 @@ namespace Team.HobbyRobot.ASCS.Core
         int Capacity { get; }
 
         /// <summary>
-        /// Amount of item currently stored in this storage
+        /// Amount of items currently stored in this storage
         /// </summary>
         int Count { get; }
     }
