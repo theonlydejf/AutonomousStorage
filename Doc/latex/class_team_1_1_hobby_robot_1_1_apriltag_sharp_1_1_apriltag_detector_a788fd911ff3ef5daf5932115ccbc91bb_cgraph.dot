@@ -1,0 +1,12 @@
+digraph "Team.HobbyRobot.ApriltagSharp.ApriltagDetector.Detect"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Team.HobbyRobot.Apriltag\lSharp.ApriltagDetector.Detect",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Detect tags in one frame"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Team.HobbyRobot.Apriltag\lSharp.TagFamily.Decode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family.html#ab6db55d4dab37d08b3ffb1edd2411a20",tooltip="Create an instance of Apriltag from detectd code"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Team.HobbyRobot.Apriltag\lSharp.TagFamily.RotateCode90",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family.html#a425ec6b42b50bfcfdb7d1ca647faccf6",tooltip="Rotate the current binary code by 90°"];
+}

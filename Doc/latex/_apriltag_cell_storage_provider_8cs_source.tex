@@ -1,0 +1,34 @@
+\hypertarget{_apriltag_cell_storage_provider_8cs_source}{}\doxysection{Apriltag\+Cell\+Storage\+Provider.\+cs}
+\label{_apriltag_cell_storage_provider_8cs_source}\index{AutonomousStorageControlSystem/ApriltagModeling/ApriltagCellStorageProvider.cs@{AutonomousStorageControlSystem/ApriltagModeling/ApriltagCellStorageProvider.cs}}
+\mbox{\hyperlink{_apriltag_cell_storage_provider_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00001}00001 \textcolor{keyword}{using} System;}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00002}00002 \textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00003}00003 \textcolor{keyword}{using} System.Linq;}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00004}00004 \textcolor{keyword}{using} System.Text;}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00005}00005 \textcolor{keyword}{using} System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00006}00006 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s}{ASCS}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage}{CellStorage}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical}{Physical}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00007}00007 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s}{ASCS}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision}{Vision}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00008}00008 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_apriltag_sharp}{ApriltagSharp}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00009}\mbox{\hyperlink{_apriltag_cell_storage_provider_8cs_abb563e58d48b771b026e25d459c30267}{00009}} \textcolor{keyword}{using} \mbox{\hyperlink{_apriltag_cell_storage_provider_8cs_abb563e58d48b771b026e25d459c30267}{cv}} = OpenCvSharp;}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00011}\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s}{00011}} \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling}{Team.HobbyRobot.ASCS.ApriltagModeling}}}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00012}00012 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00013}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_cell_storage_provider}{00013}}     \textcolor{keyword}{class }\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_cell_storage_provider}{ApriltagCellStorageProvider}} : \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_i_physical_cell_storage_model_provider}{IPhysicalCellStorageModelProvider}}}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00014}00014     \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00015}00015         \textcolor{keyword}{private} \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrameProvider}} frameProvider;}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00016}00016         \textcolor{keyword}{private} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{ApriltagDetector}} apriltagDetector;}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00017}00017         \textcolor{keyword}{private} \textcolor{keywordtype}{int} frameSampleCnt;}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00020}00020         \textcolor{comment}{// TODO: implement CreateCellStorageModel}}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00021}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_cell_storage_provider_aba0765eb7117ad28221e78fb956d704e}{00021}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_physical_cell_storage_model}{PhysicalCellStorageModel}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_cell_storage_provider_aba0765eb7117ad28221e78fb956d704e}{CreateCellStorageModel}}()}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00022}00022         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00023}00023             \textcolor{comment}{// Zkontrolovat jestli to funguje xd}}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00024}00024             IList<Apriltag> foundTags = ApriltagUtils.DetectApriltagsFromSamples(frameSampleCnt, frameProvider, apriltagDetector);}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00025}00025             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} NotImplementedException();}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00026}00026         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00027}00027     \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_cell_storage_provider_8cs_source_l00028}00028 \}}
+
+\end{DoxyCode}

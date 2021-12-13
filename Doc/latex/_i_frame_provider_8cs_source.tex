@@ -1,0 +1,30 @@
+\hypertarget{_i_frame_provider_8cs_source}{}\doxysection{IFrame\+Provider.\+cs}
+\label{_i_frame_provider_8cs_source}\index{AutonomousStorageControlSystem/Vision/IFrameProvider.cs@{AutonomousStorageControlSystem/Vision/IFrameProvider.cs}}
+\mbox{\hyperlink{_i_frame_provider_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00001}00001 \textcolor{keyword}{using} System;}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00002}00002 \textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00003}00003 \textcolor{keyword}{using} System.Linq;}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00004}00004 \textcolor{keyword}{using} System.Text;}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00005}00005 \textcolor{keyword}{using} System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00006}00006 \textcolor{keyword}{using} System.Drawing;}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00008}\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision}{00008}} \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision}{Team.HobbyRobot.ASCS.Vision}}}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00009}00009 \{}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00015}\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_a91e8d269c0f8ec926afc09b555b21671}{00015}}     \textcolor{keyword}{public} delegate \textcolor{keywordtype}{void} \mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_a91e8d269c0f8ec926afc09b555b21671}{FrameRecievedEventHandler}}(\textcolor{keywordtype}{object} sender, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{FrameRecievedEventArgs}} e);}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00020}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{00020}}     \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{FrameRecievedEventArgs}} : EventArgs}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00021}00021     \{}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00025}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args_aa6a446899cdb482a80bdf4e8debfbce1}{00025}}         \textcolor{keyword}{public} Bitmap \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args_aa6a446899cdb482a80bdf4e8debfbce1}{FrameImage}} \{ \textcolor{keyword}{get}; \textcolor{keyword}{set}; \}}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00030}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args_aa26e78580aec3d29f972fa9dbe374137}{00030}}         \textcolor{keyword}{public} DateTime \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args_aa26e78580aec3d29f972fa9dbe374137}{Timestamp}} \{ \textcolor{keyword}{get}; \textcolor{keyword}{set}; \}}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00031}00031     \}}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00036}\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{00036}}     \textcolor{keyword}{public} \textcolor{keyword}{interface }\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrameProvider}}}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00037}00037     \{}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00041}\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider_a2501c79b29aa2bdadb385024eceedf19}{00041}}         Bitmap \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider_a2501c79b29aa2bdadb385024eceedf19}{LatestFrame}} \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00045}\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider_a8b825bfc4c18a2b532bed0ecafaa048e}{00045}}         \textcolor{keyword}{event} \mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_a91e8d269c0f8ec926afc09b555b21671}{FrameRecievedEventHandler}} \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider_a8b825bfc4c18a2b532bed0ecafaa048e}{FrameRecieved}};}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00046}00046     \}}
+\DoxyCodeLine{\Hypertarget{_i_frame_provider_8cs_source_l00047}00047 \}}
+
+\end{DoxyCode}

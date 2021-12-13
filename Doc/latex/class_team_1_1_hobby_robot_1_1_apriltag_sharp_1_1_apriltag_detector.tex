@@ -1,0 +1,192 @@
+\hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{}\doxysection{Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag\+Detector Class Reference}
+\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{Threshold\+Method}} \{ \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5aa1244cba6ca79bfda45de46141d32ea7b}{Adaptive}}
+, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5aad03da642a6be0123712c250006d0270d}{Canny}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ae8e241fe969f762cbfb2c3dced5c76b3}{Apriltag\+Detector}} (\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{Tag\+Family}} tag\+Family, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{Threshold\+Method}} threshold=\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5aad03da642a6be0123712c250006d0270d}{Threshold\+Method.\+Canny}}, double sigma=0.\+8, int minarea=400, bool debug=false)
+\begin{DoxyCompactList}\small\item\em Create instance of apriltag detector \end{DoxyCompactList}\item 
+IList$<$ \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} $>$ \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a788fd911ff3ef5daf5932115ccbc91bb}{Detect}} (Mat frame)
+\begin{DoxyCompactList}\small\item\em Detect tags in one frame \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a7cb6bf022977779a155ec39bd6d2736e}{bc}} = 9
+\item 
+static double \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a71bd68bbbc4dbfbb265b7c8f6cc73aac}{c}} = 5
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{Threshold\+Method}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ab091e687da8c45c1ede9f5df601bcdbf}{Threshold}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Method to threshold the picture \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a4f4390023fdceb31fca6b845bc8d716b}{Sigma}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Sigma used to blur the picture (0.\+8 recommened) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{Tag\+Family}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_aed84112460926065a70b5d20845cdd63}{Tag\+Family}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tag family that is being used \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_apriltag_detector_8cs_source_l00009}{9}} of file \mbox{\hyperlink{_apriltag_detector_8cs_source}{Apriltag\+Detector.\+cs}}.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}} 
+\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!ThresholdMethod@{ThresholdMethod}}
+\index{ThresholdMethod@{ThresholdMethod}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}
+\doxysubsubsection{\texorpdfstring{ThresholdMethod}{ThresholdMethod}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag\+Detector.\+Threshold\+Method}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Adaptive@{Adaptive}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!Adaptive@{Adaptive}}}\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5aa1244cba6ca79bfda45de46141d32ea7b}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5aa1244cba6ca79bfda45de46141d32ea7b}} 
+Adaptive&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Canny@{Canny}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!Canny@{Canny}}}\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5aad03da642a6be0123712c250006d0270d}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5aad03da642a6be0123712c250006d0270d}} 
+Canny&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_apriltag_detector_8cs_source_l00011}{11}} of file \mbox{\hyperlink{_apriltag_detector_8cs_source}{Apriltag\+Detector.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ae8e241fe969f762cbfb2c3dced5c76b3}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ae8e241fe969f762cbfb2c3dced5c76b3}} 
+\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!ApriltagDetector@{ApriltagDetector}}
+\index{ApriltagDetector@{ApriltagDetector}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}
+\doxysubsubsection{\texorpdfstring{ApriltagDetector()}{ApriltagDetector()}}
+{\footnotesize\ttfamily Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag\+Detector.\+Apriltag\+Detector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{Tag\+Family}}}]{tag\+Family,  }\item[{\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{Threshold\+Method}}}]{threshold = {\ttfamily \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5aad03da642a6be0123712c250006d0270d}{Threshold\+Method.\+Canny}}},  }\item[{double}]{sigma = {\ttfamily 0.8},  }\item[{int}]{minarea = {\ttfamily 400},  }\item[{bool}]{debug = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Create instance of apriltag detector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag\+Family} & Tag family which is gonna be detected\\
+\hline
+{\em threshold} & Edge detection method\\
+\hline
+{\em sigma} & Image Gaussian blur value sigma\\
+\hline
+{\em minarea} & Smallest area for a tag to be considered valid\\
+\hline
+{\em debug} & Is the detector in debug mode?\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_apriltag_detector_8cs_source_l00041}{41}} of file \mbox{\hyperlink{_apriltag_detector_8cs_source}{Apriltag\+Detector.\+cs}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a788fd911ff3ef5daf5932115ccbc91bb}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a788fd911ff3ef5daf5932115ccbc91bb}} 
+\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!Detect@{Detect}}
+\index{Detect@{Detect}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}
+\doxysubsubsection{\texorpdfstring{Detect()}{Detect()}}
+{\footnotesize\ttfamily IList$<$ \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} $>$ Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag\+Detector.\+Detect (\begin{DoxyParamCaption}\item[{Mat}]{frame }\end{DoxyParamCaption})}
+
+
+
+Detect tags in one frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & RGB frame\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of instances of \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} found in the frame
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_apriltag_detector_8cs_source_l00117}{117}} of file \mbox{\hyperlink{_apriltag_detector_8cs_source}{Apriltag\+Detector.\+cs}}.
+
+Here is the call graph for this function\+:
+% FIG 0
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a7cb6bf022977779a155ec39bd6d2736e}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a7cb6bf022977779a155ec39bd6d2736e}} 
+\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!bc@{bc}}
+\index{bc@{bc}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}
+\doxysubsubsection{\texorpdfstring{bc}{bc}}
+{\footnotesize\ttfamily int Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag\+Detector.\+bc = 9\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_detector_8cs_source_l00109}{109}} of file \mbox{\hyperlink{_apriltag_detector_8cs_source}{Apriltag\+Detector.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a71bd68bbbc4dbfbb265b7c8f6cc73aac}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a71bd68bbbc4dbfbb265b7c8f6cc73aac}} 
+\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!c@{c}}
+\index{c@{c}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}
+\doxysubsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily double Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag\+Detector.\+c = 5\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_detector_8cs_source_l00110}{110}} of file \mbox{\hyperlink{_apriltag_detector_8cs_source}{Apriltag\+Detector.\+cs}}.
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a4f4390023fdceb31fca6b845bc8d716b}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a4f4390023fdceb31fca6b845bc8d716b}} 
+\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!Sigma@{Sigma}}
+\index{Sigma@{Sigma}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}
+\doxysubsubsection{\texorpdfstring{Sigma}{Sigma}}
+{\footnotesize\ttfamily double Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag\+Detector.\+Sigma\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Sigma used to blur the picture (0.\+8 recommened) 
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_detector_8cs_source_l00024}{24}} of file \mbox{\hyperlink{_apriltag_detector_8cs_source}{Apriltag\+Detector.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_aed84112460926065a70b5d20845cdd63}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_aed84112460926065a70b5d20845cdd63}} 
+\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!TagFamily@{TagFamily}}
+\index{TagFamily@{TagFamily}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}
+\doxysubsubsection{\texorpdfstring{TagFamily}{TagFamily}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{Tag\+Family}} Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag\+Detector.\+Tag\+Family\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Tag family that is being used 
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_detector_8cs_source_l00028}{28}} of file \mbox{\hyperlink{_apriltag_detector_8cs_source}{Apriltag\+Detector.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ab091e687da8c45c1ede9f5df601bcdbf}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ab091e687da8c45c1ede9f5df601bcdbf}} 
+\index{Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}!Threshold@{Threshold}}
+\index{Threshold@{Threshold}!Team.HobbyRobot.ApriltagSharp.ApriltagDetector@{Team.HobbyRobot.ApriltagSharp.ApriltagDetector}}
+\doxysubsubsection{\texorpdfstring{Threshold}{Threshold}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{Threshold\+Method}} Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag\+Detector.\+Threshold\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Method to threshold the picture 
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_detector_8cs_source_l00020}{20}} of file \mbox{\hyperlink{_apriltag_detector_8cs_source}{Apriltag\+Detector.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Apriltag\+Sharp/\mbox{\hyperlink{_apriltag_detector_8cs}{Apriltag\+Detector.\+cs}}\end{DoxyCompactItemize}

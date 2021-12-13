@@ -1,0 +1,30 @@
+\hypertarget{_ref_8cs_source}{}\doxysection{Ref.\+cs}
+\label{_ref_8cs_source}\index{AutonomousStorageControlSystem/Core/Ref.cs@{AutonomousStorageControlSystem/Core/Ref.cs}}
+\mbox{\hyperlink{_ref_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00001}00001 \textcolor{keyword}{using} System;}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00002}00002 \textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00003}00003 \textcolor{keyword}{using} System.Linq;}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00004}00004 \textcolor{keyword}{using} System.Text;}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00005}00005 \textcolor{keyword}{using} System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00007}00007 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core}{Team.HobbyRobot.ASCS.Core}}}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00008}00008 \{}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00009}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref}{00009}}     \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref}{Ref}}<T>}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00011}00011         \textcolor{keyword}{private} readonly Func<T> getter;}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00012}00012         \textcolor{keyword}{private} readonly Action<T> setter;}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00013}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_ab27600ace52f81ac94ae4ec41a1793ec}{00013}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_ab27600ace52f81ac94ae4ec41a1793ec}{Ref}}(Func<T> getter, Action<T> setter)}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00014}00014         \{}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00015}00015             this.getter = getter;}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00016}00016             this.setter = setter;}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00017}00017         \}}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00018}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_a0b91b4aa24ec0e2df1d85f2cefcb8f4c}{00018}}         \textcolor{keyword}{public} T \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_a0b91b4aa24ec0e2df1d85f2cefcb8f4c}{Value}}}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00019}00019         \{}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00020}00020             \textcolor{keyword}{get} \{ \textcolor{keywordflow}{return} getter(); \}}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00021}00021             \textcolor{keyword}{set} \{ setter(value); \}}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00022}00022         \}}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00023}00023     \}}
+\DoxyCodeLine{\Hypertarget{_ref_8cs_source_l00024}00024 \}}
+
+\end{DoxyCode}

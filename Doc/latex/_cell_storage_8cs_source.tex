@@ -1,0 +1,46 @@
+\hypertarget{_cell_storage_8cs_source}{}\doxysection{Cell\+Storage.\+cs}
+\label{_cell_storage_8cs_source}\index{AutonomousStorageControlSystem/CellStorage/CellStorage.cs@{AutonomousStorageControlSystem/CellStorage/CellStorage.cs}}
+\mbox{\hyperlink{_cell_storage_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00001}00001 \textcolor{keyword}{using} System;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00002}00002 \textcolor{keyword}{using} System.Collections;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00003}00003 \textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00004}00004 \textcolor{keyword}{using} System.Linq;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00005}00005 \textcolor{keyword}{using} System.Text;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00006}00006 \textcolor{keyword}{using} System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00007}00007 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s}{ASCS}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage}{CellStorage}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical}{Physical}};}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00008}00008 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s}{ASCS}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core}{Core}};}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00010}\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage}{00010}} \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage}{Team.HobbyRobot.ASCS.CellStorage}}}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00011}00011 \{}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00012}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage}{00012}}     \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage}{CellStorage}} : \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage}{IStorage}}}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00013}00013     \{}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00014}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a70d705a5fd3c72eb4ba1635ca18d7b78}{00014}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a70d705a5fd3c72eb4ba1635ca18d7b78}{CellStorage}}(\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_physical_cell_storage_model}{PhysicalCellStorageModel}} storageModel)}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00015}00015         \{}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00016}00016             this.storageModel = storageModel;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00017}00017             storageCells = \textcolor{keyword}{new} \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorageItem}}[storageModel.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_physical_cell_storage_model_ad1b29d91c003dce5b941e90767013d1b}{StorageCells}}.Length];}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00018}00018             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a00974159740f28866e0ec9b1fe21aa3b}{Capacity}}; i++)}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00019}00019                 storageCells[i] = \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00020}00020         \}}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00025}00025         \textcolor{keyword}{private} readonly \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_physical_cell_storage_model}{PhysicalCellStorageModel}} storageModel;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00030}00030         \textcolor{keyword}{private} readonly \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorageItem}}[] storageCells;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00032}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a559c002f624abf35e0c2893a1611bb28}{00032}}         \textcolor{keyword}{public} \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorageItem}} \textcolor{keyword}{this}[\textcolor{keywordtype}{int} index] \{ \textcolor{keyword}{get} => storageCells[index]; \textcolor{keyword}{set} => storageCells[index] = value; \}}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00034}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a2d0336b75950e096d7f2d174bc83393e}{00034}}         \textcolor{keyword}{public} IList<IStorageItem> \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a2d0336b75950e096d7f2d174bc83393e}{Contents}} => (from item in storageCells}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00035}00035                                                where item != \textcolor{keyword}{null}}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00036}00036                                                select item).ToList();}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00038}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a00974159740f28866e0ec9b1fe21aa3b}{00038}}         \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a00974159740f28866e0ec9b1fe21aa3b}{Capacity}} => storageModel.StorageCells.Length;}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00040}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a43aa4a2e1686ffb61dd1621886994899}{00040}}         \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a43aa4a2e1686ffb61dd1621886994899}{Count}} => storageCells.Count(x => x != \textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00042}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_ae17f027353fbb455d84f06d0e98e0331}{00042}}         \textcolor{keyword}{public} IEnumerator<IStorageItem> \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_ae17f027353fbb455d84f06d0e98e0331}{GetEnumerator}}() => \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a2d0336b75950e096d7f2d174bc83393e}{Contents}}.GetEnumerator();}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00044}00044         IEnumerator IEnumerable.GetEnumerator() => \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_ae17f027353fbb455d84f06d0e98e0331}{GetEnumerator}}();}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00045}00045     \}}
+\DoxyCodeLine{\Hypertarget{_cell_storage_8cs_source_l00046}00046 \}}
+
+\end{DoxyCode}

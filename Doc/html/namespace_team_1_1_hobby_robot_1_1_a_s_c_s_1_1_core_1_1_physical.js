@@ -1,0 +1,6 @@
+var namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical =
+[
+    [ "IDynamicObject", "interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_i_dynamic_object.html", "interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_i_dynamic_object" ],
+    [ "IStaticObject", "interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_i_static_object.html", "interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_i_static_object" ],
+    [ "StorageVehicleModel", "struct_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_storage_vehicle_model.html", "struct_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_storage_vehicle_model" ]
+];

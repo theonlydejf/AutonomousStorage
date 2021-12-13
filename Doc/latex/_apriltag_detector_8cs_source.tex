@@ -1,0 +1,256 @@
+\hypertarget{_apriltag_detector_8cs_source}{}\doxysection{Apriltag\+Detector.\+cs}
+\label{_apriltag_detector_8cs_source}\index{ApriltagSharp/ApriltagDetector.cs@{ApriltagSharp/ApriltagDetector.cs}}
+\mbox{\hyperlink{_apriltag_detector_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00001}00001 \textcolor{keyword}{using} System;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00002}00002 \textcolor{keyword}{using} System.Collections;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00003}00003 \textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00004}00004 \textcolor{keyword}{using} System.Text.RegularExpressions;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00005}00005 \textcolor{keyword}{using} OpenCvSharp;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00007}00007 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_apriltag_sharp}{Team.HobbyRobot.ApriltagSharp}}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00008}00008 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00009}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{00009}}     \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{ApriltagDetector}}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00011}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{00011}}         \textcolor{keyword}{public} \textcolor{keyword}{enum} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{ThresholdMethod}}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00012}00012         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00013}00013             Adaptive,}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00014}00014             Canny}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00015}00015         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00020}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ab091e687da8c45c1ede9f5df601bcdbf}{00020}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{ThresholdMethod}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ab091e687da8c45c1ede9f5df601bcdbf}{Threshold}} \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00024}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a4f4390023fdceb31fca6b845bc8d716b}{00024}}         \textcolor{keyword}{public} \textcolor{keywordtype}{double} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a4f4390023fdceb31fca6b845bc8d716b}{Sigma}} \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00028}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_aed84112460926065a70b5d20845cdd63}{00028}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{TagFamily}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{TagFamily}} \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00030}00030         \textcolor{keyword}{private} readonly \textcolor{keywordtype}{bool} Debug;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00031}00031         \textcolor{keyword}{private} readonly \textcolor{keywordtype}{int} MinArea;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00041}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ae8e241fe969f762cbfb2c3dced5c76b3}{00041}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ae8e241fe969f762cbfb2c3dced5c76b3}{ApriltagDetector}}(\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{TagFamily}} tagFamily, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{ThresholdMethod}} threshold = \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{ThresholdMethod}}.Canny, \textcolor{keywordtype}{double} sigma = 0.8, \textcolor{keywordtype}{int} minarea = 400, \textcolor{keywordtype}{bool} debug = \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00042}00042         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00043}00043             \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ab091e687da8c45c1ede9f5df601bcdbf}{Threshold}} = threshold;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00044}00044             Debug = debug;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00045}00045             \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a4f4390023fdceb31fca6b845bc8d716b}{Sigma}} = sigma;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00046}00046             MinArea = minarea;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00047}00047             \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{TagFamily}} = tagFamily;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00048}00048         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00055}00055         \textcolor{keyword}{private} Point Interpolate(Point[] quad, Point2d relativePoint)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00056}00056         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00057}00057             \textcolor{keywordtype}{double} tmp0 = quad[1].X * quad[2].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00058}00058             \textcolor{keywordtype}{double} tmp1 = quad[2].X * quad[1].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00059}00059             \textcolor{keywordtype}{double} tmp2 = tmp0 -\/ tmp1;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00060}00060             \textcolor{keywordtype}{double} tmp3 = quad[1].X * quad[3].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00061}00061             \textcolor{keywordtype}{double} tmp4 = tmp2 -\/ tmp3;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00062}00062             \textcolor{keywordtype}{double} tmp5 = quad[3].X * quad[1].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00063}00063             \textcolor{keywordtype}{double} tmp6 = quad[2].X * quad[3].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00064}00064             \textcolor{keywordtype}{double} tmp7 = quad[3].X * quad[2].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00065}00065             \textcolor{keywordtype}{double} tmp8 = tmp4 + tmp5 + tmp6 -\/ tmp7;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00066}00066             \textcolor{keywordtype}{double} tmp9 = quad[0].X * quad[2].X;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00067}00067             \textcolor{keywordtype}{double} tmp10 = tmp9 * quad[1].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00068}00068             \textcolor{keywordtype}{double} tmp11 = quad[1].X * quad[2].X;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00069}00069             \textcolor{keywordtype}{double} tmp12 = quad[0].X * quad[3].X;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00070}00070             \textcolor{keywordtype}{double} tmp13 = quad[1].X * quad[3].X;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00071}00071             \textcolor{keywordtype}{double} tmp14 = tmp13 * quad[0].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00072}00072             \textcolor{keywordtype}{double} tmp15 = tmp9 * quad[3].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00073}00073             \textcolor{keywordtype}{double} tmp16 = tmp13 * quad[2].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00074}00074             \textcolor{keywordtype}{double} tmp17 = tmp10 -\/ tmp11 * quad[0].Y -\/ tmp12 * quad[1].Y + tmp14 -\/ tmp15 + tmp12 * quad[2].Y + tmp11 * quad[3].Y -\/ tmp16;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00075}00075             \textcolor{keywordtype}{double} tmp18 = quad[0].X * quad[1].X;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00076}00076             \textcolor{keywordtype}{double} tmp19 = quad[2].X * quad[3].X;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00077}00077             \textcolor{keywordtype}{double} tmp20 = tmp18 * quad[2].Y -\/ tmp10 -\/ tmp18 * quad[3].Y + tmp14 + tmp15 -\/ tmp19 * quad[0].Y -\/ tmp16 + tmp19 * quad[1].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00078}00078             \textcolor{keywordtype}{double} tmp21 = quad[0].X * quad[1].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00079}00079             \textcolor{keywordtype}{double} tmp22 = quad[1].X * quad[0].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00080}00080             \textcolor{keywordtype}{double} tmp23 = tmp22 * quad[2].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00081}00081             \textcolor{keywordtype}{double} tmp24 = tmp21 * quad[3].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00082}00082             \textcolor{keywordtype}{double} tmp25 = quad[2].X * quad[0].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00083}00083             \textcolor{keywordtype}{double} tmp26 = quad[3].X * quad[0].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00084}00084             \textcolor{keywordtype}{double} tmp27 = tmp26 * quad[2].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00085}00085             \textcolor{keywordtype}{double} tmp28 = tmp1 * quad[3].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00086}00086             \textcolor{keywordtype}{double} tmp29 = tmp21 * quad[2].Y -\/ tmp23 -\/ tmp24 + tmp22 * quad[3].Y -\/ tmp25 * quad[3].Y + tmp27 + tmp28 -\/ tmp5 * quad[2].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00087}00087             \textcolor{keywordtype}{double} tmp30 = quad[0].X * quad[2].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00088}00088             \textcolor{keywordtype}{double} tmp31 = tmp23 -\/ tmp25 * quad[1].Y -\/ tmp24 + tmp26 * quad[1].Y + tmp30 * quad[3].Y -\/ tmp27 -\/ tmp0 * quad[3].Y + tmp28;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00089}00089             \textcolor{keywordtype}{double} tmp32 = quad[0].X * quad[3].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00090}00090             \textcolor{keywordtype}{double} tmp33 = tmp30 -\/ tmp25 -\/ tmp32 -\/ tmp0 + tmp1 + tmp26 + tmp3 -\/ tmp5;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00091}00091             \textcolor{keywordtype}{double} tmp34 = tmp21 -\/ tmp22;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00092}00092             \textcolor{keywordtype}{double} tmp35 = tmp34 -\/ tmp30 + tmp25 + tmp3 -\/ tmp5 -\/ tmp6 + tmp7;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00093}00093             \textcolor{keywordtype}{double} hx = (tmp17 / tmp8) * relativePoint.X -\/ (tmp20 / tmp8) * relativePoint.Y + quad[0].X;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00094}00094             \textcolor{keywordtype}{double} hy = (tmp29 / tmp8) * relativePoint.X -\/ (tmp31 / tmp8) * relativePoint.Y + quad[0].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00095}00095             \textcolor{keywordtype}{double} hw = (tmp33 / tmp8) * relativePoint.X + (tmp35 / tmp8) * relativePoint.Y + 1;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00096}00096             \textcolor{keywordflow}{return} \textcolor{keyword}{new} Point(hy / hw, hx / hw);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00097}00097         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00101}00101         \textcolor{keyword}{private} \textcolor{keywordtype}{double} Average(IList<byte> list)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00102}00102         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00103}00103             \textcolor{keywordtype}{int} sum = 0;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00104}00104             \textcolor{keywordflow}{foreach} (\textcolor{keywordtype}{byte} item \textcolor{keywordflow}{in} list)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00105}00105                 sum += item;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00106}00106             \textcolor{keywordflow}{return} sum / list.Count;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00107}00107         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00109}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a7cb6bf022977779a155ec39bd6d2736e}{00109}}         \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a7cb6bf022977779a155ec39bd6d2736e}{bc}} = 9;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00110}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a71bd68bbbc4dbfbb265b7c8f6cc73aac}{00110}}         \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{double} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a71bd68bbbc4dbfbb265b7c8f6cc73aac}{c}} = 5;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00117}\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a788fd911ff3ef5daf5932115ccbc91bb}{00117}}         \textcolor{keyword}{public} IList<Apriltag> \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a788fd911ff3ef5daf5932115ccbc91bb}{Detect}}(Mat frame)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00118}00118         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00119}00119             Mat gray = \textcolor{keyword}{new} Mat();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00120}00120             Cv2.CvtColor(frame, gray, ColorConversionCodes.RGB2GRAY);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00121}00121             Mat dst = \textcolor{keyword}{new} Mat();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00122}00122             Mat gauss = \textcolor{keyword}{new} Mat();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00123}00123             Cv2.GaussianBlur(gray, gauss, \textcolor{keyword}{new} Size(3, 3), this.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a4f4390023fdceb31fca6b845bc8d716b}{Sigma}});}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00124}00124             \textcolor{keywordflow}{switch} (\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_ab091e687da8c45c1ede9f5df601bcdbf}{Threshold}})}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00125}00125             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00126}00126                 \textcolor{keywordflow}{case} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{ThresholdMethod}}.Canny:}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00127}00127                     Cv2.Canny(gauss, dst, 150, 400, 3);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00128}00128                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00129}00129                 \textcolor{keywordflow}{case} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_adc1464844ced7189f142443ebd808a5a}{ThresholdMethod}}.Adaptive:}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00130}00130                     Cv2.AdaptiveThreshold(gauss, dst, 255, AdaptiveThresholdTypes.GaussianC, ThresholdTypes.BinaryInv, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a7cb6bf022977779a155ec39bd6d2736e}{bc}}, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a71bd68bbbc4dbfbb265b7c8f6cc73aac}{c}});}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00131}00131                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00132}00132             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00134}00134             Cv2.FindContours(dst, out Point[][] contours, out HierarchyIndex[] hierarchy, OpenCvSharp.RetrievalModes.CComp, ContourApproximationModes.ApproxSimple, \textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00136}00136             \textcolor{keywordflow}{if} (this.Debug == \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00137}00137             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00138}00138                 Mat copyimg = \textcolor{keyword}{new} Mat();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00139}00139                 frame.CopyTo(copyimg);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00140}00140                 copyimg.DrawContours(contours, -\/1, \textcolor{keyword}{new} Scalar(0, 255, 0));}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00141}00141                 \textcolor{keyword}{using} (\textcolor{keyword}{new} Window(\textcolor{stringliteral}{"{}contours image"{}}, copyimg))}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00142}00142                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00143}00143                     Cv2.WaitKey();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00144}00144                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00145}00145             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00146}00146             List<Point[]> hulls = \textcolor{keyword}{new} List<Point[]>();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00147}00147             List<Point[]> quads = \textcolor{keyword}{new} List<Point[]>();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00148}00148             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < contours.Length; i++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00149}00149             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00150}00150                 Point[] contour = contours[i];\textcolor{comment}{//取出多边形 get polygon}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00151}00151                 \textcolor{keywordflow}{if} (contour.Length >= 4 \&\& hierarchy[i].Previous < 0)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00152}00152                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00153}00153                     \textcolor{keywordtype}{double} area = Cv2.ContourArea(contour);\textcolor{comment}{//求多边形面积 get contour`s area}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00154}00154                     \textcolor{keywordflow}{if} (area > this.MinArea)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00155}00155                     \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00156}00156                         Point[] hull = Cv2.ConvexHull(contour);\textcolor{comment}{//求出凸包 get hull}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00157}00157                         \textcolor{keywordflow}{if} ((area / Cv2.ContourArea(hull)) > 0.8)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00158}00158                         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00159}00159                             hulls.Add(hull);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00160}00160                             Point[] quad = Cv2.ApproxPolyDP(hull, 9, \textcolor{keyword}{true});\textcolor{comment}{//根据凸包计算出四边形 get quad}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00161}00161                             \textcolor{keywordflow}{if} (quad.Length == 4)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00162}00162                             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00163}00163                                 \textcolor{keywordtype}{double} areaqued = Cv2.ContourArea(quad);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00164}00164                                 \textcolor{keywordtype}{double} areahull = Cv2.ContourArea(hull);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00165}00165                                 \textcolor{keywordflow}{if} (areaqued / areahull > 0.8 \&\& areahull >= areaqued)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00166}00166                                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00167}00167                                     quads.Add(quad);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00168}00168                                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00169}00169                             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00170}00170                         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00171}00171                     \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00172}00172                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00173}00173             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00174}00174             \textcolor{keywordflow}{if} (this.Debug == \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00175}00175             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00176}00176                 Mat copyimg = \textcolor{keyword}{new} Mat();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00177}00177                 frame.CopyTo(copyimg);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00178}00178                 \textcolor{keywordflow}{foreach} (Point[] item \textcolor{keywordflow}{in} quads)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00179}00179                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00180}00180                     Point[][] temp = \textcolor{keyword}{new} Point[1][];}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00181}00181                     temp[0] = item;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00182}00182                     copyimg.DrawContours(temp, -\/1, \textcolor{keyword}{new} Scalar(0, 255, 0));}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00183}00183                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00184}00184                 \textcolor{keyword}{using} (\textcolor{keyword}{new} Window(\textcolor{stringliteral}{"{}contours image"{}}, copyimg))}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00185}00185                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00186}00186                     Cv2.WaitKey();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00187}00187                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00188}00188                 Console.WriteLine(\textcolor{stringliteral}{"{}quads count"{}} + quads.Count);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00189}00189             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00190}00190 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00191}00191             List<Apriltag> detections = \textcolor{keyword}{new} List<Apriltag>();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00192}00192             List<Point> points = \textcolor{keyword}{new} List<Point>();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00193}00193             List<Point> whitepoints = \textcolor{keyword}{new} List<Point>();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00194}00194 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00195}00195             \textcolor{comment}{//进行点quad点的提取}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00196}00196             \textcolor{keywordflow}{foreach} (Point[] quad \textcolor{keywordflow}{in} quads)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00197}00197             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00198}00198                 \textcolor{keywordtype}{int} dd = this.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{TagFamily}}.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_abccb91361b3fc4d1e98709a87e1b1ffe}{BlackBorderThickness}} * 2 + \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{TagFamily}}.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a3a973d249d45b70cb3eee0bbfe157a88}{EdgeLength}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00199}00199                 List<byte> blackvalue = \textcolor{keyword}{new} List<byte>();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00200}00200                 List<byte> whitevalue = \textcolor{keyword}{new} List<byte>();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00201}00201 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00202}00202                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} iy = 0; iy < dd; iy++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00203}00203                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00204}00204                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} ix = 0; ix < dd; ix++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00205}00205                     \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00206}00206                         \textcolor{keywordtype}{double} x = (ix + 0.5) / (dd * 1.0);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00207}00207                         \textcolor{keywordtype}{double} y = (iy + 0.5) / (dd * 1.0);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00208}00208                         Point polatepoint = Interpolate(quad, \textcolor{keyword}{new} Point2d(x, y));}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00209}00209                         points.Add(polatepoint);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00210}00210                         \textcolor{keywordtype}{byte} value = gray.At<\textcolor{keywordtype}{byte}>(polatepoint.X, polatepoint.Y);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00211}00211                         \textcolor{keywordflow}{if} ((iy == 0 || iy == dd -\/ 1) || (ix == 0 || ix == dd -\/ 1))}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00212}00212                         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00213}00213                             blackvalue.Add(value);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00214}00214                         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00215}00215                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((iy == 1 || iy == dd -\/ 2) || (ix == 1 || ix == dd -\/ 2))}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00216}00216                         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00217}00217                             whitevalue.Add(value);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00218}00218                         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00219}00219                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00220}00220                         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00221}00221                             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00222}00222                         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00223}00223                     \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00224}00224                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00225}00225                 \textcolor{keywordtype}{long} tagcode = 0;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00226}00226                 \textcolor{keywordtype}{double} threshold = 0.5 * (Average(blackvalue) + Average(whitevalue));}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00227}00227                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} iy = 0; iy < dd; iy++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00228}00228                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00229}00229                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} ix = 0; ix < dd; ix++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00230}00230                     \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00231}00231                         \textcolor{keywordflow}{if} ((iy == 0 || iy == dd -\/ 1) || (ix == 0 || ix == dd -\/ 1))}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00232}00232                         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00233}00233                             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00234}00234                         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00235}00235                         \textcolor{keywordtype}{double} newx = (ix + 0.5) / dd * 1.0;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00236}00236                         \textcolor{keywordtype}{double} newy = (iy + 0.5) / dd * 1.0;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00237}00237                         Point point = Interpolate(quad, \textcolor{keyword}{new} Point2d(newx, newy));}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00238}00238                         \textcolor{keywordtype}{int} grayvalue = gray.At<\textcolor{keywordtype}{byte}>(point.X, point.Y);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00239}00239                         tagcode <<= 1;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00240}00240                         \textcolor{keywordflow}{if} (grayvalue > threshold)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00241}00241                         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00242}00242                             tagcode |= 1;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00243}00243                             whitepoints.Add(point);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00244}00244                         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00245}00245                     \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00246}00246                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00247}00247 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00248}00248                 \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} decoderesult = \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{TagFamily}}.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_ab6db55d4dab37d08b3ffb1edd2411a20}{Decode}}(tagcode, quad);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00249}00249                 \textcolor{keywordflow}{if} (decoderesult.\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a4466ccc2a4d39fdf516391a3ca04b293}{IsGood}})}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00250}00250                     detections.Add(decoderesult);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00251}00251             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00252}00252             \textcolor{keywordflow}{if} (this.Debug == \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00253}00253             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00254}00254                 Mat copyimg = \textcolor{keyword}{new} Mat();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00255}00255                 frame.CopyTo(copyimg);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00256}00256                 \textcolor{keywordflow}{foreach} (Point item \textcolor{keywordflow}{in} points)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00257}00257                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00258}00258                     Point tpoint = \textcolor{keyword}{new} Point(item.Y, item.X);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00259}00259                     copyimg.Circle(tpoint, 1, \textcolor{keyword}{new} Scalar(0, 0, 255));}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00260}00260                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00261}00261                 \textcolor{keyword}{using} (\textcolor{keyword}{new} Window(\textcolor{stringliteral}{"{}quad"{}}, copyimg))}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00262}00262                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00263}00263                     Cv2.WaitKey();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00264}00264                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00265}00265 }
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00266}00266                 Mat copyimg2 = \textcolor{keyword}{new} Mat();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00267}00267                 frame.CopyTo(copyimg2);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00268}00268                 \textcolor{keywordflow}{foreach} (Point item \textcolor{keywordflow}{in} whitepoints)}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00269}00269                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00270}00270                     Point tpoint = \textcolor{keyword}{new} Point(item.Y, item.X);}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00271}00271                     copyimg2.Circle(tpoint, 1, \textcolor{keyword}{new} Scalar(0, 0, 255));}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00272}00272                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00273}00273                 \textcolor{keyword}{using} (\textcolor{keyword}{new} Window(\textcolor{stringliteral}{"{}quad"{}}, copyimg2))}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00274}00274                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00275}00275                     Cv2.WaitKey();}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00276}00276                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00277}00277             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00278}00278             \textcolor{keywordflow}{return} detections;}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00279}00279         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00280}00280     \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_detector_8cs_source_l00281}00281 \}}
+
+\end{DoxyCode}

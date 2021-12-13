@@ -1,0 +1,65 @@
+\hypertarget{_apriltag_utils_8cs_source}{}\doxysection{Apriltag\+Utils.\+cs}
+\label{_apriltag_utils_8cs_source}\index{AutonomousStorageControlSystem/ApriltagModeling/ApriltagUtils.cs@{AutonomousStorageControlSystem/ApriltagModeling/ApriltagUtils.cs}}
+\mbox{\hyperlink{_apriltag_utils_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00001}00001 \textcolor{keyword}{using} System;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00002}00002 \textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00003}00003 \textcolor{keyword}{using} System.Drawing;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00004}00004 \textcolor{keyword}{using} System.Linq;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00005}00005 \textcolor{keyword}{using} System.Text;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00006}00006 \textcolor{keyword}{using} System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00007}00007 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_apriltag_sharp}{ApriltagSharp}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00008}00008 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s}{ASCS}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision}{Vision}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00009}00009 \textcolor{keyword}{using} System.Threading;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00010}\mbox{\hyperlink{_apriltag_utils_8cs_abb563e58d48b771b026e25d459c30267}{00010}} \textcolor{keyword}{using} \mbox{\hyperlink{_apriltag_cell_storage_provider_8cs_abb563e58d48b771b026e25d459c30267}{cv}} = OpenCvSharp;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00012}00012 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling}{Team.HobbyRobot.ASCS.ApriltagModeling}}}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00013}00013 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00014}00014     \textcolor{keyword}{static} \textcolor{keyword}{class }ApriltagUtils}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00015}00015     \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00016}00016         [ThreadStatic] \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{int} remainingSamples = 0;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00017}00017         [ThreadStatic] \textcolor{keyword}{private} \textcolor{keyword}{static} List<Bitmap> frameQueue;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00018}00018         [ThreadStatic] \textcolor{keyword}{private} \textcolor{keyword}{static} EventWaitHandle sampleWaitHandle = \textcolor{keyword}{new} AutoResetEvent(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00019}00019         \textcolor{comment}{// TODO: Check functionality of DetectApriltagsFromSamples}}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00020}00020         \textcolor{keyword}{public} \textcolor{keyword}{static} IList<Apriltag> DetectApriltagsFromSamples(\textcolor{keywordtype}{int} sampleCnt, \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrameProvider}} frameProvider, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{ApriltagDetector}} detector)}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00021}00021         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00022}00022             frameQueue = \textcolor{keyword}{new} List<Bitmap>();}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00024}00024             \textcolor{comment}{// Wait until we get all samples}}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00025}00025             remainingSamples = sampleCnt;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00026}00026             frameProvider.\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider_a8b825bfc4c18a2b532bed0ecafaa048e}{FrameRecieved}} += SampleDetected;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00027}00027             sampleWaitHandle.WaitOne();}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00029}00029             IList<Apriltag>[] detections = \textcolor{keyword}{new} IList<Apriltag>[sampleCnt];}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00030}00030             Parallel.For(0, sampleCnt, i => detections[i] = detector.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a788fd911ff3ef5daf5932115ccbc91bb}{Detect}}(cv::Extensions.BitmapConverter.ToMat(frameQueue[0])));}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00031}00031             IList<Apriltag> result = detections[0];}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00032}00032             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < detections.Length; i++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00033}00033             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00034}00034                 result = result.Union(detections[i]).ToList();}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00035}00035             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00037}00037             \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00038}00038         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00040}00040         \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} SampleDetected(\textcolor{keywordtype}{object} sender, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{FrameRecievedEventArgs}} e)}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00041}00041         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00042}00042             \textcolor{keywordflow}{if} (!(sender is \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrameProvider}}))}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00043}00043                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} NotImplementedException(\textcolor{stringliteral}{"{}Only IFrameProvider is supported"{}});}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00044}00044             \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrameProvider}} \_sender = sender as \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrameProvider}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00046}00046             \textcolor{comment}{// Check if all samples have been taken}}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00047}00047             \textcolor{keywordflow}{if}(remainingSamples >= 0)}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00048}00048             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00049}00049                 \_sender.\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider_a8b825bfc4c18a2b532bed0ecafaa048e}{FrameRecieved}} -\/= SampleDetected;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00050}00050                 remainingSamples = 0;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00051}00051                 sampleWaitHandle.Set();}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00052}00052                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00053}00053             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00055}00055             frameQueue.Add(e.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args_aa6a446899cdb482a80bdf4e8debfbce1}{FrameImage}});}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00056}00056             remainingSamples-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00057}00057         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00058}00058     \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_utils_8cs_source_l00059}00059 \}}
+
+\end{DoxyCode}

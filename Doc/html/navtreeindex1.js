@@ -1,0 +1,24 @@
+var NAVTREEINDEX1 =
+{
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a05da2d51a3b57ec4d6be00113517fc34":[0,0,0,0,0,0,2],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a31bd76c6e6cde23a037e06575b31eed7":[0,0,0,0,0,0,6],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a31bd76c6e6cde23a037e06575b31eed7":[1,0,0,0,0,0,6],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a347694603c9d0bc0fddd7774c85a00f0":[0,0,0,0,0,0,4],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a347694603c9d0bc0fddd7774c85a00f0":[1,0,0,0,0,0,4],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a41e2cfc42b0ffb9f7d722152c90b5e6e":[1,0,0,0,0,0,1],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a41e2cfc42b0ffb9f7d722152c90b5e6e":[0,0,0,0,0,0,1],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a4466ccc2a4d39fdf516391a3ca04b293":[0,0,0,0,0,0,7],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a4466ccc2a4d39fdf516391a3ca04b293":[1,0,0,0,0,0,7],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a566b420018a33d53ec88f6cf9e15e5db":[0,0,0,0,0,0,8],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a566b420018a33d53ec88f6cf9e15e5db":[1,0,0,0,0,0,8],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a9b3af20736153dca3839a7c1db1c0c77":[0,0,0,0,0,0,5],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a9b3af20736153dca3839a7c1db1c0c77":[1,0,0,0,0,0,5],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#abdccd2c38d61695174ae38cdea71db3c":[1,0,0,0,0,0,0],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#abdccd2c38d61695174ae38cdea71db3c":[0,0,0,0,0,0,0],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#ac5ce4eece58a90aec6c3e7409dbc6f93":[0,0,0,0,0,0,3],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#ac5ce4eece58a90aec6c3e7409dbc6f93":[1,0,0,0,0,0,3],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#ad7cb69aba424afca0aec4db75f4a97c0":[0,0,0,0,0,0,9],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#ad7cb69aba424afca0aec4db75f4a97c0":[1,0,0,0,0,0,9],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#af4de1d01f64c7ad78ee5c999b5499f77":[0,0,0,0,0,0,10],
+"struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#af4de1d01f64c7ad78ee5c999b5499f77":[1,0,0,0,0,0,10]
+};

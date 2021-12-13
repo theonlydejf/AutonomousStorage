@@ -1,0 +1,213 @@
+\hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{}\doxysection{Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family Class Reference}
+\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+
+
+Inheritance diagram for Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_ab6db55d4dab37d08b3ffb1edd2411a20}{Decode}} (long tagcode, Point\mbox{[}$\,$\mbox{]} corners)
+\begin{DoxyCompactList}\small\item\em Create an instance of \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} from detectd code \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_abcf4189decaa12b732535cb9c9369c12}{Tag\+Family}} (string name, int edge\+Length, int black\+Border\+Thickness, int minhamming)
+\begin{DoxyCompactList}\small\item\em Creates an instance of \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{Tag\+Family}} \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a425ec6b42b50bfcfdb7d1ca647faccf6}{Rotate\+Code90}} (long code)
+\begin{DoxyCompactList}\small\item\em Rotate the current binary code by 90° \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a3a973d249d45b70cb3eee0bbfe157a88}{Edge\+Length}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Length of tag\textquotesingle{}s outer black edge \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_abccb91361b3fc4d1e98709a87e1b1ffe}{Black\+Border\+Thickness}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Thickness of tag\textquotesingle{}s edge (usually 1) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a0a47db3c18ae8abb36f02b6e24bf99f6}{Minimal\+Hamming}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Minimal hamming distance for the tag to be considered good \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a97cc7b7d8484c4f700b0f3b319f27103}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Name of the tag family \end{DoxyCompactList}\item 
+abstract long\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a62928660421a2f8ffe116c464db9e1f6}{Codes}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em All tag codes, that this family contains \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a788254e5ef6a8c38aa88c832f9e9fe41}{Tag\+Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Amount of possible tags \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00007}{7}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_abcf4189decaa12b732535cb9c9369c12}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_abcf4189decaa12b732535cb9c9369c12}} 
+\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}!TagFamily@{TagFamily}}
+\index{TagFamily@{TagFamily}!Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+\doxysubsubsection{\texorpdfstring{TagFamily()}{TagFamily()}}
+{\footnotesize\ttfamily Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family.\+Tag\+Family (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{int}]{edge\+Length,  }\item[{int}]{black\+Border\+Thickness,  }\item[{int}]{minhamming }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Creates an instance of \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family}{Tag\+Family}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the family\\
+\hline
+{\em edge\+Length} & Length of the black border\\
+\hline
+{\em black\+Border\+Thickness} & Thickness of the black border (usually 1)\\
+\hline
+{\em minhamming} & Minimal hamming distance for the tag to be considered good\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00041}{41}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_ab6db55d4dab37d08b3ffb1edd2411a20}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_ab6db55d4dab37d08b3ffb1edd2411a20}} 
+\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}!Decode@{Decode}}
+\index{Decode@{Decode}!Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+\doxysubsubsection{\texorpdfstring{Decode()}{Decode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family.\+Decode (\begin{DoxyParamCaption}\item[{long}]{tagcode,  }\item[{Point\mbox{[}$\,$\mbox{]}}]{corners }\end{DoxyParamCaption})}
+
+
+
+Create an instance of \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} from detectd code 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tagcode} & Binary code\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Instance of \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00078}{78}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a425ec6b42b50bfcfdb7d1ca647faccf6}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a425ec6b42b50bfcfdb7d1ca647faccf6}} 
+\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}!RotateCode90@{RotateCode90}}
+\index{RotateCode90@{RotateCode90}!Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+\doxysubsubsection{\texorpdfstring{RotateCode90()}{RotateCode90()}}
+{\footnotesize\ttfamily long Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family.\+Rotate\+Code90 (\begin{DoxyParamCaption}\item[{long}]{code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Rotate the current binary code by 90° 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & Binary code\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Rotate the result by ninety degrees
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00054}{54}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_abccb91361b3fc4d1e98709a87e1b1ffe}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_abccb91361b3fc4d1e98709a87e1b1ffe}} 
+\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}!BlackBorderThickness@{BlackBorderThickness}}
+\index{BlackBorderThickness@{BlackBorderThickness}!Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+\doxysubsubsection{\texorpdfstring{BlackBorderThickness}{BlackBorderThickness}}
+{\footnotesize\ttfamily int Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family.\+Black\+Border\+Thickness\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Thickness of tag\textquotesingle{}s edge (usually 1) 
+
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a62928660421a2f8ffe116c464db9e1f6}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a62928660421a2f8ffe116c464db9e1f6}} 
+\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}!Codes@{Codes}}
+\index{Codes@{Codes}!Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+\doxysubsubsection{\texorpdfstring{Codes}{Codes}}
+{\footnotesize\ttfamily abstract long \mbox{[}$\,$\mbox{]} Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family.\+Codes\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+All tag codes, that this family contains 
+
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00028}{28}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a3a973d249d45b70cb3eee0bbfe157a88}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a3a973d249d45b70cb3eee0bbfe157a88}} 
+\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}!EdgeLength@{EdgeLength}}
+\index{EdgeLength@{EdgeLength}!Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+\doxysubsubsection{\texorpdfstring{EdgeLength}{EdgeLength}}
+{\footnotesize\ttfamily int Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family.\+Edge\+Length\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Length of tag\textquotesingle{}s outer black edge 
+
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00012}{12}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a0a47db3c18ae8abb36f02b6e24bf99f6}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a0a47db3c18ae8abb36f02b6e24bf99f6}} 
+\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}!MinimalHamming@{MinimalHamming}}
+\index{MinimalHamming@{MinimalHamming}!Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+\doxysubsubsection{\texorpdfstring{MinimalHamming}{MinimalHamming}}
+{\footnotesize\ttfamily int Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family.\+Minimal\+Hamming\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Minimal hamming distance for the tag to be considered good 
+
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00020}{20}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a97cc7b7d8484c4f700b0f3b319f27103}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a97cc7b7d8484c4f700b0f3b319f27103}} 
+\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}!Name@{Name}}
+\index{Name@{Name}!Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+\doxysubsubsection{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily string Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family.\+Name\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Name of the tag family 
+
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00024}{24}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a788254e5ef6a8c38aa88c832f9e9fe41}\label{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family_a788254e5ef6a8c38aa88c832f9e9fe41}} 
+\index{Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}!TagCount@{TagCount}}
+\index{TagCount@{TagCount}!Team.HobbyRobot.ApriltagSharp.TagFamily@{Team.HobbyRobot.ApriltagSharp.TagFamily}}
+\doxysubsubsection{\texorpdfstring{TagCount}{TagCount}}
+{\footnotesize\ttfamily int Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Tag\+Family.\+Tag\+Count\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Amount of possible tags 
+
+
+
+Definition at line \mbox{\hyperlink{_tag_families_8cs_source_l00032}{32}} of file \mbox{\hyperlink{_tag_families_8cs_source}{Tag\+Families.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Apriltag\+Sharp/\mbox{\hyperlink{_tag_families_8cs}{Tag\+Families.\+cs}}\end{DoxyCompactItemize}
