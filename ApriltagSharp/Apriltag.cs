@@ -64,5 +64,16 @@ namespace Team.HobbyRobot.ApriltagSharp
         }
 
         private Mat ComputeHomographyOpencv() => ComputeHomographyOpencv(Corners);
+
+        public override bool Equals(object obj)
+        {
+            return obj is Apriltag apriltag &&
+                   ID == apriltag.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ID);
+        }
     }
 }
