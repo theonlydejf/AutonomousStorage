@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousStorage", "AutonomousStorage\AutonomousStorage.csproj", "{92A77405-94BD-4357-82C0-D2137298D966}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousStorageControlSystem", "AutonomousStorageControlSystem\AutonomousStorageControlSystem.csproj", "{2270C542-9CD3-46A4-9129-BE849D9B5B92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomousStorageControlSystem", "AutonomousStorageControlSystem\AutonomousStorageControlSystem.csproj", "{2270C542-9CD3-46A4-9129-BE849D9B5B92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApriltagSharp", "ApriltagSharp\ApriltagSharp.csproj", "{F176D274-603E-4CAC-A099-0926AA50484C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2270C542-9CD3-46A4-9129-BE849D9B5B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2270C542-9CD3-46A4-9129-BE849D9B5B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2270C542-9CD3-46A4-9129-BE849D9B5B92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F176D274-603E-4CAC-A099-0926AA50484C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F176D274-603E-4CAC-A099-0926AA50484C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F176D274-603E-4CAC-A099-0926AA50484C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F176D274-603E-4CAC-A099-0926AA50484C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
