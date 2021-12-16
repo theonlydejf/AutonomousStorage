@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['value_0',['Value',['../class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a0b91b4aa24ec0e2df1d85f2cefcb8f4c',1,'Team::HobbyRobot::ASCS::Core::Ref']]],
-  ['velocity_1',['Velocity',['../interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_i_dynamic_object.html#ad7fac3cc0a5e721b6a90475c38ded62b',1,'Team.HobbyRobot.ASCS.Core.Physical.IDynamicObject.Velocity()'],['../struct_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_storage_vehicle_model.html#a60a2d982eae516c636224a51f46e7d07',1,'Team.HobbyRobot.ASCS.Core.Physical.StorageVehicleModel.Velocity()']]]
+  ['_2enetcoreapp_2cversion_3dv5_2e0_2eassemblyattributes_2ecs_0',['.NETCoreApp,Version=v5.0.AssemblyAttributes.cs',['../_win_form_a_s_c_s_vision_test_2obj_2_debug_2net5_80-windows_2_8_n_e_t_core_app_00_version_0av5_80_8_assembly_attributes_8cs.html',1,'']]],
+  ['properties_1',['Properties',['../namespace_win_form_a_s_c_s_vision_test_1_1_properties.html',1,'WinFormASCSVisionTest']]],
+  ['winformascsvisiontest_2',['WinFormASCSVisionTest',['../namespace_win_form_a_s_c_s_vision_test.html',1,'']]],
+  ['winformascsvisiontest_2eassemblyinfo_2ecs_3',['WinFormASCSVisionTest.AssemblyInfo.cs',['../_win_form_a_s_c_s_vision_test_8_assembly_info_8cs.html',1,'']]]
 ];

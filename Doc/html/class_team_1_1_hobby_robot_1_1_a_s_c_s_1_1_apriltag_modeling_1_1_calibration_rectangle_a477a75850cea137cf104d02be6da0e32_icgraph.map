@@ -1,0 +1,8 @@
+<map id="Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle.FindDistanceToSegment" name="Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle.FindDistanceToSegment">
+<area shape="rect" id="node1" title=" " alt="" coords="1135,31,1361,87"/>
+<area shape="rect" id="node2" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle.html#a189e3c6cb1f109ee464f77cb854f31af" title="Maps a point inside of the quadrilateral to a rectangle with sides of length 1" alt="" coords="831,5,1087,47"/>
+<area shape="rect" id="node6" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle.html#a7c5ff143b868aa952376f3927676eac7" title="ONLY A TEST FUNCTION FOR VISUALISING (works only on windows!)" alt="" coords="843,71,1074,112"/>
+<area shape="rect" id="node3" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a21a7cf1cc34d1a8f56fc472379953666" title=" " alt="" coords="536,39,783,80"/>
+<area shape="rect" id="node4" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#adde97a90ed2553dd33710b862222ffff" title="Required method for Designer support &#45; do not modify the contents of this method with the code editor..." alt="" coords="271,39,488,80"/>
+<area shape="rect" id="node5" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a6be5087c6a6166c781ed918ce99bd89a" title=" " alt="" coords="5,39,223,80"/>
+</map>

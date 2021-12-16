@@ -1,0 +1,8 @@
+<map id="Team.HobbyRobot.ASCS.CellStorage.CellStorage" name="Team.HobbyRobot.ASCS.CellStorage.CellStorage">
+<area shape="rect" id="node1" title="A class thet represents a cell storage" alt="" coords="653,82,848,123"/>
+<area shape="rect" id="node2" href="$interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage.html" title=" " alt="" coords="349,31,419,57"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="53,56,148,83"/>
+<area shape="rect" id="node5" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_physical_cell_storage_model.html" title=" " alt="" coords="245,82,523,123"/>
+<area shape="rect" id="node6" href="$interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item.html" title="Item that is stored in a storage" alt="" coords="282,147,486,189"/>
+</map>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: AutonomousStorageControlSystem/Core/Ref.cs Source File</title>
+<title>My Project: Ref.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project<span id="projectnumber">&#160;0.0.21.12.13</span>
+   <div id="projectname">My Project<span id="projectnumber">&#160;0.0.21.12.16</span>
    </div>
   </td>
  </tr>
@@ -93,25 +93,28 @@ $(document).ready(function(){initNavTree('_ref_8cs_source.html',''); initResizab
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core.html">Team.HobbyRobot.ASCS.Core</a></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html">    9</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html">Ref</a>&lt;T&gt;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <span class="keyword">private</span> readonly Func&lt;T&gt; getter;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <span class="keyword">private</span> readonly Action&lt;T&gt; setter;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#ab27600ace52f81ac94ae4ec41a1793ec">   13</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#ab27600ace52f81ac94ae4ec41a1793ec">Ref</a>(Func&lt;T&gt; getter, Action&lt;T&gt; setter)</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            this.getter = getter;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            this.setter = setter;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        }</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a0b91b4aa24ec0e2df1d85f2cefcb8f4c">   18</a></span>        <span class="keyword">public</span> T <a class="code hl_property" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a0b91b4aa24ec0e2df1d85f2cefcb8f4c">Value</a></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            <span class="keyword">get</span> { <span class="keywordflow">return</span> getter(); }</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            <span class="keyword">set</span> { setter(value); }</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
-<div class="ttc" id="aclass_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_html"><div class="ttname"><a href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html">Team.HobbyRobot.ASCS.Core.Ref</a></div><div class="ttdef"><b>Definition:</b> <a href="_ref_8cs_source.html#l00009">Ref.cs:10</a></div></div>
-<div class="ttc" id="aclass_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_html_a0b91b4aa24ec0e2df1d85f2cefcb8f4c"><div class="ttname"><a href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a0b91b4aa24ec0e2df1d85f2cefcb8f4c">Team.HobbyRobot.ASCS.Core.Ref.Value</a></div><div class="ttdeci">T Value</div><div class="ttdef"><b>Definition:</b> <a href="_ref_8cs_source.html#l00018">Ref.cs:19</a></div></div>
-<div class="ttc" id="aclass_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_html_ab27600ace52f81ac94ae4ec41a1793ec"><div class="ttname"><a href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#ab27600ace52f81ac94ae4ec41a1793ec">Team.HobbyRobot.ASCS.Core.Ref.Ref</a></div><div class="ttdeci">Ref(Func&lt; T &gt; getter, Action&lt; T &gt; setter)</div><div class="ttdef"><b>Definition:</b> <a href="_ref_8cs_source.html#l00013">Ref.cs:13</a></div></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html">   13</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html">Ref</a>&lt;T&gt;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a405704bd2a64007c768166837c998b3a">   15</a></span>        <span class="keyword">private</span> readonly Func&lt;T&gt; <a class="code hl_variable" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a405704bd2a64007c768166837c998b3a">getter</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#afeff35dfe04994eebe5468a949d394a5">   16</a></span>        <span class="keyword">private</span> readonly Action&lt;T&gt; <a class="code hl_variable" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#afeff35dfe04994eebe5468a949d394a5">setter</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#ab27600ace52f81ac94ae4ec41a1793ec">   17</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#ab27600ace52f81ac94ae4ec41a1793ec">Ref</a>(Func&lt;T&gt; <a class="code hl_variable" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a405704bd2a64007c768166837c998b3a">getter</a>, Action&lt;T&gt; <a class="code hl_variable" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#afeff35dfe04994eebe5468a949d394a5">setter</a>)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            this.getter = <a class="code hl_variable" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a405704bd2a64007c768166837c998b3a">getter</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            this.setter = <a class="code hl_variable" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#afeff35dfe04994eebe5468a949d394a5">setter</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        }</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a0b91b4aa24ec0e2df1d85f2cefcb8f4c">   23</a></span>        <span class="keyword">public</span> T <a class="code hl_property" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a0b91b4aa24ec0e2df1d85f2cefcb8f4c">Value</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="keyword">get</span> { <span class="keywordflow">return</span> <a class="code hl_variable" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a405704bd2a64007c768166837c998b3a">getter</a>(); }</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            <span class="keyword">set</span> { <a class="code hl_variable" href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#afeff35dfe04994eebe5468a949d394a5">setter</a>(value); }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
+<div class="ttc" id="aclass_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_html"><div class="ttname"><a href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html">Team.HobbyRobot.ASCS.Core.Ref</a></div><div class="ttdoc">Class that can be used to pass any type as a reference</div><div class="ttdef"><b>Definition:</b> <a href="_ref_8cs_source.html#l00013">Ref.cs:14</a></div></div>
+<div class="ttc" id="aclass_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_html_a0b91b4aa24ec0e2df1d85f2cefcb8f4c"><div class="ttname"><a href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a0b91b4aa24ec0e2df1d85f2cefcb8f4c">Team.HobbyRobot.ASCS.Core.Ref.Value</a></div><div class="ttdeci">T Value</div><div class="ttdef"><b>Definition:</b> <a href="_ref_8cs_source.html#l00023">Ref.cs:24</a></div></div>
+<div class="ttc" id="aclass_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_html_a405704bd2a64007c768166837c998b3a"><div class="ttname"><a href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#a405704bd2a64007c768166837c998b3a">Team.HobbyRobot.ASCS.Core.Ref.getter</a></div><div class="ttdeci">readonly Func&lt; T &gt; getter</div><div class="ttdef"><b>Definition:</b> <a href="_ref_8cs_source.html#l00015">Ref.cs:15</a></div></div>
+<div class="ttc" id="aclass_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_html_ab27600ace52f81ac94ae4ec41a1793ec"><div class="ttname"><a href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#ab27600ace52f81ac94ae4ec41a1793ec">Team.HobbyRobot.ASCS.Core.Ref.Ref</a></div><div class="ttdeci">Ref(Func&lt; T &gt; getter, Action&lt; T &gt; setter)</div><div class="ttdef"><b>Definition:</b> <a href="_ref_8cs_source.html#l00017">Ref.cs:17</a></div></div>
+<div class="ttc" id="aclass_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref_html_afeff35dfe04994eebe5468a949d394a5"><div class="ttname"><a href="class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_ref.html#afeff35dfe04994eebe5468a949d394a5">Team.HobbyRobot.ASCS.Core.Ref.setter</a></div><div class="ttdeci">readonly Action&lt; T &gt; setter</div><div class="ttdef"><b>Definition:</b> <a href="_ref_8cs_source.html#l00016">Ref.cs:16</a></div></div>
 <div class="ttc" id="anamespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_html"><div class="ttname"><a href="namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core.html">Team.HobbyRobot.ASCS.Core</a></div><div class="ttdef"><b>Definition:</b> <a href="_i_storage_8cs_source.html#l00008">IStorage.cs:9</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

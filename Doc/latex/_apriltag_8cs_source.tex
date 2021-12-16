@@ -1,5 +1,5 @@
 \hypertarget{_apriltag_8cs_source}{}\doxysection{Apriltag.\+cs}
-\label{_apriltag_8cs_source}\index{ApriltagSharp/Apriltag.cs@{ApriltagSharp/Apriltag.cs}}
+\label{_apriltag_8cs_source}\index{Apriltag.cs@{Apriltag.cs}}
 \mbox{\hyperlink{_apriltag_8cs}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00001}00001 \textcolor{keyword}{using} System;}
@@ -18,50 +18,115 @@
 \DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00014}00014             \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a566b420018a33d53ec88f6cf9e15e5db}{MatchCode}} = matchCode;}
 \DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00015}00015             \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{ID}} = id;}
 \DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00016}00016             \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a347694603c9d0bc0fddd7774c85a00f0}{HammingDistance}} = hammingDistance;}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00017}00017             \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_af4de1d01f64c7ad78ee5c999b5499f77}{Orientation}} = rotation;}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00018}00018             points = corners;}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00019}00019             \textcolor{keywordflow}{if} (corners != \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00020}00020                 \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}} = ComputeHomographyOpencv(corners);}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00021}00021             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00022}00022                 \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}} = \textcolor{keyword}{null};}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00023}00023         \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00024}00024 }
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00028}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a4466ccc2a4d39fdf516391a3ca04b293}{00028}}         \textcolor{keyword}{public} \textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a4466ccc2a4d39fdf516391a3ca04b293}{IsGood}} \{ \textcolor{keyword}{get}; \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00032}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ad7cb69aba424afca0aec4db75f4a97c0}{00032}}         \textcolor{keyword}{public} \textcolor{keywordtype}{long} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ad7cb69aba424afca0aec4db75f4a97c0}{ObservedCode}} \{ \textcolor{keyword}{get}; \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00036}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a566b420018a33d53ec88f6cf9e15e5db}{00036}}         \textcolor{keyword}{public} \textcolor{keywordtype}{long} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a566b420018a33d53ec88f6cf9e15e5db}{MatchCode}} \{ \textcolor{keyword}{get}; \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00040}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{00040}}         \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{ID}} \{ \textcolor{keyword}{get}; \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00044}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a347694603c9d0bc0fddd7774c85a00f0}{00044}}         \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a347694603c9d0bc0fddd7774c85a00f0}{HammingDistance}} \{ \textcolor{keyword}{get}; \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00045}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_af4de1d01f64c7ad78ee5c999b5499f77}{00045}}         \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_af4de1d01f64c7ad78ee5c999b5499f77}{Orientation}} \{ \textcolor{keyword}{get}; \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00046}00046         \textcolor{keyword}{private} Point[] points;}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00047}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{00047}}         \textcolor{keyword}{public} Mat \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}} \{ \textcolor{keyword}{get}; \textcolor{keyword}{private} \textcolor{keyword}{set}; \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00048}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}{00048}}         \textcolor{keyword}{public} Point[] \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}{Corners}} \{ \textcolor{keyword}{get} => points; \textcolor{keyword}{set} \{ points = value; \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}} = ComputeHomographyOpencv(); \} \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00049}00049 }
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00053}00053         \textcolor{keyword}{private} \textcolor{keyword}{static} Mat ComputeHomographyOpencv(Point[] corners)}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00054}00054         \{}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00055}00055             Point2d[] src = \{}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00056}00056                 \textcolor{keyword}{new} Point2d (-\/1, -\/1),}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00057}00057                 \textcolor{keyword}{new} Point2d (1, -\/1),}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00058}00058                 \textcolor{keyword}{new} Point2d (1, 1),}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00059}00059                 \textcolor{keyword}{new} Point2d (-\/1, 1)}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00060}00060             \};}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00061}00061 }
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00062}00062             Point2d[] dst = corners.Select(x => \textcolor{keyword}{new} Point2d(x.X, x.Y)).ToArray(); \textcolor{comment}{//ConvertPoint2Point2D();}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00063}00063             \textcolor{keywordflow}{return} Cv2.FindHomography(src, dst);}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00064}00064         \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00065}00065 }
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00066}00066         \textcolor{keyword}{private} Mat ComputeHomographyOpencv() => ComputeHomographyOpencv(\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}{Corners}});}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00067}00067 }
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00068}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a41e2cfc42b0ffb9f7d722152c90b5e6e}{00068}}         \textcolor{keyword}{public} \textcolor{keyword}{override} \textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a41e2cfc42b0ffb9f7d722152c90b5e6e}{Equals}}(\textcolor{keywordtype}{object} obj)}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00069}00069         \{}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00070}00070             \textcolor{keywordflow}{return} obj is \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} apriltag \&\&}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00071}00071                    \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{ID}} == apriltag.ID;}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00072}00072         \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00073}00073 }
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00074}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a05da2d51a3b57ec4d6be00113517fc34}{00074}}         \textcolor{keyword}{public} \textcolor{keyword}{override} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a05da2d51a3b57ec4d6be00113517fc34}{GetHashCode}}()}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00075}00075         \{}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00076}00076             \textcolor{keywordflow}{return} HashCode.Combine(\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{ID}});}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00077}00077         \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00078}00078     \}}
-\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00079}00079 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00017}00017             \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}} = corners;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00018}00018             \textcolor{keywordflow}{if} (corners != \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00019}00019                 \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}} = \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ae876351b62d40841f966151d29c791db}{ComputeHomographyOpencv}}(corners);}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00020}00020             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00021}00021                 \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}} = \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00022}00022             \textcolor{keywordflow}{if} (corners != \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00023}00023                 \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_adba1142836bff212649d3c56e4e10128}{center}} = \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a187b293df52c94c6c0f5ce9f50a983cc}{FindCentroid}}(corners);}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00024}00024             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00025}00025                 \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_adba1142836bff212649d3c56e4e10128}{center}} = \textcolor{keyword}{new} Point(\textcolor{keywordtype}{float}.NaN, \textcolor{keywordtype}{float}.NaN);}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00026}00026             \textcolor{keywordflow}{if}(rotation != 0)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00027}00027             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00028}00028                 \textcolor{keywordtype}{int} firstIdx = 4 -\/ rotation;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00029}00029                 Point[] pts = \textcolor{keyword}{new} Point[4];}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00030}00030                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 4; i++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00031}00031                 \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00032}00032                     \textcolor{keywordtype}{int} idx = firstIdx + i;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00033}00033                     \textcolor{keywordflow}{if} (idx >= 4)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00034}00034                         idx -\/= 4;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00035}00035                     pts[i] = corners[idx];}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00036}00036                 \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00037}00037                 \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}} = pts;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00038}00038             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00039}00039         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00044}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a4466ccc2a4d39fdf516391a3ca04b293}{00044}}         \textcolor{keyword}{public} \textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a4466ccc2a4d39fdf516391a3ca04b293}{IsGood}} \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00048}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ad7cb69aba424afca0aec4db75f4a97c0}{00048}}         \textcolor{keyword}{public} \textcolor{keywordtype}{long} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ad7cb69aba424afca0aec4db75f4a97c0}{ObservedCode}} \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00052}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a566b420018a33d53ec88f6cf9e15e5db}{00052}}         \textcolor{keyword}{public} \textcolor{keywordtype}{long} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a566b420018a33d53ec88f6cf9e15e5db}{MatchCode}} \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00056}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{00056}}         \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{ID}} \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00060}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a347694603c9d0bc0fddd7774c85a00f0}{00060}}         \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a347694603c9d0bc0fddd7774c85a00f0}{HammingDistance}} \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00061}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{00061}}         \textcolor{keyword}{private} Point[] \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00062}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{00062}}         \textcolor{keyword}{public} Mat \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}} \{ \textcolor{keyword}{get}; \textcolor{keyword}{private} \textcolor{keyword}{set}; \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00063}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}{00063}}         \textcolor{keyword}{public} Point[] \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}{Corners}} \{ \textcolor{keyword}{get} => \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}}; \textcolor{keyword}{set} \{ \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}} = value; \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}} = \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ae876351b62d40841f966151d29c791db}{ComputeHomographyOpencv}}(); \} \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00064}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_adba1142836bff212649d3c56e4e10128}{00064}}         \textcolor{keyword}{private} Point \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_adba1142836bff212649d3c56e4e10128}{center}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00065}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ab0a9176fe4c775fb64712ecb971deeaf}{00065}}         \textcolor{keyword}{public} Point \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ab0a9176fe4c775fb64712ecb971deeaf}{Center}} => \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_adba1142836bff212649d3c56e4e10128}{center}};}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00069}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2abc43a95ae64a0c4933e274e24325b2}{00069}}         \textcolor{keyword}{private} \textcolor{keyword}{static} Mat \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2abc43a95ae64a0c4933e274e24325b2}{ComputeHomographyOpencv}}(Point[] corners)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00070}00070         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00071}00071             Point2d[] src = \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00072}00072                 \textcolor{keyword}{new} Point2d (-\/1, -\/1),}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00073}00073                 \textcolor{keyword}{new} Point2d (1, -\/1),}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00074}00074                 \textcolor{keyword}{new} Point2d (1, 1),}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00075}00075                 \textcolor{keyword}{new} Point2d (-\/1, 1)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00076}00076             \};}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00078}00078             Point2d[] dst = corners.Select(x => \textcolor{keyword}{new} Point2d(x.X, x.Y)).ToArray(); \textcolor{comment}{//ConvertPoint2Point2D();}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00079}00079             \textcolor{keywordflow}{return} Cv2.FindHomography(src, dst);}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00080}00080         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00081}00081 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00082}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a187b293df52c94c6c0f5ce9f50a983cc}{00082}}         \textcolor{keyword}{private} Point \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a187b293df52c94c6c0f5ce9f50a983cc}{FindCentroid}}() => \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a187b293df52c94c6c0f5ce9f50a983cc}{FindCentroid}}(\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}});}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00084}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2781a88510450c82879f39bd4ed52769}{00084}}         \textcolor{keyword}{private} \textcolor{keyword}{static} Point \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2781a88510450c82879f39bd4ed52769}{FindCentroid}}(Point[] \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}})}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00085}00085         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00086}00086             \textcolor{comment}{// Add the first point at the end of the array.}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00087}00087             \textcolor{keywordtype}{int} num\_points = \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}}.Length;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00088}00088             Point[] pts = \textcolor{keyword}{new} Point[num\_points + 1];}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00089}00089             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}}.Length; i++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00090}00090             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00091}00091                 pts[i] = \textcolor{keyword}{new} Point(\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}}[i].X, \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}}[i].Y);}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00092}00092             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00093}00093             pts[num\_points] = \textcolor{keyword}{new} Point(\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}}[0].X, \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}}[0].Y);}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00095}00095             \textcolor{comment}{// Find the centroid.}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00096}00096             \textcolor{keywordtype}{float} X = 0;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00097}00097             \textcolor{keywordtype}{float} Y = 0;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00098}00098             \textcolor{keywordtype}{float} second\_factor;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00099}00099             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_points; i++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00100}00100             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00101}00101                 second\_factor =}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00102}00102                     pts[i].X * pts[i + 1].Y -\/}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00103}00103                     pts[i + 1].X * pts[i].Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00104}00104                 X += (pts[i].X + pts[i + 1].X) * second\_factor;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00105}00105                 Y += (pts[i].Y + pts[i + 1].Y) * second\_factor;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00106}00106             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00108}00108             \textcolor{keywordtype}{float} area = 0;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00109}00109             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_points; i++)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00110}00110             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00111}00111                 area +=}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00112}00112                     (pts[i + 1].X -\/ pts[i].X) *}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00113}00113                     (pts[i + 1].Y + pts[i].Y) / 2;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00114}00114             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00116}00116             \textcolor{comment}{// Divide by 6 times the polygon's area.}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00117}00117             X /= (6 * area);}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00118}00118             Y /= (6 * area);}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00120}00120             \textcolor{comment}{// If the values are negative, the polygon is}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00121}00121             \textcolor{comment}{// oriented counterclockwise so reverse the signs.}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00122}00122             \textcolor{keywordflow}{if} (X < 0)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00123}00123             \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00124}00124                 X = -\/X;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00125}00125                 Y = -\/Y;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00126}00126             \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00128}00128             \textcolor{keywordflow}{return} \textcolor{keyword}{new} Point(X, Y);}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00129}00129         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00131}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ae876351b62d40841f966151d29c791db}{00131}}         \textcolor{keyword}{private} Mat \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ae876351b62d40841f966151d29c791db}{ComputeHomographyOpencv}}() => \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ae876351b62d40841f966151d29c791db}{ComputeHomographyOpencv}}(\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}{Corners}});}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00132}00132 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00133}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a41e2cfc42b0ffb9f7d722152c90b5e6e}{00133}}         \textcolor{keyword}{public} \textcolor{keyword}{override} \textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a41e2cfc42b0ffb9f7d722152c90b5e6e}{Equals}}(\textcolor{keywordtype}{object} obj)}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00134}00134         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00135}00135             \textcolor{keywordflow}{return} obj is \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} apriltag \&\&}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00136}00136                    \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{ID}} == apriltag.ID;}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00137}00137         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00138}00138 }
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00139}\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a05da2d51a3b57ec4d6be00113517fc34}{00139}}         \textcolor{keyword}{public} \textcolor{keyword}{override} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a05da2d51a3b57ec4d6be00113517fc34}{GetHashCode}}()}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00140}00140         \{}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00141}00141             \textcolor{keywordflow}{return} HashCode.Combine(\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{ID}});}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00142}00142         \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00143}00143     \}}
+\DoxyCodeLine{\Hypertarget{_apriltag_8cs_source_l00144}00144 \}}
 
 \end{DoxyCode}

@@ -22,11 +22,32 @@ int \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag
 \begin{DoxyCompactList}\small\item\em ID of the tag \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a347694603c9d0bc0fddd7774c85a00f0}{Hamming\+Distance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \begin{DoxyCompactList}\small\item\em Hamming distance between Observed code and matched code \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_af4de1d01f64c7ad78ee5c999b5499f77}{Orientation}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-Mat \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+Mat \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}{Homography}}\hspace{0.3cm}{\ttfamily  \mbox{[}getprivate set\mbox{]}}
 \item 
 Point\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}{Corners}}\hspace{0.3cm}{\ttfamily  \mbox{[}getset\mbox{]}}
+\item 
+Point \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ab0a9176fe4c775fb64712ecb971deeaf}{Center}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Point \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a187b293df52c94c6c0f5ce9f50a983cc}{Find\+Centroid}} ()
+\item 
+Mat \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ae876351b62d40841f966151d29c791db}{Compute\+Homography\+Opencv}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Mat \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2abc43a95ae64a0c4933e274e24325b2}{Compute\+Homography\+Opencv}} (Point\mbox{[}$\,$\mbox{]} corners)
+\begin{DoxyCompactList}\small\item\em 得到旋转矩阵，需要使用opencv \end{DoxyCompactList}\item 
+static Point \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2781a88510450c82879f39bd4ed52769}{Find\+Centroid}} (Point\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Point\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}{points}}
+\item 
+Point \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_adba1142836bff212649d3c56e4e10128}{center}}
 \end{DoxyCompactItemize}
 
 
@@ -48,9 +69,45 @@ Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00008}{8}} of file \mb
 
 Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00010}{10}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_abdccd2c38d61695174ae38cdea71db3c_cgraph}
+\end{center}
+\end{figure}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ae876351b62d40841f966151d29c791db}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ae876351b62d40841f966151d29c791db}} 
+\index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!ComputeHomographyOpencv@{ComputeHomographyOpencv}}
+\index{ComputeHomographyOpencv@{ComputeHomographyOpencv}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
+\doxysubsubsection{\texorpdfstring{ComputeHomographyOpencv()}{ComputeHomographyOpencv()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Mat Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+Compute\+Homography\+Opencv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ae876351b62d40841f966151d29c791db_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2abc43a95ae64a0c4933e274e24325b2}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2abc43a95ae64a0c4933e274e24325b2}} 
+\index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!ComputeHomographyOpencv@{ComputeHomographyOpencv}}
+\index{ComputeHomographyOpencv@{ComputeHomographyOpencv}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
+\doxysubsubsection{\texorpdfstring{ComputeHomographyOpencv()}{ComputeHomographyOpencv()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static Mat Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+Compute\+Homography\+Opencv (\begin{DoxyParamCaption}\item[{Point\mbox{[}$\,$\mbox{]}}]{corners }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+得到旋转矩阵，需要使用opencv 
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00069}{69}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+
 \mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a41e2cfc42b0ffb9f7d722152c90b5e6e}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a41e2cfc42b0ffb9f7d722152c90b5e6e}} 
 \index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!Equals@{Equals}}
 \index{Equals@{Equals}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
@@ -59,7 +116,31 @@ Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00010}{10}} of file \m
 
 
 
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00068}{68}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00133}{133}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+
+\mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a187b293df52c94c6c0f5ce9f50a983cc}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a187b293df52c94c6c0f5ce9f50a983cc}} 
+\index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!FindCentroid@{FindCentroid}}
+\index{FindCentroid@{FindCentroid}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
+\doxysubsubsection{\texorpdfstring{FindCentroid()}{FindCentroid()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Point Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+Find\+Centroid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a187b293df52c94c6c0f5ce9f50a983cc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2781a88510450c82879f39bd4ed52769}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a2781a88510450c82879f39bd4ed52769}} 
+\index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!FindCentroid@{FindCentroid}}
+\index{FindCentroid@{FindCentroid}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
+\doxysubsubsection{\texorpdfstring{FindCentroid()}{FindCentroid()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static Point Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+Find\+Centroid (\begin{DoxyParamCaption}\item[{Point\mbox{[}$\,$\mbox{]}}]{points }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00084}{84}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
 \mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a05da2d51a3b57ec4d6be00113517fc34}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a05da2d51a3b57ec4d6be00113517fc34}} 
 \index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!GetHashCode@{GetHashCode}}
@@ -69,11 +150,44 @@ Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00068}{68}} of file \m
 
 
 
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00074}{74}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00139}{139}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_adba1142836bff212649d3c56e4e10128}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_adba1142836bff212649d3c56e4e10128}} 
+\index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!center@{center}}
+\index{center@{center}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
+\doxysubsubsection{\texorpdfstring{center}{center}}
+{\footnotesize\ttfamily Point Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+center\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00064}{64}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+
+\mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_acfecc90317ebbc0fc550db37996a2ce0}} 
+\index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!points@{points}}
+\index{points@{points}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
+\doxysubsubsection{\texorpdfstring{points}{points}}
+{\footnotesize\ttfamily Point \mbox{[}$\,$\mbox{]} Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+points\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00061}{61}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
 
 
 \doxysubsection{Property Documentation}
+\mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ab0a9176fe4c775fb64712ecb971deeaf}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ab0a9176fe4c775fb64712ecb971deeaf}} 
+\index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!Center@{Center}}
+\index{Center@{Center}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
+\doxysubsubsection{\texorpdfstring{Center}{Center}}
+{\footnotesize\ttfamily Point Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+Center\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00065}{65}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+
 \mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}} 
 \index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!Corners@{Corners}}
 \index{Corners@{Corners}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
@@ -82,7 +196,7 @@ Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00074}{74}} of file \m
 
 
 
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00048}{48}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00063}{63}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
 \mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a347694603c9d0bc0fddd7774c85a00f0}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a347694603c9d0bc0fddd7774c85a00f0}} 
 \index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!HammingDistance@{HammingDistance}}
@@ -96,17 +210,17 @@ Hamming distance between Observed code and matched code
 
 
 
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00044}{44}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00060}{60}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
 \mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a9b3af20736153dca3839a7c1db1c0c77}} 
 \index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!Homography@{Homography}}
 \index{Homography@{Homography}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
 \doxysubsubsection{\texorpdfstring{Homography}{Homography}}
-{\footnotesize\ttfamily Mat Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+Homography\hspace{0.3cm}{\ttfamily [get]}}
+{\footnotesize\ttfamily Mat Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+Homography\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
 
 
 
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00047}{47}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00062}{62}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
 \mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}} 
 \index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!ID@{ID}}
@@ -120,7 +234,7 @@ ID of the tag
 
 
 
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00040}{40}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00056}{56}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
 \mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a4466ccc2a4d39fdf516391a3ca04b293}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a4466ccc2a4d39fdf516391a3ca04b293}} 
 \index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!IsGood@{IsGood}}
@@ -134,7 +248,7 @@ Whether the hamming distance is within the margin of error
 
 
 
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00028}{28}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00044}{44}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
 \mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a566b420018a33d53ec88f6cf9e15e5db}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a566b420018a33d53ec88f6cf9e15e5db}} 
 \index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!MatchCode@{MatchCode}}
@@ -148,7 +262,7 @@ Coresponding code to the observed code
 
 
 
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00036}{36}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00052}{52}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
 \mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ad7cb69aba424afca0aec4db75f4a97c0}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ad7cb69aba424afca0aec4db75f4a97c0}} 
 \index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!ObservedCode@{ObservedCode}}
@@ -162,20 +276,10 @@ Observed Code
 
 
 
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00032}{32}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
-
-\mbox{\Hypertarget{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_af4de1d01f64c7ad78ee5c999b5499f77}\label{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_af4de1d01f64c7ad78ee5c999b5499f77}} 
-\index{Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}!Orientation@{Orientation}}
-\index{Orientation@{Orientation}!Team.HobbyRobot.ApriltagSharp.Apriltag@{Team.HobbyRobot.ApriltagSharp.Apriltag}}
-\doxysubsubsection{\texorpdfstring{Orientation}{Orientation}}
-{\footnotesize\ttfamily int Team.\+Hobby\+Robot.\+Apriltag\+Sharp.\+Apriltag.\+Orientation\hspace{0.3cm}{\ttfamily [get]}}
-
-
-
-Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00045}{45}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
+Definition at line \mbox{\hyperlink{_apriltag_8cs_source_l00048}{48}} of file \mbox{\hyperlink{_apriltag_8cs_source}{Apriltag.\+cs}}.
 
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Apriltag\+Sharp/\mbox{\hyperlink{_apriltag_8cs}{Apriltag.\+cs}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{_apriltag_8cs}{Apriltag.\+cs}}\end{DoxyCompactItemize}

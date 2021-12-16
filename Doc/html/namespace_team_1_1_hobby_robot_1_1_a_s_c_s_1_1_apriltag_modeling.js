@@ -1,4 +1,7 @@
 var namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling =
 [
-    [ "ApriltagCellStorageProvider", "class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_cell_storage_provider.html", "class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_cell_storage_provider" ]
+    [ "ApriltagCellStorageProvider", "class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_cell_storage_provider.html", "class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_cell_storage_provider" ],
+    [ "ApriltagUtils", "class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils.html", "class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils" ],
+    [ "CalibrationRectangle", "class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle.html", "class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle" ],
+    [ "CalibrationRectangleSettings", "struct_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_settings.html", "struct_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_settings" ]
 ];

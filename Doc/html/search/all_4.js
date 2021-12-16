@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['decode_0',['Decode',['../class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family.html#ab6db55d4dab37d08b3ffb1edd2411a20',1,'Team::HobbyRobot::ApriltagSharp::TagFamily']]],
-  ['detect_1',['Detect',['../class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector.html#a788fd911ff3ef5daf5932115ccbc91bb',1,'Team::HobbyRobot::ApriltagSharp::ApriltagDetector']]]
+  ['edgelength_0',['EdgeLength',['../class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family.html#a3a973d249d45b70cb3eee0bbfe157a88',1,'Team::HobbyRobot::ApriltagSharp::TagFamily']]],
+  ['equals_1',['Equals',['../struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag.html#a41e2cfc42b0ffb9f7d722152c90b5e6e',1,'Team::HobbyRobot::ApriltagSharp::Apriltag']]]
 ];

@@ -1,0 +1,4 @@
+<map id="WinFormASCSVisionTest.AForgeFrameProvider.VideoCaptureDevice_NewFrame" name="WinFormASCSVisionTest.AForgeFrameProvider.VideoCaptureDevice_NewFrame">
+<area shape="rect" id="node1" title="Forwards the recieved frame to FrameRecieved event and corrects the PixelFormat" alt="" coords="288,5,513,61"/>
+<area shape="rect" id="node2" href="$class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider.html#a18f8fc08d91c91e4a04d1bbc52ad4513" title=" " alt="" coords="5,13,240,54"/>
+</map>

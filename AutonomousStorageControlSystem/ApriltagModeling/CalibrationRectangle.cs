@@ -10,6 +10,9 @@ using Team.HobbyRobot.ApriltagSharp;
 
 namespace Team.HobbyRobot.ASCS.ApriltagModeling
 {
+    /// <summary>
+    /// A class used for calculating position on a plane thats defined by 4 points representing a rectangle
+    /// </summary>
     public class CalibrationRectangle
     {
         public static CalibrationRectangleSettings Settings = new CalibrationRectangleSettings()
@@ -22,9 +25,13 @@ namespace Team.HobbyRobot.ASCS.ApriltagModeling
 
         private Apriltag[] cornerTags;
         private Point[] corners;
-        private Vector2 fieldSize;
 
-        public static CalibrationRectangle Create(IList<Apriltag> detectedTags, Vector2 fieldSize)
+        /// <summary>
+        /// Creates an instance of CalibrationRectangle from list of tags
+        /// </summary>
+        /// <param name="detectedTags">List of any tags, that should contain all of the corner tags</param>
+        /// <returns>An instance of CalibrationRectangle if detectedTags contain all four corners tags, or null</returns>
+        public static CalibrationRectangle Create(IList<Apriltag> detectedTags)
         {
             Apriltag[] cornerTags;
             Point[] corners;
@@ -67,9 +74,14 @@ namespace Team.HobbyRobot.ASCS.ApriltagModeling
             corners = new Point[4];
             for (int i = 0; i < corners.Length; i++)
                 corners[i] = cornerTags[i].Corners[i];
-            return new CalibrationRectangle() { corners = corners, cornerTags = cornerTags, fieldSize = fieldSize };
+            return new CalibrationRectangle() { corners = corners, cornerTags = cornerTags };
         }
 
+        /// <summary>
+        /// Maps a point inside of the quadrilateral to a rectangle with sides of length 1
+        /// </summary>
+        /// <param name="pt">A point, that will be mapped</param>
+        /// <returns>A Vector2 with mapped coordinates (ranging from 0 to 1)</returns>
         public Vector2 MapPoint(Point pt)
         {
             double topDist = FindDistanceToSegment(pt, corners[0], corners[1], out Point xTop);
@@ -82,6 +94,11 @@ namespace Team.HobbyRobot.ASCS.ApriltagModeling
             return new Vector2((float)sx, (float)sy);
         }
 
+        /// <summary>
+        /// ONLY A TEST FUNCTION FOR VISUALISING (works only on windows!)
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="pos"></param>
         public void Paint(draw::Graphics g, Point? pos)
         {
             g.DrawPolygon(draw.Pens.Red, corners.Select(x => new draw.PointF(x.X, x.Y)).ToArray());
@@ -129,29 +146,31 @@ namespace Team.HobbyRobot.ASCS.ApriltagModeling
 
             return Math.Sqrt(dx * dx + dy * dy);
         }
-
-        Point FindIntersection(Point s1, Point e1, Point s2, Point e2)
-        {
-            float a1 = e1.Y - s1.Y;
-            float b1 = s1.X - e1.X;
-            float c1 = a1 * s1.X + b1 * s1.Y;
-
-            float a2 = e2.Y - s2.Y;
-            float b2 = s2.X - e2.X;
-            float c2 = a2 * s2.X + b2 * s2.Y;
-
-            float delta = a1 * b2 - a2 * b1;
-            //If lines are parallel, the result will be (NaN, NaN).
-            return delta == 0 ? new Point(float.NaN, float.NaN)
-                : new Point((b2 * c1 - b1 * c2) / delta, (a1 * c2 - a2 * c1) / delta);
-        }
     }
 
+    /// <summary>
+    /// Settings that are used to define CalibrationRectangle class
+    /// </summary>
     public struct CalibrationRectangleSettings
     {
+        /// <summary>
+        /// ID of a tag in the top left corner of the rectangle
+        /// </summary>
         public int TopLeftID { get; set; }
+
+        /// <summary>
+        /// ID of a tag in the top left corner of the rectangle
+        /// </summary>
         public int TopRightID { get; set; }
+
+        /// <summary>
+        /// ID of a tag in the top left corner of the rectangle
+        /// </summary>
         public int BottomRightID { get; set; }
+
+        /// <summary>
+        /// ID of a tag in the top left corner of the rectangle
+        /// </summary>
         public int BottomLeftID { get; set; }
     }
 }

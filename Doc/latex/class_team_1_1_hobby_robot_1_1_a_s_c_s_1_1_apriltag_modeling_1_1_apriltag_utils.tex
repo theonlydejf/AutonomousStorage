@@ -1,0 +1,121 @@
+\hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils}{}\doxysection{Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Apriltag\+Utils Class Reference}
+\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils}\index{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static IList$<$ \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} $>$ \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_aa9e1d589c8ed9a89e28b7c07c54ef8fb}{Detect\+Apriltags\+From\+Samples}} (int sample\+Cnt, \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrame\+Provider}} frame\+Provider, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{Apriltag\+Detector}} detector)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_af69909bf51b8ae495fddc1b39a1974c3}{Sample\+Detected}} (object sender, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{Frame\+Recieved\+Event\+Args}} e)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_abe1ff0e0f62b93534b7ec4f16759196c}{remaining\+Samples}} = 0
+\item 
+static List$<$ Bitmap $>$ \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_a44a24aef127c6f644dc4a36f357735c1}{frame\+Queue}}
+\item 
+static Event\+Wait\+Handle \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_ab8dcce60d565480a664340b4e6a3d215}{sample\+Wait\+Handle}} = new Auto\+Reset\+Event(false)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_apriltag_utils_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_apriltag_utils_8cs_source}{Apriltag\+Utils.\+cs}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_aa9e1d589c8ed9a89e28b7c07c54ef8fb}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_aa9e1d589c8ed9a89e28b7c07c54ef8fb}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}!DetectApriltagsFromSamples@{DetectApriltagsFromSamples}}
+\index{DetectApriltagsFromSamples@{DetectApriltagsFromSamples}!Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}}
+\doxysubsubsection{\texorpdfstring{DetectApriltagsFromSamples()}{DetectApriltagsFromSamples()}}
+{\footnotesize\ttfamily static IList$<$ \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} $>$ Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Apriltag\+Utils.\+Detect\+Apriltags\+From\+Samples (\begin{DoxyParamCaption}\item[{int}]{sample\+Cnt,  }\item[{\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrame\+Provider}}}]{frame\+Provider,  }\item[{\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{Apriltag\+Detector}}}]{detector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_utils_8cs_source_l00020}{20}} of file \mbox{\hyperlink{_apriltag_utils_8cs_source}{Apriltag\+Utils.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_aa9e1d589c8ed9a89e28b7c07c54ef8fb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_aa9e1d589c8ed9a89e28b7c07c54ef8fb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_af69909bf51b8ae495fddc1b39a1974c3}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_af69909bf51b8ae495fddc1b39a1974c3}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}!SampleDetected@{SampleDetected}}
+\index{SampleDetected@{SampleDetected}!Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}}
+\doxysubsubsection{\texorpdfstring{SampleDetected()}{SampleDetected()}}
+{\footnotesize\ttfamily static void Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Apriltag\+Utils.\+Sample\+Detected (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{Frame\+Recieved\+Event\+Args}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_utils_8cs_source_l00040}{40}} of file \mbox{\hyperlink{_apriltag_utils_8cs_source}{Apriltag\+Utils.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_af69909bf51b8ae495fddc1b39a1974c3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_af69909bf51b8ae495fddc1b39a1974c3_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_a44a24aef127c6f644dc4a36f357735c1}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_a44a24aef127c6f644dc4a36f357735c1}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}!frameQueue@{frameQueue}}
+\index{frameQueue@{frameQueue}!Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}}
+\doxysubsubsection{\texorpdfstring{frameQueue}{frameQueue}}
+{\footnotesize\ttfamily List$<$Bitmap$>$ Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Apriltag\+Utils.\+frame\+Queue\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_utils_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_apriltag_utils_8cs_source}{Apriltag\+Utils.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_abe1ff0e0f62b93534b7ec4f16759196c}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_abe1ff0e0f62b93534b7ec4f16759196c}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}!remainingSamples@{remainingSamples}}
+\index{remainingSamples@{remainingSamples}!Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}}
+\doxysubsubsection{\texorpdfstring{remainingSamples}{remainingSamples}}
+{\footnotesize\ttfamily int Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Apriltag\+Utils.\+remaining\+Samples = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_utils_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_apriltag_utils_8cs_source}{Apriltag\+Utils.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_ab8dcce60d565480a664340b4e6a3d215}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils_ab8dcce60d565480a664340b4e6a3d215}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}!sampleWaitHandle@{sampleWaitHandle}}
+\index{sampleWaitHandle@{sampleWaitHandle}!Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils@{Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils}}
+\doxysubsubsection{\texorpdfstring{sampleWaitHandle}{sampleWaitHandle}}
+{\footnotesize\ttfamily Event\+Wait\+Handle Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Apriltag\+Utils.\+sample\+Wait\+Handle = new Auto\+Reset\+Event(false)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_apriltag_utils_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_apriltag_utils_8cs_source}{Apriltag\+Utils.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_apriltag_utils_8cs}{Apriltag\+Utils.\+cs}}\end{DoxyCompactItemize}

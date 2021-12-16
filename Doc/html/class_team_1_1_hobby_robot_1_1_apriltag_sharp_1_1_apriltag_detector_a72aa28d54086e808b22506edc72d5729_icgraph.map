@@ -1,0 +1,10 @@
+<map id="Team.HobbyRobot.ApriltagSharp.ApriltagDetector.Average" name="Team.HobbyRobot.ApriltagSharp.ApriltagDetector.Average">
+<area shape="rect" id="node1" title="Get average of byte list" alt="" coords="1359,50,1561,91"/>
+<area shape="rect" id="node2" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector.html#a788fd911ff3ef5daf5932115ccbc91bb" title="Detect tags in one frame" alt="" coords="1116,50,1311,91"/>
+<area shape="rect" id="node3" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils.html#aa9e1d589c8ed9a89e28b7c07c54ef8fb" title=" " alt="" coords="827,5,1068,61"/>
+<area shape="rect" id="node5" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a037131392773a36a9a8c54d570d5308a" title=" " alt="" coords="839,86,1056,127"/>
+<area shape="rect" id="node4" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_cell_storage_provider.html#aba0765eb7117ad28221e78fb956d704e" title=" " alt="" coords="538,5,777,61"/>
+<area shape="rect" id="node6" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a79374dd9ca5d6f9e6e662fd24e9e8d51" title="Starts receiving frames from the selected video device" alt="" coords="536,86,779,127"/>
+<area shape="rect" id="node7" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#adde97a90ed2553dd33710b862222ffff" title="Required method for Designer support &#45; do not modify the contents of this method with the code editor..." alt="" coords="271,86,488,127"/>
+<area shape="rect" id="node8" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a6be5087c6a6166c781ed918ce99bd89a" title=" " alt="" coords="5,86,223,127"/>
+</map>

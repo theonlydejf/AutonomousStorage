@@ -9,8 +9,16 @@ using Team.HobbyRobot.ASCS.Core;
 
 namespace Team.HobbyRobot.ASCS.CellStorage
 {
+    /// <summary>
+    /// A class thet represents a cell storage
+    /// </summary>
     public class CellStorage : IStorage
     {
+        //TODO: Add vehicles
+        /// <summary>
+        /// Creates an instance of CellStorage from a physical model
+        /// </summary>
+        /// <param name="storageModel">A physical model, that describes this storage</param>
         public CellStorage(PhysicalCellStorageModel storageModel)
         {
             this.storageModel = storageModel;
@@ -28,8 +36,6 @@ namespace Team.HobbyRobot.ASCS.CellStorage
         /// Represents contents of the storage
         /// </summary>
         private readonly IStorageItem[] storageCells;
-
-        public IStorageItem this[int index] { get => storageCells[index]; set => storageCells[index] = value; }
 
         public IList<IStorageItem> Contents => (from item in storageCells
                                                where item != null

@@ -31,7 +31,7 @@ namespace Team.HobbyRobot.ASCS.Vision
     }
 
     /// <summary>
-    /// Provides a interface between any camera and ASCS
+    /// Provides an interface between any camera and ASCS
     /// </summary>
     public interface IFrameProvider
     {

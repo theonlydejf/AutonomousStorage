@@ -1,0 +1,234 @@
+\hypertarget{_form1_8cs_source}{}\doxysection{Form1.\+cs}
+\label{_form1_8cs_source}\index{Form1.cs@{Form1.cs}}
+\mbox{\hyperlink{_form1_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00001}00001 \textcolor{keyword}{using} System;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00002}00002 \textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00003}00003 \textcolor{keyword}{using} System.ComponentModel;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00004}00004 \textcolor{keyword}{using} System.Data;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00005}00005 \textcolor{keyword}{using} System.Drawing;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00006}00006 \textcolor{keyword}{using} System.Drawing.Imaging;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00007}00007 \textcolor{keyword}{using} System.Linq;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00008}00008 \textcolor{keyword}{using} System.Text;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00009}00009 \textcolor{keyword}{using} System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00010}00010 \textcolor{keyword}{using} System.Windows.Forms;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00011}00011 \textcolor{keyword}{using} AForge.Video;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00012}00012 \textcolor{keyword}{using} AForge.Video.DirectShow;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00013}00013 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s}{ASCS}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision}{Vision}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00014}00014 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s}{ASCS}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling}{ApriltagModeling}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00015}00015 \textcolor{keyword}{using} \mbox{\hyperlink{namespace_team}{Team}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot}{HobbyRobot}}.\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_apriltag_sharp}{ApriltagSharp}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00016}\mbox{\hyperlink{_form1_8cs_abb563e58d48b771b026e25d459c30267}{00016}} \textcolor{keyword}{using} \mbox{\hyperlink{_apriltag_cell_storage_provider_8cs_abb563e58d48b771b026e25d459c30267}{cv}} = OpenCvSharp;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00017}00017 \textcolor{keyword}{using} System.Numerics;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00019}\mbox{\hyperlink{namespace_win_form_a_s_c_s_vision_test}{00019}} \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_win_form_a_s_c_s_vision_test}{WinFormASCSVisionTest}}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00020}00020 \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00021}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1}{00021}}     \textcolor{keyword}{public} \textcolor{keyword}{partial class }\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1}{Form1}} : Form}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00022}00022     \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00026}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7d2b50e5e16f6604d097e7895f51b5d0}{00026}}         \textcolor{keyword}{public} \textcolor{keyword}{static} readonly \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{ApriltagDetector}} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7d2b50e5e16f6604d097e7895f51b5d0}{detector}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{ApriltagDetector}}(\textcolor{keyword}{new} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag25h9_family}{Tag25h9Family}}());}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00031}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a85397d4f6755631c32c82415a8c4beb7}{00031}}         \textcolor{keyword}{private} FilterInfoCollection \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a85397d4f6755631c32c82415a8c4beb7}{filterInfoCollection}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00036}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{00036}}         \textcolor{keyword}{private} VideoCaptureDevice \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00041}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}{00041}}         \textcolor{keyword}{private} \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrameProvider}} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}{frameProvider}} = \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00046}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7b797c1d0c5473f02948ff2f12436af4}{00046}}         \textcolor{keyword}{private} IList<Apriltag> \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7b797c1d0c5473f02948ff2f12436af4}{frameTags}} = \textcolor{keyword}{new} List<Apriltag>();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00051}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7594104fb6c0942b592b718ec0bb1240}{00051}}         \textcolor{keyword}{private} Vector2 \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7594104fb6c0942b592b718ec0bb1240}{fieldSize}} = \textcolor{keyword}{new} Vector2(2.35f, 1.14f);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00056}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a39acad1bcb162194b0b2d0236541929d}{00056}}         \textcolor{keyword}{private} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{CalibrationRectangle}} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a39acad1bcb162194b0b2d0236541929d}{calibrationRectangle}} = \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00058}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a6be5087c6a6166c781ed918ce99bd89a}{00058}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a6be5087c6a6166c781ed918ce99bd89a}{Form1}}()}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00059}00059         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00060}00060             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_adde97a90ed2553dd33710b862222ffff}{InitializeComponent}}();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00062}00062             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a85397d4f6755631c32c82415a8c4beb7}{filterInfoCollection}} = \textcolor{keyword}{new} FilterInfoCollection(FilterCategory.VideoInputDevice);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00063}00063             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}} = \textcolor{keyword}{new} VideoCaptureDevice();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00065}00065             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a9ef59fb1f73d2dccc8c85a51816102e0}{videoDeviceCombo}}.DisplayMember = \textcolor{stringliteral}{"{}Name"{}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00066}00066         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00068}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a0cb979a182a1bc7089e3560cef0935db}{00068}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a0cb979a182a1bc7089e3560cef0935db}{Form1\_Load}}(\textcolor{keywordtype}{object} sender, EventArgs e)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00069}00069         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00070}00070             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ab33346da958a6c81e146cfc7e6963dac}{InitVideoDeviceList}}();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00071}00071         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00076}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ab33346da958a6c81e146cfc7e6963dac}{00076}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ab33346da958a6c81e146cfc7e6963dac}{InitVideoDeviceList}}()}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00077}00077         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00078}00078             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a9ef59fb1f73d2dccc8c85a51816102e0}{videoDeviceCombo}}.Items.Clear();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00079}00079             \textcolor{keywordflow}{foreach} (FilterInfo item \textcolor{keywordflow}{in} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a85397d4f6755631c32c82415a8c4beb7}{filterInfoCollection}})}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00080}00080                 \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a9ef59fb1f73d2dccc8c85a51816102e0}{videoDeviceCombo}}.Items.Add(item);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00081}00081             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a9ef59fb1f73d2dccc8c85a51816102e0}{videoDeviceCombo}}.SelectedIndex = 0;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00082}00082         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00089}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a79374dd9ca5d6f9e6e662fd24e9e8d51}{00089}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a79374dd9ca5d6f9e6e662fd24e9e8d51}{startVideoBtn\_Click}}(\textcolor{keywordtype}{object} sender, EventArgs e)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00090}00090         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00091}00091             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}} = \textcolor{keyword}{new} VideoCaptureDevice((\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a9ef59fb1f73d2dccc8c85a51816102e0}{videoDeviceCombo}}.SelectedItem as FilterInfo).MonikerString);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00093}00093             \textcolor{comment}{// If any selected, change video parametrs}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00094}00094             \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a14872eddb1d5f372051ac5a86b30899c}{videoDeviceSettingsList}}.SelectedIndex >= 0 \&\& \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a14872eddb1d5f372051ac5a86b30899c}{videoDeviceSettingsList}}.SelectedIndex < \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}}.VideoCapabilities.Length)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00095}00095                 \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}}.VideoResolution = \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}}.VideoCapabilities[\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a14872eddb1d5f372051ac5a86b30899c}{videoDeviceSettingsList}}.SelectedIndex];}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00097}00097             \textcolor{comment}{// Create interface between videoCaptureDevice and ASCS}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00098}00098             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}{frameProvider}} = \textcolor{keyword}{new} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider}{AForgeFrameProvider}}(\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}});}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00099}00099             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}{frameProvider}}.\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider_a8b825bfc4c18a2b532bed0ecafaa048e}{FrameRecieved}} += \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a037131392773a36a9a8c54d570d5308a}{FrameProvider\_FrameRecieved}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00101}00101             \textcolor{comment}{// Start recieving frames}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00102}00102             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}}.Start();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00103}00103             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a167c06d843ad9a51a43538a36c84d798}{videoSettingsGroup}}.Enabled = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00104}00104         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00106}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a037131392773a36a9a8c54d570d5308a}{00106}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a037131392773a36a9a8c54d570d5308a}{FrameProvider\_FrameRecieved}}(\textcolor{keywordtype}{object} sender, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{FrameRecievedEventArgs}} e)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00107}00107         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00108}00108             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7b797c1d0c5473f02948ff2f12436af4}{frameTags}} = \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7d2b50e5e16f6604d097e7895f51b5d0}{detector}}.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector_a788fd911ff3ef5daf5932115ccbc91bb}{Detect}}(cv::Extensions.BitmapConverter.ToMat(e.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args_aa6a446899cdb482a80bdf4e8debfbce1}{FrameImage}}));}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00109}00109             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a39acad1bcb162194b0b2d0236541929d}{calibrationRectangle}} = \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{CalibrationRectangle}}.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a9c45879075419ddf3470e67b1d0a201a}{Create}}(\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7b797c1d0c5473f02948ff2f12436af4}{frameTags}});}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00110}00110             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ab28ca95a539933c231ed51ed22123d8d}{videoBox}}.Invalidate();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00111}00111         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00118}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a8293078e1492255581a8c060bafe18ec}{00118}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a8293078e1492255581a8c060bafe18ec}{videoDeviceCombo\_SelectedIndexChanged}}(\textcolor{keywordtype}{object} sender, EventArgs e)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00119}00119         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00120}00120             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}} = \textcolor{keyword}{new} VideoCaptureDevice((\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a9ef59fb1f73d2dccc8c85a51816102e0}{videoDeviceCombo}}.SelectedItem as FilterInfo).MonikerString);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00121}00121             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a14872eddb1d5f372051ac5a86b30899c}{videoDeviceSettingsList}}.Items.Clear();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00122}00122             \textcolor{keywordflow}{foreach} (var capabilities \textcolor{keywordflow}{in} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}}.VideoCapabilities)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00123}00123                 \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a14872eddb1d5f372051ac5a86b30899c}{videoDeviceSettingsList}}.Items.Add(\$\textcolor{stringliteral}{"{}\{ capabilities.FrameSize.Width \}x\{ capabilities.FrameSize.Height \}\(\backslash\)t\{ capabilities.AverageFrameRate \}fps"{}});}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00124}00124         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00131}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a8bb47b2b0b6b9261a2f22d987d701b6f}{00131}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a8bb47b2b0b6b9261a2f22d987d701b6f}{Form1\_FormClosing}}(\textcolor{keywordtype}{object} sender, FormClosingEventArgs e)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00132}00132         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00133}00133             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}}.SignalToStop();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00134}00134             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{videoCaptureDevice}}.WaitForStop();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00135}00135         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00137}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a21a7cf1cc34d1a8f56fc472379953666}{00137}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a21a7cf1cc34d1a8f56fc472379953666}{videoBox\_Paint}}(\textcolor{keywordtype}{object} sender, PaintEventArgs e)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00138}00138         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00139}00139             \textcolor{comment}{// Variables used often}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00140}00140             Control box = sender as Control;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00141}00141             Graphics g = e.Graphics;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00142}00142 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00143}00143             \textcolor{comment}{// If no divec is selected yet}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00144}00144             \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}{frameProvider}} == \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00145}00145             \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00146}00146                 \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7bcbea091531009367b8c46db8899441}{PaintError}}(g, \textcolor{stringliteral}{"{}No device!"{}}, box);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00147}00147                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00148}00148             \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00149}00149             \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00150}00150             \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00151}00151                 \textcolor{comment}{// If no frame has been received yet}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00152}00152                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}{frameProvider}}.\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider_a2501c79b29aa2bdadb385024eceedf19}{LatestFrame}} == \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00153}00153                 \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00154}00154                     \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7bcbea091531009367b8c46db8899441}{PaintError}}(g, \textcolor{stringliteral}{"{}Waiting for first frame..."{}}, box);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00155}00155                     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00156}00156                 \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00158}00158                 \textcolor{comment}{// Clone the current frame before it is desposed}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00159}00159                 \textcolor{keyword}{using} (Bitmap frame = \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}{frameProvider}}.\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider_a2501c79b29aa2bdadb385024eceedf19}{LatestFrame}}.Clone() as Bitmap)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00160}00160                 \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00161}00161                     \textcolor{keywordtype}{float} sx = box.Width / (float)frame.Width;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00162}00162                     \textcolor{keywordtype}{float} sy = box.Height / (\textcolor{keywordtype}{float})frame.Height;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00163}00163                     \textcolor{keywordflow}{if} (sx < sy)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00164}00164                         sy = sx;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00165}00165                     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00166}00166                         sx = sy;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00167}00167                     \textcolor{comment}{//g.TranslateTransform(box.Width / 2 -\/ frame.Width / 2 * sx, box.Height / 2 -\/ frame.Height / 2 * sy);}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00168}00168                     \textcolor{comment}{//g.ScaleTransform(sx, sy);}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00169}00169 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00170}00170                     \textcolor{comment}{// Draw the frame tothe background}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00171}00171                     g.DrawImage(frame, 0, 0);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00172}00172 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00173}00173                     \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}}? tag0 = \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00174}00174                     \textcolor{comment}{// Draw all the detected apriltags}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00175}00175                     \textcolor{keywordflow}{foreach} (\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} tag \textcolor{keywordflow}{in} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7b797c1d0c5473f02948ff2f12436af4}{frameTags}})}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00176}00176                     \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00177}00177                         \textcolor{keywordflow}{if} (tag.\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{ID}} == 0)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00178}00178                             tag0 = tag;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00179}00179                         \textcolor{comment}{// Convert OpenCV Points to System.Drawing.Point}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00180}00180                         Point[] pts = tag.\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ac5ce4eece58a90aec6c3e7409dbc6f93}{Corners}}.Select(pt => \textcolor{keyword}{new} Point(pt.X, pt.Y)).ToArray();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00181}00181 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00182}00182                         \textcolor{comment}{// Draw the face of the apriltag}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00183}00183                         g.FillPolygon(\textcolor{keyword}{new} SolidBrush(Color.FromArgb(128, Color.Magenta)), pts);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00184}00184                         \textcolor{comment}{// Draw the line pointg to the top of the apriltag (shows the orientation)}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00185}00185                         g.DrawLine(\textcolor{keyword}{new} Pen(Color.Lime, 5), tag.\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ab0a9176fe4c775fb64712ecb971deeaf}{Center}}.X, tag.\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ab0a9176fe4c775fb64712ecb971deeaf}{Center}}.Y, (pts[0].X + pts[1].X) / 2, (pts[0].Y + pts[1].Y) / 2);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00186}00186                         \textcolor{comment}{// Draw the ID of the apriltag}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00187}00187                         g.DrawString(tag.\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_a31bd76c6e6cde23a037e06575b31eed7}{ID}}.ToString(), \textcolor{keyword}{new} Font(\textcolor{stringliteral}{"{}Arail"{}}, 10, FontStyle.Bold), Brushes.Yellow, tag.\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ab0a9176fe4c775fb64712ecb971deeaf}{Center}}.X, tag.\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_ab0a9176fe4c775fb64712ecb971deeaf}{Center}}.Y);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00188}00188                     \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00189}00189 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00190}00190                     \textcolor{comment}{// If a calibration rectangle can be created}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00191}00191                     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a39acad1bcb162194b0b2d0236541929d}{calibrationRectangle}} != \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00192}00192                     \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00193}00193                         \textcolor{comment}{// Draw the outline of the rectangle}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00194}00194                         \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a39acad1bcb162194b0b2d0236541929d}{calibrationRectangle}}.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a7c5ff143b868aa952376f3927676eac7}{Paint}}(g, tag0 == \textcolor{keyword}{null} ? \textcolor{keyword}{null} : tag0.Value.Center);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00195}00195                         \textcolor{comment}{// If a tag with ID=0 is present in the frame}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00196}00196                         \textcolor{keywordflow}{if}(tag0.HasValue)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00197}00197                         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00198}00198                             \textcolor{comment}{// Map a point to the field}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00199}00199                             Vector2 map = \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a39acad1bcb162194b0b2d0236541929d}{calibrationRectangle}}.\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a189e3c6cb1f109ee464f77cb854f31af}{MapPoint}}(tag0.Value.Center);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00200}00200                             \textcolor{comment}{// Calculate the dimension of the scaled field}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00201}00201                             \textcolor{keywordtype}{float} width = 300;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00202}00202                             \textcolor{keywordtype}{float} height = width / \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7594104fb6c0942b592b718ec0bb1240}{fieldSize}}.X * \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7594104fb6c0942b592b718ec0bb1240}{fieldSize}}.Y;}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00203}00203 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00204}00204                             \textcolor{comment}{// Background of the field in the bottom left}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00205}00205                             g.FillRectangle(Brushes.White, 0, box.Height -\/ height -\/ 1, width, height);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00206}00206                             g.DrawRectangle(Pens.Black, 0, box.Height -\/ height -\/ 1, width, height);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00207}00207 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00208}00208                             \textcolor{comment}{// Draws the point representing the tag0}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00209}00209                             g.FillEllipse(Brushes.Black, width * map.X -\/ 2.5f, box.Height -\/ height + height * map.Y -\/ 2.5f -\/ 1, 5, 5);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00210}00210                         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00211}00211                     \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00212}00212                 \}     }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00213}00213             \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00214}00214             \textcolor{comment}{// When the frame is already disposed or when any other multithread exception occures}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00215}00215             \textcolor{keywordflow}{catch} (InvalidOperationException)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00216}00216             \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00217}00217                 g.ResetTransform();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00218}00218                 \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7bcbea091531009367b8c46db8899441}{PaintError}}(g, \textcolor{stringliteral}{"{}Operation exception thrown"{}}, box);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00219}00219                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00220}00220             \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00221}00221         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00222}00222 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00229}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7bcbea091531009367b8c46db8899441}{00229}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7bcbea091531009367b8c46db8899441}{PaintError}}(Graphics g, \textcolor{keywordtype}{string} msg, Control control)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00230}00230         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00231}00231             \textcolor{keyword}{using} (Font f = \textcolor{keyword}{new} Font(\textcolor{stringliteral}{"{}Consolas"{}}, 30))}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00232}00232             \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00233}00233                 \textcolor{keywordtype}{string} errMsg = \textcolor{stringliteral}{"{}No Device!"{}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00234}00234                 SizeF txtSize = g.MeasureString(errMsg, f);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00235}00235                 g.DrawString(errMsg, f, Brushes.Red, control.Width / 2 -\/ txtSize.Width / 2, control.Height / 2 -\/ txtSize.Height / 2);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00236}00236             \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00237}00237         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00238}00238 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00239}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_aed3dcf865e5c6503ad50c60e9a583308}{00239}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_aed3dcf865e5c6503ad50c60e9a583308}{refreshVideDevicesBtn\_Click}}(\textcolor{keywordtype}{object} sender, EventArgs e)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00240}00240         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00241}00241             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ab33346da958a6c81e146cfc7e6963dac}{InitVideoDeviceList}}();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00242}00242         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00243}00243     \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00244}00244 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00248}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider}{00248}}     \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider}{AForgeFrameProvider}} : \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrameProvider}}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00249}00249     \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00253}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a9df540d3fcbaf09a88cbb48b1ff2bdeb}{00253}}         \textcolor{keyword}{private} VideoCaptureDevice \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a9df540d3fcbaf09a88cbb48b1ff2bdeb}{videoCaptureDevice}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00257}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a23615369a9bc78abe93549d56a390891}{00257}}         \textcolor{keyword}{private} Bitmap \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a23615369a9bc78abe93549d56a390891}{latestFrame}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00258}00258 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00259}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a82506b02b7e8cd4747d1d8d0d6ae2bf8}{00259}}         \textcolor{keyword}{public} Bitmap \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a82506b02b7e8cd4747d1d8d0d6ae2bf8}{LatestFrame}} => \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a23615369a9bc78abe93549d56a390891}{latestFrame}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00260}00260 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00261}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a74ce039a986d20e4d714831f4745b8e6}{00261}}         \textcolor{keyword}{public} \textcolor{keyword}{event} \mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_a91e8d269c0f8ec926afc09b555b21671}{FrameRecievedEventHandler}} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a74ce039a986d20e4d714831f4745b8e6}{FrameRecieved}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00262}00262 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00263}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a18f8fc08d91c91e4a04d1bbc52ad4513}{00263}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a18f8fc08d91c91e4a04d1bbc52ad4513}{AForgeFrameProvider}}(VideoCaptureDevice \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a9df540d3fcbaf09a88cbb48b1ff2bdeb}{videoCaptureDevice}})}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00264}00264         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00265}00265             this.videoCaptureDevice = \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a9df540d3fcbaf09a88cbb48b1ff2bdeb}{videoCaptureDevice}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00266}00266             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a9df540d3fcbaf09a88cbb48b1ff2bdeb}{videoCaptureDevice}}.NewFrame += \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_ae2f525c98124a619e8cb4c5aad015664}{VideoCaptureDevice\_NewFrame}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00267}00267             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a23615369a9bc78abe93549d56a390891}{latestFrame}} = \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00268}00268         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00269}00269 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00275}\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_ae2f525c98124a619e8cb4c5aad015664}{00275}}         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_ae2f525c98124a619e8cb4c5aad015664}{VideoCaptureDevice\_NewFrame}}(\textcolor{keywordtype}{object} sender, NewFrameEventArgs eventArgs)}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00276}00276         \{}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00277}00277             \textcolor{comment}{// Updates the LatestFrame and disposes the old frame}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00278}00278             IDisposable latestTmp = \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a23615369a9bc78abe93549d56a390891}{latestFrame}};}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00279}00279             \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a23615369a9bc78abe93549d56a390891}{latestFrame}} = eventArgs.Frame.Clone(\textcolor{keyword}{new} Rectangle(0, 0, eventArgs.Frame.Width, eventArgs.Frame.Height), PixelFormat.Format32bppArgb);}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00280}00280             \textcolor{keywordflow}{if}(latestTmp != \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00281}00281                 latestTmp.Dispose();}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00282}00282 }
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00283}00283             \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a74ce039a986d20e4d714831f4745b8e6}{FrameRecieved}} != \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00284}00284                 \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a74ce039a986d20e4d714831f4745b8e6}{FrameRecieved}}(\textcolor{keyword}{this}, \textcolor{keyword}{new} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{FrameRecievedEventArgs}}() \{ FrameImage = \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider_a23615369a9bc78abe93549d56a390891}{latestFrame}}.Clone() as Bitmap, Timestamp = DateTime.Now \});}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00285}00285         \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00286}00286     \}}
+\DoxyCodeLine{\Hypertarget{_form1_8cs_source_l00287}00287 \}}
+
+\end{DoxyCode}

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tagfamilies_2ecs_0',['TagFamilies.cs',['../_tag_families_8cs.html',1,'']]]
+  ['_2enetcoreapp_2cversion_3dv5_2e0_2eassemblyattributes_2ecs_0',['.NETCoreApp,Version=v5.0.AssemblyAttributes.cs',['../_win_form_a_s_c_s_vision_test_2obj_2_debug_2net5_80-windows_2_8_n_e_t_core_app_00_version_0av5_80_8_assembly_attributes_8cs.html',1,'']]],
+  ['winformascsvisiontest_2eassemblyinfo_2ecs_1',['WinFormASCSVisionTest.AssemblyInfo.cs',['../_win_form_a_s_c_s_vision_test_8_assembly_info_8cs.html',1,'']]]
 ];

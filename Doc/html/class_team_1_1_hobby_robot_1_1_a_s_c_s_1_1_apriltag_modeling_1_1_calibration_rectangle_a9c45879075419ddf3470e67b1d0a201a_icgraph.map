@@ -1,0 +1,7 @@
+<map id="Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle.Create" name="Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle.Create">
+<area shape="rect" id="node1" title="Creates an instance of CalibrationRectangle from list of tags" alt="" coords="1092,5,1331,47"/>
+<area shape="rect" id="node2" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a037131392773a36a9a8c54d570d5308a" title=" " alt="" coords="827,5,1044,47"/>
+<area shape="rect" id="node3" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a79374dd9ca5d6f9e6e662fd24e9e8d51" title="Starts receiving frames from the selected video device" alt="" coords="536,5,779,47"/>
+<area shape="rect" id="node4" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#adde97a90ed2553dd33710b862222ffff" title="Required method for Designer support &#45; do not modify the contents of this method with the code editor..." alt="" coords="271,5,488,47"/>
+<area shape="rect" id="node5" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a6be5087c6a6166c781ed918ce99bd89a" title=" " alt="" coords="5,5,223,47"/>
+</map>

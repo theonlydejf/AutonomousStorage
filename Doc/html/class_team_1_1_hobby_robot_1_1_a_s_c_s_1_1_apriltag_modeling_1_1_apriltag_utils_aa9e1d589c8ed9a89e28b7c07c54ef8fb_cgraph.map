@@ -1,0 +1,9 @@
+<map id="Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils.DetectApriltagsFromSamples" name="Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagUtils.DetectApriltagsFromSamples">
+<area shape="rect" id="node1" title=" " alt="" coords="5,109,247,165"/>
+<area shape="rect" id="node2" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector.html#a788fd911ff3ef5daf5932115ccbc91bb" title="Detect tags in one frame" alt="" coords="321,71,516,112"/>
+<area shape="rect" id="node7" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_apriltag_utils.html#af69909bf51b8ae495fddc1b39a1974c3" title=" " alt="" coords="295,160,543,201"/>
+<area shape="rect" id="node3" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector.html#a72aa28d54086e808b22506edc72d5729" title="Get average of byte list" alt="" coords="598,5,801,47"/>
+<area shape="rect" id="node4" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family.html#ab6db55d4dab37d08b3ffb1edd2411a20" title="Create an instance of Apriltag from detectd code" alt="" coords="611,71,788,112"/>
+<area shape="rect" id="node6" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector.html#a68b9b4ee8c1d3c9430caf507c2e6a634" title="Carry out point mapping, according to the four points in p to map the relativeeePoint into it" alt="" coords="591,136,808,177"/>
+<area shape="rect" id="node5" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family.html#a425ec6b42b50bfcfdb7d1ca647faccf6" title="Rotate the current binary code by 90°" alt="" coords="856,71,1063,112"/>
+</map>

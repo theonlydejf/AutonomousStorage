@@ -1,0 +1,4 @@
+<map id="Team.HobbyRobot.ASCS.CellStorage.Physical.PhysicalStorageCellModel" name="Team.HobbyRobot.ASCS.CellStorage.Physical.PhysicalStorageCellModel">
+<area shape="rect" id="node1" title="Model of the storage cell" alt="" coords="5,80,225,136"/>
+<area shape="rect" id="node2" href="$interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_i_static_object.html" title="Stationary object" alt="" coords="67,5,164,32"/>
+</map>

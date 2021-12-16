@@ -2,23 +2,38 @@
 \label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage}\index{Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}}
 
 
+A class thet represents a cell storage  
+
+
+
+
 Inheritance diagram for Team.\+Hobby\+Robot.\+ASCS.\+Cell\+Storage.\+Cell\+Storage\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage__inherit__graph}
+\end{center}
+\end{figure}
 
 
 Collaboration diagram for Team.\+Hobby\+Robot.\+ASCS.\+Cell\+Storage.\+Cell\+Storage\+:
-% FIG 1
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a70d705a5fd3c72eb4ba1635ca18d7b78}{Cell\+Storage}} (\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_physical_cell_storage_model}{Physical\+Cell\+Storage\+Model}} storage\+Model)
-\item 
+\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a70d705a5fd3c72eb4ba1635ca18d7b78}{Cell\+Storage}} (\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_physical_cell_storage_model}{Physical\+Cell\+Storage\+Model}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a660bac6584069b1bb2e2310cd125f94c}{storage\+Model}})
+\begin{DoxyCompactList}\small\item\em Creates an instance of \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage}{Cell\+Storage}} from a physical model \end{DoxyCompactList}\item 
 IEnumerator$<$ \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorage\+Item}} $>$ \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_ae17f027353fbb455d84f06d0e98e0331}{Get\+Enumerator}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
-\item 
-\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorage\+Item}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a559c002f624abf35e0c2893a1611bb28}{this\mbox{[}int index\mbox{]}}}\hspace{0.3cm}{\ttfamily  \mbox{[}getset\mbox{]}}
 \item 
 IList$<$ \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorage\+Item}} $>$ \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a2d0336b75950e096d7f2d174bc83393e}{Contents}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \item 
@@ -26,12 +41,24 @@ int \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1
 \item 
 int \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a43aa4a2e1686ffb61dd1621886994899}{Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+IEnumerator IEnumerable. \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_ab8b945b44d6290a42b48aee4dd2e3084}{Get\+Enumerator}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_physical_cell_storage_model}{Physical\+Cell\+Storage\+Model}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a660bac6584069b1bb2e2310cd125f94c}{storage\+Model}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical}{Physical}} model of the storage \end{DoxyCompactList}\item 
+readonly \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorage\+Item}}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a6bfe8802d0252eaa5fa1df05c18ef784}{storage\+Cells}}
+\begin{DoxyCompactList}\small\item\em Represents contents of the storage \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+A class thet represents a cell storage 
 
-
-Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00012}{12}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
+Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
 
 
 
@@ -44,7 +71,16 @@ Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00012}{12}} of fil
 
 
 
-Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
+Creates an instance of \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage}{Cell\+Storage}} from a physical model 
+
+
+\begin{DoxyParams}{Parameters}
+{\em storage\+Model} & A physical model, that describes this storage\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00022}{22}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
 
 
 
@@ -52,8 +88,45 @@ Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00014}{14}} of fil
 \mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_ae17f027353fbb455d84f06d0e98e0331}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_ae17f027353fbb455d84f06d0e98e0331}} 
 \index{Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}!GetEnumerator@{GetEnumerator}}
 \index{GetEnumerator@{GetEnumerator}!Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}}
-\doxysubsubsection{\texorpdfstring{GetEnumerator()}{GetEnumerator()}}
+\doxysubsubsection{\texorpdfstring{GetEnumerator()}{GetEnumerator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily IEnumerator$<$ \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorage\+Item}} $>$ Team.\+Hobby\+Robot.\+ASCS.\+Cell\+Storage.\+Cell\+Storage.\+Get\+Enumerator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_ab8b945b44d6290a42b48aee4dd2e3084}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_ab8b945b44d6290a42b48aee4dd2e3084}} 
+\index{Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}!GetEnumerator@{GetEnumerator}}
+\index{GetEnumerator@{GetEnumerator}!Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}}
+\doxysubsubsection{\texorpdfstring{GetEnumerator()}{GetEnumerator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily IEnumerator IEnumerable. Team.\+Hobby\+Robot.\+ASCS.\+Cell\+Storage.\+Cell\+Storage.\+Get\+Enumerator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a6bfe8802d0252eaa5fa1df05c18ef784}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a6bfe8802d0252eaa5fa1df05c18ef784}} 
+\index{Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}!storageCells@{storageCells}}
+\index{storageCells@{storageCells}!Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}}
+\doxysubsubsection{\texorpdfstring{storageCells}{storageCells}}
+{\footnotesize\ttfamily readonly \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorage\+Item}} \mbox{[}$\,$\mbox{]} Team.\+Hobby\+Robot.\+ASCS.\+Cell\+Storage.\+Cell\+Storage.\+storage\+Cells\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Represents contents of the storage 
+
+
+
+Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00038}{38}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a660bac6584069b1bb2e2310cd125f94c}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a660bac6584069b1bb2e2310cd125f94c}} 
+\index{Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}!storageModel@{storageModel}}
+\index{storageModel@{storageModel}!Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}}
+\doxysubsubsection{\texorpdfstring{storageModel}{storageModel}}
+{\footnotesize\ttfamily readonly \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_physical_cell_storage_model}{Physical\+Cell\+Storage\+Model}} Team.\+Hobby\+Robot.\+ASCS.\+Cell\+Storage.\+Cell\+Storage.\+storage\+Model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\mbox{\hyperlink{namespace_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical}{Physical}} model of the storage 
+
+
+
+Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00033}{33}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
 
 
 
@@ -66,7 +139,7 @@ Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00014}{14}} of fil
 
 
 
-Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00038}{38}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
+Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00044}{44}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
 
 \mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a2d0336b75950e096d7f2d174bc83393e}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a2d0336b75950e096d7f2d174bc83393e}} 
 \index{Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}!Contents@{Contents}}
@@ -76,7 +149,7 @@ Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00038}{38}} of fil
 
 
 
-Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00034}{34}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
+Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00040}{40}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
 
 \mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a43aa4a2e1686ffb61dd1621886994899}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a43aa4a2e1686ffb61dd1621886994899}} 
 \index{Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}!Count@{Count}}
@@ -86,20 +159,10 @@ Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00034}{34}} of fil
 
 
 
-Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00040}{40}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
-
-\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a559c002f624abf35e0c2893a1611bb28}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_cell_storage_a559c002f624abf35e0c2893a1611bb28}} 
-\index{Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}!this\mbox{[}int index\mbox{]}@{this[int index]}}
-\index{this\mbox{[}int index\mbox{]}@{this[int index]}!Team.HobbyRobot.ASCS.CellStorage.CellStorage@{Team.HobbyRobot.ASCS.CellStorage.CellStorage}}
-\doxysubsubsection{\texorpdfstring{this[int index]}{this[int index]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_i_storage_item}{IStorage\+Item}} Team.\+Hobby\+Robot.\+ASCS.\+Cell\+Storage.\+Cell\+Storage.\+this\mbox{[}int index\mbox{]}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
-
-
-
-Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00032}{32}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
+Definition at line \mbox{\hyperlink{_cell_storage_8cs_source_l00046}{46}} of file \mbox{\hyperlink{_cell_storage_8cs_source}{Cell\+Storage.\+cs}}.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Autonomous\+Storage\+Control\+System/\+Cell\+Storage/\mbox{\hyperlink{_cell_storage_8cs}{Cell\+Storage.\+cs}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{_cell_storage_8cs}{Cell\+Storage.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider.html" title="Provides an interface between any camera and ASCS" alt="" coords="5,5,219,47"/>
+<area shape="rect" id="node2" href="$class_win_form_a_s_c_s_vision_test_1_1_a_forge_frame_provider.html" title="Interface between AForge.Video.DirectShow.VideoCaptureDevice and ASCS" alt="" coords="267,5,485,47"/>
+</map>

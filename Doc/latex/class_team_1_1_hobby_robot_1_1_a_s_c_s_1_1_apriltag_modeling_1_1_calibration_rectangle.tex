@@ -1,0 +1,228 @@
+\hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{}\doxysection{Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Calibration\+Rectangle Class Reference}
+\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}\index{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}}
+
+
+A class used for calculating position on a plane thats defined by 4 points representing a rectangle  
+
+
+
+
+Collaboration diagram for Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Calibration\+Rectangle\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a189e3c6cb1f109ee464f77cb854f31af}{Map\+Point}} (Point pt)
+\begin{DoxyCompactList}\small\item\em Maps a point inside of the quadrilateral to a rectangle with sides of length 1 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a7c5ff143b868aa952376f3927676eac7}{Paint}} (draw\+::\+Graphics g, Point? pos)
+\begin{DoxyCompactList}\small\item\em ONLY A TEST FUNCTION FOR VISUALISING (works only on windows!) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{Calibration\+Rectangle}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a9c45879075419ddf3470e67b1d0a201a}{Create}} (IList$<$ \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} $>$ detected\+Tags)
+\begin{DoxyCompactList}\small\item\em Creates an instance of \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{Calibration\+Rectangle}} from list of tags \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_settings}{Calibration\+Rectangle\+Settings}} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a12697b7fbc0125fcb53b2381c833c9a2}{Settings}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a477a75850cea137cf104d02be6da0e32}{Find\+Distance\+To\+Segment}} (Point pt, Point p1, Point p2, out Point closest)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_afb22a54349a9b06e5dfcb8226de5a134}{corner\+Tags}}
+\item 
+Point\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a23a50ae043c1e8433ac4f1e247bb061c}{corners}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class used for calculating position on a plane thats defined by 4 points representing a rectangle 
+
+Definition at line \mbox{\hyperlink{_calibration_rectangle_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_calibration_rectangle_8cs_source}{Calibration\+Rectangle.\+cs}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a9c45879075419ddf3470e67b1d0a201a}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a9c45879075419ddf3470e67b1d0a201a}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}!Create@{Create}}
+\index{Create@{Create}!Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{Calibration\+Rectangle}} Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Calibration\+Rectangle.\+Create (\begin{DoxyParamCaption}\item[{IList$<$ \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} $>$}]{detected\+Tags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates an instance of \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{Calibration\+Rectangle}} from list of tags 
+
+
+\begin{DoxyParams}{Parameters}
+{\em detected\+Tags} & List of any tags, that should contain all of the corner tags\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An instance of \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{Calibration\+Rectangle}} if detected\+Tags contain all four corners tags, or null
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_calibration_rectangle_8cs_source_l00034}{34}} of file \mbox{\hyperlink{_calibration_rectangle_8cs_source}{Calibration\+Rectangle.\+cs}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a9c45879075419ddf3470e67b1d0a201a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a477a75850cea137cf104d02be6da0e32}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a477a75850cea137cf104d02be6da0e32}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}!FindDistanceToSegment@{FindDistanceToSegment}}
+\index{FindDistanceToSegment@{FindDistanceToSegment}!Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}}
+\doxysubsubsection{\texorpdfstring{FindDistanceToSegment()}{FindDistanceToSegment()}}
+{\footnotesize\ttfamily double Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Calibration\+Rectangle.\+Find\+Distance\+To\+Segment (\begin{DoxyParamCaption}\item[{Point}]{pt,  }\item[{Point}]{p1,  }\item[{Point}]{p2,  }\item[{out Point}]{closest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_calibration_rectangle_8cs_source_l00125}{125}} of file \mbox{\hyperlink{_calibration_rectangle_8cs_source}{Calibration\+Rectangle.\+cs}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a477a75850cea137cf104d02be6da0e32_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a189e3c6cb1f109ee464f77cb854f31af}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a189e3c6cb1f109ee464f77cb854f31af}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}!MapPoint@{MapPoint}}
+\index{MapPoint@{MapPoint}!Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}}
+\doxysubsubsection{\texorpdfstring{MapPoint()}{MapPoint()}}
+{\footnotesize\ttfamily Vector2 Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Calibration\+Rectangle.\+Map\+Point (\begin{DoxyParamCaption}\item[{Point}]{pt }\end{DoxyParamCaption})}
+
+
+
+Maps a point inside of the quadrilateral to a rectangle with sides of length 1 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & A point, that will be mapped\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Vector2 with mapped coordinates (ranging from 0 to 1)
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_calibration_rectangle_8cs_source_l00085}{85}} of file \mbox{\hyperlink{_calibration_rectangle_8cs_source}{Calibration\+Rectangle.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a189e3c6cb1f109ee464f77cb854f31af_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a189e3c6cb1f109ee464f77cb854f31af_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a7c5ff143b868aa952376f3927676eac7}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a7c5ff143b868aa952376f3927676eac7}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}!Paint@{Paint}}
+\index{Paint@{Paint}!Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}}
+\doxysubsubsection{\texorpdfstring{Paint()}{Paint()}}
+{\footnotesize\ttfamily void Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Calibration\+Rectangle.\+Paint (\begin{DoxyParamCaption}\item[{draw\+::\+Graphics}]{g,  }\item[{Point?}]{pos }\end{DoxyParamCaption})}
+
+
+
+ONLY A TEST FUNCTION FOR VISUALISING (works only on windows!) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & \\
+\hline
+{\em pos} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_calibration_rectangle_8cs_source_l00102}{102}} of file \mbox{\hyperlink{_calibration_rectangle_8cs_source}{Calibration\+Rectangle.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a7c5ff143b868aa952376f3927676eac7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a7c5ff143b868aa952376f3927676eac7_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a23a50ae043c1e8433ac4f1e247bb061c}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a23a50ae043c1e8433ac4f1e247bb061c}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}!corners@{corners}}
+\index{corners@{corners}!Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}}
+\doxysubsubsection{\texorpdfstring{corners}{corners}}
+{\footnotesize\ttfamily Point \mbox{[}$\,$\mbox{]} Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Calibration\+Rectangle.\+corners\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_calibration_rectangle_8cs_source_l00027}{27}} of file \mbox{\hyperlink{_calibration_rectangle_8cs_source}{Calibration\+Rectangle.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_afb22a54349a9b06e5dfcb8226de5a134}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_afb22a54349a9b06e5dfcb8226de5a134}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}!cornerTags@{cornerTags}}
+\index{cornerTags@{cornerTags}!Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}}
+\doxysubsubsection{\texorpdfstring{cornerTags}{cornerTags}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} \mbox{[}$\,$\mbox{]} Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Calibration\+Rectangle.\+corner\+Tags\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_calibration_rectangle_8cs_source_l00026}{26}} of file \mbox{\hyperlink{_calibration_rectangle_8cs_source}{Calibration\+Rectangle.\+cs}}.
+
+\mbox{\Hypertarget{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a12697b7fbc0125fcb53b2381c833c9a2}\label{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_a12697b7fbc0125fcb53b2381c833c9a2}} 
+\index{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}!Settings@{Settings}}
+\index{Settings@{Settings}!Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle@{Team.HobbyRobot.ASCS.ApriltagModeling.CalibrationRectangle}}
+\doxysubsubsection{\texorpdfstring{Settings}{Settings}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle_settings}{Calibration\+Rectangle\+Settings}} Team.\+Hobby\+Robot.\+ASCS.\+Apriltag\+Modeling.\+Calibration\+Rectangle.\+Settings\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{keyword}{new} CalibrationRectangleSettings()}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            TopLeftID = 1,}
+\DoxyCodeLine{            TopRightID = 2,}
+\DoxyCodeLine{            BottomRightID = 3,}
+\DoxyCodeLine{            BottomLeftID = 4}
+\DoxyCodeLine{        \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{_calibration_rectangle_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_calibration_rectangle_8cs_source}{Calibration\+Rectangle.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_calibration_rectangle_8cs}{Calibration\+Rectangle.\+cs}}\end{DoxyCompactItemize}

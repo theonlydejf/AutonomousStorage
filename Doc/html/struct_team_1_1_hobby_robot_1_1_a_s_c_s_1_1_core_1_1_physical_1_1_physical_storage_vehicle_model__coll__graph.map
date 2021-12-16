@@ -1,0 +1,5 @@
+<map id="Team.HobbyRobot.ASCS.Core.Physical.PhysicalStorageVehicleModel" name="Team.HobbyRobot.ASCS.Core.Physical.PhysicalStorageVehicleModel">
+<area shape="rect" id="node1" title="Model of the storage vehicle" alt="" coords="5,155,255,196"/>
+<area shape="rect" id="node2" href="$interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_i_dynamic_object.html" title="Moving Object" alt="" coords="73,80,187,107"/>
+<area shape="rect" id="node3" href="$interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_core_1_1_physical_1_1_i_static_object.html" title="Stationary object" alt="" coords="81,5,179,32"/>
+</map>

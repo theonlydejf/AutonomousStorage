@@ -1,0 +1,21 @@
+<map id="WinFormASCSVisionTest.Form1.InitializeComponent" name="WinFormASCSVisionTest.Form1.InitializeComponent">
+<area shape="rect" id="node1" title="Required method for Designer support &#45; do not modify the contents of this method with the code editor..." alt="" coords="5,169,223,211"/>
+<area shape="rect" id="node2" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a8bb47b2b0b6b9261a2f22d987d701b6f" title="When the winform is closed, stop receiving frames from the video device" alt="" coords="290,5,507,47"/>
+<area shape="rect" id="node3" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a0cb979a182a1bc7089e3560cef0935db" title=" " alt="" coords="290,71,507,112"/>
+<area shape="rect" id="node5" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#aed3dcf865e5c6503ad50c60e9a583308" title=" " alt="" coords="271,136,527,177"/>
+<area shape="rect" id="node6" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a79374dd9ca5d6f9e6e662fd24e9e8d51" title="Starts receiving frames from the selected video device" alt="" coords="277,201,520,243"/>
+<area shape="rect" id="node14" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a21a7cf1cc34d1a8f56fc472379953666" title=" " alt="" coords="275,267,522,308"/>
+<area shape="rect" id="node19" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a8293078e1492255581a8c060bafe18ec" title="When selected video device is changed, updtae video settings list" alt="" coords="275,332,522,373"/>
+<area shape="rect" id="node4" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#ab33346da958a6c81e146cfc7e6963dac" title="Updates list of available video devices" alt="" coords="594,87,811,128"/>
+<area shape="rect" id="node7" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a037131392773a36a9a8c54d570d5308a" title=" " alt="" coords="594,168,811,209"/>
+<area shape="rect" id="node8" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle.html#a9c45879075419ddf3470e67b1d0a201a" title="Creates an instance of CalibrationRectangle from list of tags" alt="" coords="879,117,1117,159"/>
+<area shape="rect" id="node9" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector.html#a788fd911ff3ef5daf5932115ccbc91bb" title="Detect tags in one frame" alt="" coords="901,183,1095,224"/>
+<area shape="rect" id="node10" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector.html#a72aa28d54086e808b22506edc72d5729" title="Get average of byte list" alt="" coords="1173,117,1375,159"/>
+<area shape="rect" id="node11" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family.html#ab6db55d4dab37d08b3ffb1edd2411a20" title="Create an instance of Apriltag from detectd code" alt="" coords="1185,183,1363,224"/>
+<area shape="rect" id="node13" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector.html#a68b9b4ee8c1d3c9430caf507c2e6a634" title="Carry out point mapping, according to the four points in p to map the relativeeePoint into it" alt="" coords="1165,248,1383,289"/>
+<area shape="rect" id="node12" href="$class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag_family.html#a425ec6b42b50bfcfdb7d1ca647faccf6" title="Rotate the current binary code by 90°" alt="" coords="1431,183,1637,224"/>
+<area shape="rect" id="node15" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle.html#a189e3c6cb1f109ee464f77cb854f31af" title="Maps a point inside of the quadrilateral to a rectangle with sides of length 1" alt="" coords="575,233,831,275"/>
+<area shape="rect" id="node17" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle.html#a7c5ff143b868aa952376f3927676eac7" title="ONLY A TEST FUNCTION FOR VISUALISING (works only on windows!)" alt="" coords="587,299,818,340"/>
+<area shape="rect" id="node18" href="$class_win_form_a_s_c_s_vision_test_1_1_form1.html#a7bcbea091531009367b8c46db8899441" title="Draw a error message onto any Graphics object" alt="" coords="594,364,811,405"/>
+<area shape="rect" id="node16" href="$class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle.html#a477a75850cea137cf104d02be6da0e32" title=" " alt="" coords="885,263,1111,319"/>
+</map>

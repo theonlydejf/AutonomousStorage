@@ -1,0 +1,4 @@
+<map id="Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagCellStorageProvider" name="Team.HobbyRobot.ASCS.ApriltagModeling.ApriltagCellStorageProvider">
+<area shape="rect" id="node1" title=" " alt="" coords="5,95,240,136"/>
+<area shape="rect" id="node2" href="$interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_cell_storage_1_1_physical_1_1_i_physical_cell_storage_model_provider.html" title="Provides a method, that can create an instance of PhysicalCellStorageModel" alt="" coords="34,5,211,47"/>
+</map>

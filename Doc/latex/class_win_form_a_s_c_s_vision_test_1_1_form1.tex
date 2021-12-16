@@ -1,0 +1,602 @@
+\hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1}{}\doxysection{Win\+Form\+ASCSVision\+Test.\+Form1 Class Reference}
+\label{class_win_form_a_s_c_s_vision_test_1_1_form1}\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+
+
+Inheritance diagram for Win\+Form\+ASCSVision\+Test.\+Form1\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{class_win_form_a_s_c_s_vision_test_1_1_form1__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Win\+Form\+ASCSVision\+Test.\+Form1\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{class_win_form_a_s_c_s_vision_test_1_1_form1__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a6be5087c6a6166c781ed918ce99bd89a}{Form1}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static readonly \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{Apriltag\+Detector}} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7d2b50e5e16f6604d097e7895f51b5d0}{detector}} = new \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{Apriltag\+Detector}}(new \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag25h9_family}{Tag25h9\+Family}}())
+\begin{DoxyCompactList}\small\item\em A detector that is used to detect apriltags in the frame \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a76db04323092f4bca5bb2eb3c9f3b159}{Dispose}} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Clean up any resources being used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a0cb979a182a1bc7089e3560cef0935db}{Form1\+\_\+\+Load}} (object sender, Event\+Args e)
+\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ab33346da958a6c81e146cfc7e6963dac}{Init\+Video\+Device\+List}} ()
+\begin{DoxyCompactList}\small\item\em Updates list of available video devices \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a79374dd9ca5d6f9e6e662fd24e9e8d51}{start\+Video\+Btn\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Starts receiving frames from the selected video device \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a037131392773a36a9a8c54d570d5308a}{Frame\+Provider\+\_\+\+Frame\+Recieved}} (object sender, \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{Frame\+Recieved\+Event\+Args}} e)
+\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a8293078e1492255581a8c060bafe18ec}{video\+Device\+Combo\+\_\+\+Selected\+Index\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em When selected video device is changed, updtae video settings list \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a8bb47b2b0b6b9261a2f22d987d701b6f}{Form1\+\_\+\+Form\+Closing}} (object sender, Form\+Closing\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em When the winform is closed, stop receiving frames from the video device \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a21a7cf1cc34d1a8f56fc472379953666}{video\+Box\+\_\+\+Paint}} (object sender, Paint\+Event\+Args e)
+\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7bcbea091531009367b8c46db8899441}{Paint\+Error}} (Graphics g, string msg, Control control)
+\begin{DoxyCompactList}\small\item\em Draw a error message onto any Graphics object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_aed3dcf865e5c6503ad50c60e9a583308}{refresh\+Vide\+Devices\+Btn\+\_\+\+Click}} (object sender, Event\+Args e)
+\item 
+void \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_adde97a90ed2553dd33710b862222ffff}{Initialize\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Required method for Designer support -\/ do not modify the contents of this method with the code editor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Filter\+Info\+Collection \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a85397d4f6755631c32c82415a8c4beb7}{filter\+Info\+Collection}}
+\begin{DoxyCompactList}\small\item\em Filter used for filtering video devices \end{DoxyCompactList}\item 
+Video\+Capture\+Device \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}{video\+Capture\+Device}}
+\begin{DoxyCompactList}\small\item\em Video device that is used to capture frames \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrame\+Provider}} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}{frame\+Provider}} = null
+\begin{DoxyCompactList}\small\item\em A interface between video\+Capture\+Device and ASCS \end{DoxyCompactList}\item 
+IList$<$ \mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}} $>$ \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7b797c1d0c5473f02948ff2f12436af4}{frame\+Tags}} = new List$<$\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}}$>$()
+\begin{DoxyCompactList}\small\item\em All apriltags detected in the current frame \end{DoxyCompactList}\item 
+Vector2 \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7594104fb6c0942b592b718ec0bb1240}{field\+Size}} = new Vector2(2.\+35f, 1.\+14f)
+\begin{DoxyCompactList}\small\item\em Size of the field \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{Calibration\+Rectangle}} \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a39acad1bcb162194b0b2d0236541929d}{calibration\+Rectangle}} = null
+\begin{DoxyCompactList}\small\item\em Calibration rectangle used to translate points from a frame to field coordinates \end{DoxyCompactList}\item 
+System.\+Component\+Model.\+IContainer \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a7d45248f37f4edeb5334b9111d30bbdf}{components}} = null
+\begin{DoxyCompactList}\small\item\em Required designer variable. \end{DoxyCompactList}\item 
+System.\+Windows.\+Forms.\+Button \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a307369d92b91701655de2ecf8bc11af2}{start\+Video\+Btn}}
+\item 
+System.\+Windows.\+Forms.\+Combo\+Box \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a9ef59fb1f73d2dccc8c85a51816102e0}{video\+Device\+Combo}}
+\item 
+System.\+Windows.\+Forms.\+Group\+Box \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a167c06d843ad9a51a43538a36c84d798}{video\+Settings\+Group}}
+\item 
+System.\+Windows.\+Forms.\+Button \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a67005f17dfd00c6245a92b06439b6518}{refresh\+Vide\+Devices\+Btn}}
+\item 
+System.\+Windows.\+Forms.\+List\+Box \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_a14872eddb1d5f372051ac5a86b30899c}{video\+Device\+Settings\+List}}
+\item 
+System.\+Windows.\+Forms.\+Picture\+Box \mbox{\hyperlink{class_win_form_a_s_c_s_vision_test_1_1_form1_ab28ca95a539933c231ed51ed22123d8d}{video\+Box}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00021}{21}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a6be5087c6a6166c781ed918ce99bd89a}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a6be5087c6a6166c781ed918ce99bd89a}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!Form1@{Form1}}
+\index{Form1@{Form1}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{Form1()}{Form1()}}
+{\footnotesize\ttfamily Win\+Form\+ASCSVision\+Test.\+Form1.\+Form1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00058}{58}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a6be5087c6a6166c781ed918ce99bd89a_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a76db04323092f4bca5bb2eb3c9f3b159}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a76db04323092f4bca5bb2eb3c9f3b159}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void Win\+Form\+ASCSVision\+Test.\+Form1.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Clean up any resources being used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & true if managed resources should be disposed; otherwise, false.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_form1_8_designer_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_form1_8_designer_8cs_source}{Form1.\+Designer.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a8bb47b2b0b6b9261a2f22d987d701b6f}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a8bb47b2b0b6b9261a2f22d987d701b6f}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!Form1\_FormClosing@{Form1\_FormClosing}}
+\index{Form1\_FormClosing@{Form1\_FormClosing}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{Form1\_FormClosing()}{Form1\_FormClosing()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+Form1\+\_\+\+Form\+Closing (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Form\+Closing\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+When the winform is closed, stop receiving frames from the video device 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00131}{131}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a8bb47b2b0b6b9261a2f22d987d701b6f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a0cb979a182a1bc7089e3560cef0935db}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a0cb979a182a1bc7089e3560cef0935db}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!Form1\_Load@{Form1\_Load}}
+\index{Form1\_Load@{Form1\_Load}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{Form1\_Load()}{Form1\_Load()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+Form1\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00068}{68}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a0cb979a182a1bc7089e3560cef0935db_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a0cb979a182a1bc7089e3560cef0935db_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a037131392773a36a9a8c54d570d5308a}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a037131392773a36a9a8c54d570d5308a}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!FrameProvider\_FrameRecieved@{FrameProvider\_FrameRecieved}}
+\index{FrameProvider\_FrameRecieved@{FrameProvider\_FrameRecieved}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{FrameProvider\_FrameRecieved()}{FrameProvider\_FrameRecieved()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+Frame\+Provider\+\_\+\+Frame\+Recieved (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{\mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_frame_recieved_event_args}{Frame\+Recieved\+Event\+Args}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00106}{106}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a037131392773a36a9a8c54d570d5308a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a037131392773a36a9a8c54d570d5308a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_adde97a90ed2553dd33710b862222ffff}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_adde97a90ed2553dd33710b862222ffff}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!InitializeComponent@{InitializeComponent}}
+\index{InitializeComponent@{InitializeComponent}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{InitializeComponent()}{InitializeComponent()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+Initialize\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Required method for Designer support -\/ do not modify the contents of this method with the code editor. 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8_designer_8cs_source_l00030}{30}} of file \mbox{\hyperlink{_form1_8_designer_8cs_source}{Form1.\+Designer.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_adde97a90ed2553dd33710b862222ffff_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_adde97a90ed2553dd33710b862222ffff_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_ab33346da958a6c81e146cfc7e6963dac}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_ab33346da958a6c81e146cfc7e6963dac}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!InitVideoDeviceList@{InitVideoDeviceList}}
+\index{InitVideoDeviceList@{InitVideoDeviceList}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{InitVideoDeviceList()}{InitVideoDeviceList()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+Init\+Video\+Device\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates list of available video devices 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00076}{76}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_ab33346da958a6c81e146cfc7e6963dac_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a7bcbea091531009367b8c46db8899441}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a7bcbea091531009367b8c46db8899441}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!PaintError@{PaintError}}
+\index{PaintError@{PaintError}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{PaintError()}{PaintError()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+Paint\+Error (\begin{DoxyParamCaption}\item[{Graphics}]{g,  }\item[{string}]{msg,  }\item[{Control}]{control }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Draw a error message onto any Graphics object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Graphics the error will be drawn to\\
+\hline
+{\em msg} & Message that the error shows\\
+\hline
+{\em control} & Control onto which the error will be drawn\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00229}{229}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a7bcbea091531009367b8c46db8899441_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_aed3dcf865e5c6503ad50c60e9a583308}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_aed3dcf865e5c6503ad50c60e9a583308}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!refreshVideDevicesBtn\_Click@{refreshVideDevicesBtn\_Click}}
+\index{refreshVideDevicesBtn\_Click@{refreshVideDevicesBtn\_Click}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{refreshVideDevicesBtn\_Click()}{refreshVideDevicesBtn\_Click()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+refresh\+Vide\+Devices\+Btn\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00239}{239}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_aed3dcf865e5c6503ad50c60e9a583308_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_aed3dcf865e5c6503ad50c60e9a583308_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a79374dd9ca5d6f9e6e662fd24e9e8d51}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a79374dd9ca5d6f9e6e662fd24e9e8d51}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!startVideoBtn\_Click@{startVideoBtn\_Click}}
+\index{startVideoBtn\_Click@{startVideoBtn\_Click}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{startVideoBtn\_Click()}{startVideoBtn\_Click()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+start\+Video\+Btn\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Starts receiving frames from the selected video device 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00089}{89}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a79374dd9ca5d6f9e6e662fd24e9e8d51_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a79374dd9ca5d6f9e6e662fd24e9e8d51_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a21a7cf1cc34d1a8f56fc472379953666}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a21a7cf1cc34d1a8f56fc472379953666}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!videoBox\_Paint@{videoBox\_Paint}}
+\index{videoBox\_Paint@{videoBox\_Paint}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{videoBox\_Paint()}{videoBox\_Paint()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+video\+Box\+\_\+\+Paint (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Paint\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00137}{137}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a21a7cf1cc34d1a8f56fc472379953666_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a21a7cf1cc34d1a8f56fc472379953666_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a8293078e1492255581a8c060bafe18ec}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a8293078e1492255581a8c060bafe18ec}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!videoDeviceCombo\_SelectedIndexChanged@{videoDeviceCombo\_SelectedIndexChanged}}
+\index{videoDeviceCombo\_SelectedIndexChanged@{videoDeviceCombo\_SelectedIndexChanged}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{videoDeviceCombo\_SelectedIndexChanged()}{videoDeviceCombo\_SelectedIndexChanged()}}
+{\footnotesize\ttfamily void Win\+Form\+ASCSVision\+Test.\+Form1.\+video\+Device\+Combo\+\_\+\+Selected\+Index\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+When selected video device is changed, updtae video settings list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00118}{118}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_form_a_s_c_s_vision_test_1_1_form1_a8293078e1492255581a8c060bafe18ec_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a39acad1bcb162194b0b2d0236541929d}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a39acad1bcb162194b0b2d0236541929d}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!calibrationRectangle@{calibrationRectangle}}
+\index{calibrationRectangle@{calibrationRectangle}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{calibrationRectangle}{calibrationRectangle}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_apriltag_modeling_1_1_calibration_rectangle}{Calibration\+Rectangle}} Win\+Form\+ASCSVision\+Test.\+Form1.\+calibration\+Rectangle = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calibration rectangle used to translate points from a frame to field coordinates 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00056}{56}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a7d45248f37f4edeb5334b9111d30bbdf}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a7d45248f37f4edeb5334b9111d30bbdf}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!components@{components}}
+\index{components@{components}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{components}{components}}
+{\footnotesize\ttfamily System.\+Component\+Model.\+IContainer Win\+Form\+ASCSVision\+Test.\+Form1.\+components = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Required designer variable. 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8_designer_8cs_source_l00009}{9}} of file \mbox{\hyperlink{_form1_8_designer_8cs_source}{Form1.\+Designer.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a7d2b50e5e16f6604d097e7895f51b5d0}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a7d2b50e5e16f6604d097e7895f51b5d0}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!detector@{detector}}
+\index{detector@{detector}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{detector}{detector}}
+{\footnotesize\ttfamily readonly \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{Apriltag\+Detector}} Win\+Form\+ASCSVision\+Test.\+Form1.\+detector = new \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag_detector}{Apriltag\+Detector}}(new \mbox{\hyperlink{class_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_tag25h9_family}{Tag25h9\+Family}}())\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+A detector that is used to detect apriltags in the frame 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00026}{26}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a7594104fb6c0942b592b718ec0bb1240}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a7594104fb6c0942b592b718ec0bb1240}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!fieldSize@{fieldSize}}
+\index{fieldSize@{fieldSize}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{fieldSize}{fieldSize}}
+{\footnotesize\ttfamily Vector2 Win\+Form\+ASCSVision\+Test.\+Form1.\+field\+Size = new Vector2(2.\+35f, 1.\+14f)\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Size of the field 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00051}{51}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a85397d4f6755631c32c82415a8c4beb7}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a85397d4f6755631c32c82415a8c4beb7}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!filterInfoCollection@{filterInfoCollection}}
+\index{filterInfoCollection@{filterInfoCollection}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{filterInfoCollection}{filterInfoCollection}}
+{\footnotesize\ttfamily Filter\+Info\+Collection Win\+Form\+ASCSVision\+Test.\+Form1.\+filter\+Info\+Collection\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Filter used for filtering video devices 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_ae6512795ee7e8706062dbb49d5438748}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!frameProvider@{frameProvider}}
+\index{frameProvider@{frameProvider}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{frameProvider}{frameProvider}}
+{\footnotesize\ttfamily \mbox{\hyperlink{interface_team_1_1_hobby_robot_1_1_a_s_c_s_1_1_vision_1_1_i_frame_provider}{IFrame\+Provider}} Win\+Form\+ASCSVision\+Test.\+Form1.\+frame\+Provider = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A interface between video\+Capture\+Device and ASCS 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00041}{41}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a7b797c1d0c5473f02948ff2f12436af4}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a7b797c1d0c5473f02948ff2f12436af4}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!frameTags@{frameTags}}
+\index{frameTags@{frameTags}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{frameTags}{frameTags}}
+{\footnotesize\ttfamily IList$<$\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}}$>$ Win\+Form\+ASCSVision\+Test.\+Form1.\+frame\+Tags = new List$<$\mbox{\hyperlink{struct_team_1_1_hobby_robot_1_1_apriltag_sharp_1_1_apriltag}{Apriltag}}$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+All apriltags detected in the current frame 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00046}{46}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a67005f17dfd00c6245a92b06439b6518}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a67005f17dfd00c6245a92b06439b6518}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!refreshVideDevicesBtn@{refreshVideDevicesBtn}}
+\index{refreshVideDevicesBtn@{refreshVideDevicesBtn}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{refreshVideDevicesBtn}{refreshVideDevicesBtn}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Button Win\+Form\+ASCSVision\+Test.\+Form1.\+refresh\+Vide\+Devices\+Btn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8_designer_8cs_source_l00139}{139}} of file \mbox{\hyperlink{_form1_8_designer_8cs_source}{Form1.\+Designer.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a307369d92b91701655de2ecf8bc11af2}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a307369d92b91701655de2ecf8bc11af2}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!startVideoBtn@{startVideoBtn}}
+\index{startVideoBtn@{startVideoBtn}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{startVideoBtn}{startVideoBtn}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Button Win\+Form\+ASCSVision\+Test.\+Form1.\+start\+Video\+Btn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8_designer_8cs_source_l00136}{136}} of file \mbox{\hyperlink{_form1_8_designer_8cs_source}{Form1.\+Designer.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_ab28ca95a539933c231ed51ed22123d8d}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_ab28ca95a539933c231ed51ed22123d8d}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!videoBox@{videoBox}}
+\index{videoBox@{videoBox}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{videoBox}{videoBox}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Picture\+Box Win\+Form\+ASCSVision\+Test.\+Form1.\+video\+Box\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8_designer_8cs_source_l00141}{141}} of file \mbox{\hyperlink{_form1_8_designer_8cs_source}{Form1.\+Designer.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a08aae3248d94c5ca443356bfa45b3c30}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!videoCaptureDevice@{videoCaptureDevice}}
+\index{videoCaptureDevice@{videoCaptureDevice}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{videoCaptureDevice}{videoCaptureDevice}}
+{\footnotesize\ttfamily Video\+Capture\+Device Win\+Form\+ASCSVision\+Test.\+Form1.\+video\+Capture\+Device\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Video device that is used to capture frames 
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8cs_source_l00036}{36}} of file \mbox{\hyperlink{_form1_8cs_source}{Form1.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a9ef59fb1f73d2dccc8c85a51816102e0}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a9ef59fb1f73d2dccc8c85a51816102e0}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!videoDeviceCombo@{videoDeviceCombo}}
+\index{videoDeviceCombo@{videoDeviceCombo}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{videoDeviceCombo}{videoDeviceCombo}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Combo\+Box Win\+Form\+ASCSVision\+Test.\+Form1.\+video\+Device\+Combo\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8_designer_8cs_source_l00137}{137}} of file \mbox{\hyperlink{_form1_8_designer_8cs_source}{Form1.\+Designer.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a14872eddb1d5f372051ac5a86b30899c}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a14872eddb1d5f372051ac5a86b30899c}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!videoDeviceSettingsList@{videoDeviceSettingsList}}
+\index{videoDeviceSettingsList@{videoDeviceSettingsList}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{videoDeviceSettingsList}{videoDeviceSettingsList}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+List\+Box Win\+Form\+ASCSVision\+Test.\+Form1.\+video\+Device\+Settings\+List\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8_designer_8cs_source_l00140}{140}} of file \mbox{\hyperlink{_form1_8_designer_8cs_source}{Form1.\+Designer.\+cs}}.
+
+\mbox{\Hypertarget{class_win_form_a_s_c_s_vision_test_1_1_form1_a167c06d843ad9a51a43538a36c84d798}\label{class_win_form_a_s_c_s_vision_test_1_1_form1_a167c06d843ad9a51a43538a36c84d798}} 
+\index{WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}!videoSettingsGroup@{videoSettingsGroup}}
+\index{videoSettingsGroup@{videoSettingsGroup}!WinFormASCSVisionTest.Form1@{WinFormASCSVisionTest.Form1}}
+\doxysubsubsection{\texorpdfstring{videoSettingsGroup}{videoSettingsGroup}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Group\+Box Win\+Form\+ASCSVision\+Test.\+Form1.\+video\+Settings\+Group\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_form1_8_designer_8cs_source_l00138}{138}} of file \mbox{\hyperlink{_form1_8_designer_8cs_source}{Form1.\+Designer.\+cs}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_form1_8cs}{Form1.\+cs}}\item 
+\mbox{\hyperlink{_form1_8_designer_8cs}{Form1.\+Designer.\+cs}}\end{DoxyCompactItemize}
