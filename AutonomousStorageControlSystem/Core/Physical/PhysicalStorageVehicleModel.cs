@@ -10,7 +10,7 @@ namespace Team.HobbyRobot.ASCS.Core.Physical
     /// <summary>
     /// Model of the storage vehicle
     /// </summary>
-    public struct StorageVehicleModel : IDynamicObject
+    public struct PhysicalStorageVehicleModel : IDynamicObject
     {
         /// <summary>
         /// ID of the storage vehicle
@@ -24,7 +24,5 @@ namespace Team.HobbyRobot.ASCS.Core.Physical
             (float)(Math.Cos(Orientation) * Speed),
             (float)(Math.Sin(Orientation) * Speed)
         );
-
-
     }
 }

@@ -19,6 +19,8 @@ namespace Team.HobbyRobot.ASCS.CellStorage.Physical
         /// </summary>
         public PhysicalCellStorageProperties Properties { get; set; }
 
+        public int ID { get; set; }
+
         public double Orientation { get; set; }
         public Vector2 Location { get; set; }
         /// <summary>

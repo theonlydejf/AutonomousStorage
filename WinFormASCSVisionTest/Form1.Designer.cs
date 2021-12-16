@@ -42,7 +42,7 @@ namespace WinFormASCSVisionTest
             // startVideoBtn
             // 
             this.startVideoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.startVideoBtn.Location = new System.Drawing.Point(109, 389);
+            this.startVideoBtn.Location = new System.Drawing.Point(109, 580);
             this.startVideoBtn.Name = "startVideoBtn";
             this.startVideoBtn.Size = new System.Drawing.Size(75, 23);
             this.startVideoBtn.TabIndex = 0;
@@ -72,7 +72,7 @@ namespace WinFormASCSVisionTest
             this.videoSettingsGroup.Controls.Add(this.startVideoBtn);
             this.videoSettingsGroup.Location = new System.Drawing.Point(12, 12);
             this.videoSettingsGroup.Name = "videoSettingsGroup";
-            this.videoSettingsGroup.Size = new System.Drawing.Size(190, 418);
+            this.videoSettingsGroup.Size = new System.Drawing.Size(190, 609);
             this.videoSettingsGroup.TabIndex = 2;
             this.videoSettingsGroup.TabStop = false;
             this.videoSettingsGroup.Text = "Video device settings";
@@ -86,7 +86,7 @@ namespace WinFormASCSVisionTest
             this.videoDeviceSettingsList.ItemHeight = 15;
             this.videoDeviceSettingsList.Location = new System.Drawing.Point(6, 51);
             this.videoDeviceSettingsList.Name = "videoDeviceSettingsList";
-            this.videoDeviceSettingsList.Size = new System.Drawing.Size(177, 334);
+            this.videoDeviceSettingsList.Size = new System.Drawing.Size(177, 514);
             this.videoDeviceSettingsList.TabIndex = 4;
             this.videoDeviceSettingsList.DoubleClick += new System.EventHandler(this.startVideoBtn_Click);
             // 
@@ -109,7 +109,7 @@ namespace WinFormASCSVisionTest
             | System.Windows.Forms.AnchorStyles.Right)));
             this.videoBox.Location = new System.Drawing.Point(208, 12);
             this.videoBox.Name = "videoBox";
-            this.videoBox.Size = new System.Drawing.Size(580, 418);
+            this.videoBox.Size = new System.Drawing.Size(580, 609);
             this.videoBox.TabIndex = 3;
             this.videoBox.TabStop = false;
             this.videoBox.Paint += new System.Windows.Forms.PaintEventHandler(this.videoBox_Paint);
@@ -118,7 +118,7 @@ namespace WinFormASCSVisionTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 442);
+            this.ClientSize = new System.Drawing.Size(800, 633);
             this.Controls.Add(this.videoBox);
             this.Controls.Add(this.videoSettingsGroup);
             this.Name = "Form1";

@@ -14,6 +14,7 @@ using Team.HobbyRobot.ASCS.Vision;
 using Team.HobbyRobot.ASCS.ApriltagModeling;
 using Team.HobbyRobot.ApriltagSharp;
 using cv = OpenCvSharp;
+using System.Numerics;
 
 namespace WinFormASCSVisionTest
 {
@@ -28,6 +29,8 @@ namespace WinFormASCSVisionTest
         IList<Apriltag> snapshotTags = new List<Apriltag>();
 
         IList<Apriltag> frameTags = new List<Apriltag>();
+
+        Vector2 fieldSize = new Vector2(235, 114);
 
         public Form1()
         {
@@ -65,9 +68,11 @@ namespace WinFormASCSVisionTest
             videoSettingsGroup.Enabled = false;
         }
 
+        CalibrationRectangle calibrationRectangle = null;
         private void FrameProvider_FrameRecieved(object sender, FrameRecievedEventArgs e)
         {
             frameTags = detector.Detect(cv::Extensions.BitmapConverter.ToMat(e.FrameImage));
+            calibrationRectangle = CalibrationRectangle.Create(frameTags, fieldSize);
             videoBox.Invalidate();
         }
 
@@ -114,12 +119,29 @@ namespace WinFormASCSVisionTest
                     //g.TranslateTransform(box.Width / 2 - frame.Width / 2 * sx, box.Height / 2 - frame.Height / 2 * sy);
                     //g.ScaleTransform(sx, sy);
                     g.DrawImage(frame, 0, 0);
+                    Apriltag? tag0 = null;
                     foreach (Apriltag tag in frameTags)
                     {
+                        if (tag.ID == 0)
+                            tag0 = tag;
                         Point[] pts = tag.Corners.Select(pt => new Point(pt.X, pt.Y)).ToArray();
                         g.FillPolygon(new SolidBrush(Color.FromArgb(128, Color.Magenta)), pts);
                         g.DrawLine(new Pen(Color.Lime, 5), tag.Center.X, tag.Center.Y, (pts[0].X + pts[1].X) / 2, (pts[0].Y + pts[1].Y) / 2);
                         g.DrawString(tag.ID.ToString(), new Font("Arail", 10, FontStyle.Bold), Brushes.Yellow, tag.Center.X, tag.Center.Y);
+                    }
+
+                    if (calibrationRectangle != null)
+                    {
+                        calibrationRectangle.Paint(g, tag0 == null ? null : tag0.Value.Center);
+                        if(tag0.HasValue)
+                        {
+                            Vector2 map = calibrationRectangle.MapPoint(tag0.Value.Center);
+                            float width = 300;
+                            float height = width / fieldSize.X * fieldSize.Y;
+                            g.FillRectangle(Brushes.White, 0, box.Height - height - 1, width, height);
+                            g.DrawRectangle(Pens.Black, 0, box.Height - height - 1, width, height);
+                            g.FillEllipse(Brushes.Black, width * map.X - 2.5f, box.Height - height + height * map.Y - 2.5f - 1, 5, 5);
+                        }
                     }
                 }     
             }
