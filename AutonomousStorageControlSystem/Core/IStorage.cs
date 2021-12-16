@@ -9,8 +9,6 @@ namespace Team.HobbyRobot.ASCS.Core
 {
     public interface IStorage : IEnumerable<IStorageItem>, IEnumerable
     {
-        object this[int index] { get; set; }
-
         /// <summary>
         /// All contents currently in the storage
         /// </summary>

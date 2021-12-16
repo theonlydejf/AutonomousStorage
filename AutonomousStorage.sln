@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousStorage", "AutonomousStorage\AutonomousStorage.csproj", "{92A77405-94BD-4357-82C0-D2137298D966}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomousStorageControlSystem", "AutonomousStorageControlSystem\AutonomousStorageControlSystem.csproj", "{2270C542-9CD3-46A4-9129-BE849D9B5B92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApriltagSharp", "ApriltagSharp\ApriltagSharp.csproj", "{F176D274-603E-4CAC-A099-0926AA50484C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApriltagSharp", "ApriltagSharp\ApriltagSharp.csproj", "{F176D274-603E-4CAC-A099-0926AA50484C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormASCSVisionTest", "WinFormASCSVisionTest\WinFormASCSVisionTest.csproj", "{D52C809E-D67A-41DF-A0F7-7E137FB7E5E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{92A77405-94BD-4357-82C0-D2137298D966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92A77405-94BD-4357-82C0-D2137298D966}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92A77405-94BD-4357-82C0-D2137298D966}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92A77405-94BD-4357-82C0-D2137298D966}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2270C542-9CD3-46A4-9129-BE849D9B5B92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2270C542-9CD3-46A4-9129-BE849D9B5B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2270C542-9CD3-46A4-9129-BE849D9B5B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{F176D274-603E-4CAC-A099-0926AA50484C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F176D274-603E-4CAC-A099-0926AA50484C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F176D274-603E-4CAC-A099-0926AA50484C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D52C809E-D67A-41DF-A0F7-7E137FB7E5E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D52C809E-D67A-41DF-A0F7-7E137FB7E5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D52C809E-D67A-41DF-A0F7-7E137FB7E5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D52C809E-D67A-41DF-A0F7-7E137FB7E5E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,11 +11,11 @@ using cv = OpenCvSharp;
 
 namespace Team.HobbyRobot.ASCS.ApriltagModeling
 {
-    static class ApriltagUtils
+    public static class ApriltagUtils
     {
-        [ThreadStatic] private static int remainingSamples = 0;
-        [ThreadStatic] private static List<Bitmap> frameQueue;
-        [ThreadStatic] private static EventWaitHandle sampleWaitHandle = new AutoResetEvent(false);
+        private static int remainingSamples = 0;
+        private static List<Bitmap> frameQueue;
+        private static EventWaitHandle sampleWaitHandle = new AutoResetEvent(false);
         // TODO: Check functionality of DetectApriltagsFromSamples
         public static IList<Apriltag> DetectApriltagsFromSamples(int sampleCnt, IFrameProvider frameProvider, ApriltagDetector detector)
         {
@@ -44,7 +44,7 @@ namespace Team.HobbyRobot.ASCS.ApriltagModeling
             IFrameProvider _sender = sender as IFrameProvider;
 
             // Check if all samples have been taken
-            if(remainingSamples >= 0)
+            if(remainingSamples <= 0)
             {
                 _sender.FrameRecieved -= SampleDetected;
                 remainingSamples = 0;
