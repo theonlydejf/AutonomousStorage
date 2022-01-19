@@ -1,4 +1,4 @@
-package team.hobbyrobot.subos;
+package team.hobbyrobot.subos.hardware;
 
 /**
  * Zbuspob, kterym bude blikat LED

@@ -11,6 +11,7 @@ import team.hobbyrobot.subos.graphics.Drawable;
 import team.hobbyrobot.subos.graphics.GraphicsController;
 import team.hobbyrobot.subos.graphics.sysgraphics.LoadingScreenGraphics;
 import team.hobbyrobot.subos.hardware.BrickHardware;
+import team.hobbyrobot.subos.hardware.LEDBlinkingStyle;
 import team.hobbyrobot.subos.logging.Logger;
 
 /**

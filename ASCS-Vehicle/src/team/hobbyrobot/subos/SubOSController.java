@@ -16,6 +16,7 @@ import team.hobbyrobot.subos.graphics.GraphicsController;
 import team.hobbyrobot.subos.graphics.infobar.InfoBarController;
 import team.hobbyrobot.subos.graphics.infobar.InfoBarData;
 import team.hobbyrobot.subos.hardware.BrickHardware;
+import team.hobbyrobot.subos.hardware.LEDBlinkingStyle;
 import team.hobbyrobot.subos.hardware.RobotHardware;
 import team.hobbyrobot.subos.logging.Logger;
 

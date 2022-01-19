@@ -8,11 +8,11 @@ import java.util.List;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.*;
-import team.hobbyrobot.subos.LEDBlinkingStyle;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.SystemSound;
 import team.hobbyrobot.subos.graphics.GraphicsController;
 import team.hobbyrobot.subos.hardware.BrickHardware;
+import team.hobbyrobot.subos.hardware.LEDBlinkingStyle;
 import team.hobbyrobot.subos.logging.Logger;
 
 /**

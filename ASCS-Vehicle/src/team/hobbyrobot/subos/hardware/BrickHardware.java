@@ -3,7 +3,6 @@ package team.hobbyrobot.subos.hardware;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import lejos.utility.Stopwatch;
-import team.hobbyrobot.subos.LEDBlinkingStyle;
 
 /**
  * Trida ve ktere jsou vlasni funkce na pristup k vecem na kostce (LED, talcitka)<br>
