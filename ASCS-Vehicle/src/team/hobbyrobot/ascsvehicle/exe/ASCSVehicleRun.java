@@ -14,32 +14,32 @@ import team.hobbyrobot.subos.menu.RobotInfoScreen;
 public class ASCSVehicleRun
 {
 	//@formatter:off
-		public static final MenuItem[] MainMenu = new MenuItem[] 
-		{
-			new RobotInfoScreen(ASCSVehicleHardware.class)
-		};
-		//@formatter:on
+	public static final MenuItem[] MainMenu = new MenuItem[] 
+	{
+		new RobotInfoScreen(ASCSVehicleHardware.class)
+	};
+	//@formatter:on
 
-		/**  Inicializovany Hardware robota */
-		public static ASCSVehicleHardware RobotHardware = new ASCSVehicleHardware(-1, -1, -1);
-		/** Inicializovany InfoBar, ktery aktualne bezi */
-		public static BasicInfoBar InfoBar = null;
+	/**  Inicializovany Hardware robota */
+	public static ASCSVehicleHardware RobotHardware = new ASCSVehicleHardware(-1, -1, -1);
+	/** Inicializovany InfoBar, ktery aktualne bezi */
+	public static BasicInfoBar InfoBar = null;
 
-		public static void main(String[] args) throws Exception
+	public static void main(String[] args) throws Exception
+	{
+
+		//Inicializuj senzory v robotovi a subOS
+		InfoBar = SubOSController.init(RobotHardware, BasicInfoBar.class);
+
+		//Dej najevo, že robot už je připraven k použití
+		BrickHardware.setLEDPattern(1, LEDBlinkingStyle.NONE, 0);
+		Sound.beepSequenceUp();
+
+		//Spust menu a opakuj ho do nekonecna
+		while (true)
 		{
-			
-			//Inicializuj senzory v robotovi a subOS
-			InfoBar = SubOSController.init(RobotHardware, BasicInfoBar.class);
-			
-			//Dej najevo, že robot už je připraven k použití
-			BrickHardware.setLEDPattern(1, LEDBlinkingStyle.NONE, 0);
-			Sound.beepSequenceUp();
-			
-			//Spust menu a opakuj ho do nekonecna
-			while (true)
-			{
-				MenuScreen mainMenu = new MenuScreen(MainMenu);
-				mainMenu.select();
-			}
+			MenuScreen mainMenu = new MenuScreen(MainMenu);
+			mainMenu.select();
 		}
+	}
 }

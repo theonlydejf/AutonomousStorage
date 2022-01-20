@@ -3,6 +3,9 @@ package team.hobbyrobot.subos.hardware;
 import java.util.ArrayList;
 
 import lejos.hardware.Sound;
+import lejos.hardware.port.MotorPort;
+import lejos.hardware.port.Port;
+import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.*;
 import lejos.robotics.*;
 import team.hobbyrobot.subos.Referenceable;
@@ -44,7 +47,7 @@ public abstract class RobotHardware
 	/** Meni maximalni moznou rychlost praveho motoru. Pokud je hodnota zaporna, motor bude invertovany. */
 	@IncludeInRobotInfo
 	public float RightMotorPowerMultiplyer = -1;
-
+	
 	/**
 	 * Indexy senzoru a motoru, ktere se <strong>nemaji</strong> inicializovat<br>
 	 * 0 - Port S1<br>
@@ -57,30 +60,32 @@ public abstract class RobotHardware
 	 * 7 - Port D
 	 */
 	public static final int[] HardwareIndexesToNotInitialize = new int[] {};
+	
+	private Port[] harPorts;
+	
+	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden ze senzoru */
+	protected abstract void initSensor1(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden ze senzoru */
-	protected abstract void initSensor1();
+	protected abstract void initSensor2(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden ze senzoru */
-	protected abstract void initSensor2();
+	protected abstract void initSensor3(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden ze senzoru */
-	protected abstract void initSensor3();
-
-	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden ze senzoru */
-	protected abstract void initSensor4();
+	protected abstract void initSensor4(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden z prebyvajicich motoru */
-	public abstract void initMotor1();
+	public abstract void initMotor1(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden z prebyvajicich motoru */
-	public abstract void initMotor2();
+	public abstract void initMotor2(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat levy motor */
-	public abstract void initLeftDriveMotor();
+	public abstract void initLeftDriveMotor(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat pravy motor */
-	public abstract void initRightDriveMotor();
+	public abstract void initRightDriveMotor(Port port);
 
 	/** Promenna do ve ktere je ulozena instance RobotHardware, ktera se bude pouzivat */
 	public static RobotHardware RobotHardwareToInitialize;
@@ -91,8 +96,31 @@ public abstract class RobotHardware
 		WheelRadius = wheelRadius;
 		DistanceMultiplyer = distanceMultiplier;
 		RobotHardwareToInitialize = this;
+		
+		harPorts = new Port[] { MotorPort.A, MotorPort.B, MotorPort.C, MotorPort.D, 
+				SensorPort.S1, SensorPort.S2, SensorPort.S3, SensorPort.S4 };
 	}
 
+	public void setDriveMotorPorts(Port lMotor, Port rMotor)
+	{
+		harPorts[5] = lMotor;
+		harPorts[6] = rMotor;
+	}
+	
+	public void setExtraMotorPorts(Port motor1, Port motor2)
+	{
+		harPorts[4] = motor1;
+		harPorts[7] = motor2;
+	}
+	
+	public void setSensorPorts(Port sensor1, Port sensor2, Port sensor3, Port sensor4)
+	{
+		harPorts[0] = sensor1;
+		harPorts[1] = sensor2;
+		harPorts[2] = sensor3;
+		harPorts[3] = sensor4;
+	}
+	
 	/**
 	 * Vrati vsechny senzory v robotovi jako array
 	 * 
@@ -325,19 +353,21 @@ public abstract class RobotHardware
 		//Thready ve kterych se budou inicializovat senzory
 		Thread[] initThreads = new Thread[8];
 
+		final Port[] ports = RobotHardwareToInitialize.harPorts;
+		
 		//Funkce pro inicializace
 		// @formatter:off
 		final Runnable[] initFuncs = new Runnable[]
 		{ 
-			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor1(); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor2(); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor3(); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor4(); }},
+			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor1(ports[0]); }},
+			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor2(ports[1]); }},
+			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor3(ports[2]); }},
+			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor4(ports[3]); }},
 			
-			new Runnable() { public void run() { RobotHardwareToInitialize.initMotor1(); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initLeftDriveMotor(); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initRightDriveMotor(); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initMotor2(); }}
+			new Runnable() { public void run() { RobotHardwareToInitialize.initMotor1(ports[4]); }},
+			new Runnable() { public void run() { RobotHardwareToInitialize.initLeftDriveMotor(ports[5]); }},
+			new Runnable() { public void run() { RobotHardwareToInitialize.initRightDriveMotor(ports[6]); }},
+			new Runnable() { public void run() { RobotHardwareToInitialize.initMotor2(ports[7]); }}
 		};
 		// @formatter:on
 
@@ -424,12 +454,5 @@ public abstract class RobotHardware
 			if (allThreadsFinished)
 				break;
 		}
-
-		afterHardwareInitialize();
-	}
-
-	public static void afterHardwareInitialize()
-	{
-
 	}
 }

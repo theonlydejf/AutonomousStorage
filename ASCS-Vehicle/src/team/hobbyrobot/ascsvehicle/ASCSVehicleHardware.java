@@ -1,5 +1,6 @@
 package team.hobbyrobot.ascsvehicle;
 
+import lejos.hardware.port.Port;
 import team.hobbyrobot.subos.hardware.RobotHardware;
 
 public class ASCSVehicleHardware extends RobotHardware
@@ -12,59 +13,59 @@ public class ASCSVehicleHardware extends RobotHardware
 	}
 
 	@Override
-	protected void initSensor1()
+	protected void initSensor1(Port port)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	protected void initSensor2()
+	protected void initSensor2(Port port)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	protected void initSensor3()
+	protected void initSensor3(Port port)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	protected void initSensor4()
+	protected void initSensor4(Port port)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void initMotor1()
+	public void initMotor1(Port port)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void initMotor2()
+	public void initMotor2(Port port)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void initLeftDriveMotor()
+	public void initLeftDriveMotor(Port port)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void initRightDriveMotor()
+	public void initRightDriveMotor(Port port)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }
