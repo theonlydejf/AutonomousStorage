@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 
 import lejos.hardware.Battery;
 import lejos.hardware.Button;
@@ -34,9 +35,17 @@ public class SubOSController
 
 	public static String CurrentViewName = "NONE";
 	
+	public static ArrayList<String> LoadingScreenActions = new ArrayList<String>()
+	{
+		private static final long serialVersionUID = -150153077382600693L;
+
+		{
+			add("0:team.hobbyrobot.subos.hardware.RobotHardware:initeRobotHardware");
+		}
+	};
+	
 	/** LoadingScreen, ktery inicializuje dulezite veci pro robota (napr. RobotHardware) */
-	public static LoadingScreen loadingScreen = new LoadingScreen(
-		new String[] { "0:team.hobbyrobot.subos.hardware.RobotHardware:InitializeRobotHardware" });
+	public static LoadingScreen loadingScreen;
 
 	public static Logger mainLogger;
 	
@@ -113,6 +122,7 @@ public class SubOSController
 		subOSBackgroundThread.setPriority(Thread.MIN_PRIORITY);
 		subOSBackgroundThread.start();
 
+		loadingScreen = new LoadingScreen(LoadingScreenActions.toArray(new String[LoadingScreenActions.size()]));
 		//Spust LoadingScreen
 		loadingScreen.start();
 

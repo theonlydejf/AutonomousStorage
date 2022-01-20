@@ -21,12 +21,13 @@ public class ASCSVehicleRun
 		//@formatter:on
 
 		/**  Inicializovany Hardware robota */
-		public static ASCSVehicleHardware RobotHardware = new ASCSVehicleHardware();
+		public static ASCSVehicleHardware RobotHardware = new ASCSVehicleHardware(-1, -1, -1);
 		/** Inicializovany InfoBar, ktery aktualne bezi */
 		public static BasicInfoBar InfoBar = null;
 
 		public static void main(String[] args) throws Exception
 		{
+			
 			//Inicializuj senzory v robotovi a subOS
 			InfoBar = SubOSController.init(RobotHardware, BasicInfoBar.class);
 			

@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import lejos.hardware.Battery;
 import lejos.hardware.sensor.BaseSensor;
+import lejos.robotics.SampleProvider;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.hardware.RobotHardware;
 
@@ -30,7 +31,7 @@ public class BasicInfoBar extends InfoBarData
 	public static final char SENSOR_PREFIX = 'G';
 
 	/** Senzory robota */
-	private BaseSensor[] Sensors;
+	private SampleProvider[] hardwareInstances;
 
 	/**
 	 * Vytvori instanci
@@ -39,7 +40,13 @@ public class BasicInfoBar extends InfoBarData
 	 */
 	public BasicInfoBar(RobotHardware hardware)
 	{
-		Sensors = hardware.GetSensors();
+		
+		SampleProvider[] sensors = hardware.getSensors();
+		SampleProvider[] motors = hardware.getEncoders();
+		
+		hardwareInstances = new SampleProvider[sensors.length + motors.length];
+		System.arraycopy(sensors, 0, hardwareInstances, 0, sensors.length);
+		System.arraycopy(motors, 0, hardwareInstances, sensors.length, motors.length);
 	}
 
 	@Override
@@ -47,7 +54,7 @@ public class BasicInfoBar extends InfoBarData
 	{
 		String data = "NULL";
 		//Senzor ze ktereho se bude cist
-		BaseSensor sensor = Sensors[SENSOR_INDEX];
+		SampleProvider sensor = hardwareInstances[SENSOR_INDEX];
 
 		if (sensor != null)
 		{
