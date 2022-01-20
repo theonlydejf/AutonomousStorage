@@ -91,7 +91,7 @@ public class SocketLoggerEndpointRegisterer
 		return port;
 	}
 	
-	public int countReisteredClients()
+	public int countRegisteredClients()
 	{
 		return registeredClients.size();
 	}

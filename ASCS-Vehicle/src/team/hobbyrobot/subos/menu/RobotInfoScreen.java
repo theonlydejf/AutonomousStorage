@@ -18,6 +18,8 @@ import team.hobbyrobot.subos.logging.Logger;
 
 public class RobotInfoScreen implements MenuItem
 {
+	//TODO: zobecnit na DataDispayerScreen
+	
 	public static final RobotInfoScreenGraphics screenGraphics = new RobotInfoScreenGraphics();
 	
 	private List<Class<?>> robotHardwareClasses = new ArrayList<Class<?>>();

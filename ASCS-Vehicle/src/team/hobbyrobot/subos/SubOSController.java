@@ -40,7 +40,7 @@ public class SubOSController
 		private static final long serialVersionUID = -150153077382600693L;
 
 		{
-			add("0:team.hobbyrobot.subos.hardware.RobotHardware:initeRobotHardware");
+			add("0:team.hobbyrobot.subos.hardware.RobotHardware:initRobotHardware");
 		}
 	};
 	
@@ -66,8 +66,9 @@ public class SubOSController
 	 * @throws IOException 
 	 */
 	public static <InfoBarType extends InfoBarData> InfoBarType init(RobotHardware hardware,
-		Class<InfoBarType> infoBarTypeClass) throws IOException
+		Class<InfoBarType> infoBarTypeClass, Logger logger) throws IOException
 	{
+		mainLogger = logger;
 		Stopwatch sw = new Stopwatch();
 		//Inicializuj grafiku
 		GraphicsController.init();
@@ -166,7 +167,6 @@ public class SubOSController
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter pw = new PrintWriter(bw);
 		
-		mainLogger = new Logger();
 		mainLogger.registerEndpoint(pw);
 	}
 }

@@ -64,28 +64,28 @@ public abstract class RobotHardware
 	private Port[] harPorts;
 	
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden ze senzoru */
-	protected abstract void initSensor1(Port port);
+	protected abstract BaseSensor initSensor1(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden ze senzoru */
-	protected abstract void initSensor2(Port port);
+	protected abstract BaseSensor initSensor2(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden ze senzoru */
-	protected abstract void initSensor3(Port port);
+	protected abstract BaseSensor initSensor3(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden ze senzoru */
-	protected abstract void initSensor4(Port port);
+	protected abstract BaseSensor initSensor4(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden z prebyvajicich motoru */
-	public abstract void initMotor1(Port port);
+	protected abstract RegulatedMotor initMotor1(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat jeden z prebyvajicich motoru */
-	public abstract void initMotor2(Port port);
+	protected abstract RegulatedMotor initMotor2(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat levy motor */
-	public abstract void initLeftDriveMotor(Port port);
+	protected abstract EncoderMotor initLeftDriveMotor(Port port);
 
 	/** Abstraktni funkce, ktera ma za ukol inicializovat pravy motor */
-	public abstract void initRightDriveMotor(Port port);
+	protected abstract EncoderMotor initRightDriveMotor(Port port);
 
 	/** Promenna do ve ktere je ulozena instance RobotHardware, ktera se bude pouzivat */
 	public static RobotHardware RobotHardwareToInitialize;
@@ -97,8 +97,8 @@ public abstract class RobotHardware
 		DistanceMultiplyer = distanceMultiplier;
 		RobotHardwareToInitialize = this;
 		
-		harPorts = new Port[] { MotorPort.A, MotorPort.B, MotorPort.C, MotorPort.D, 
-				SensorPort.S1, SensorPort.S2, SensorPort.S3, SensorPort.S4 };
+		harPorts = new Port[] { SensorPort.S1, SensorPort.S2, SensorPort.S3, SensorPort.S4, 
+				MotorPort.A, MotorPort.B, MotorPort.C, MotorPort.D };
 	}
 
 	public void setDriveMotorPorts(Port lMotor, Port rMotor)
@@ -353,21 +353,23 @@ public abstract class RobotHardware
 		//Thready ve kterych se budou inicializovat senzory
 		Thread[] initThreads = new Thread[8];
 
+		final RobotHardware har = RobotHardwareToInitialize;
+		
 		final Port[] ports = RobotHardwareToInitialize.harPorts;
 		
 		//Funkce pro inicializace
 		// @formatter:off
 		final Runnable[] initFuncs = new Runnable[]
 		{ 
-			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor1(ports[0]); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor2(ports[1]); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor3(ports[2]); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initSensor4(ports[3]); }},
+			new Runnable() { public void run() { har.Sensor1 = har.initSensor1(ports[0]); }},
+			new Runnable() { public void run() { har.Sensor2 = har.initSensor2(ports[1]); }},
+			new Runnable() { public void run() { har.Sensor3 = har.initSensor3(ports[2]); }},
+			new Runnable() { public void run() { har.Sensor4 = har.initSensor4(ports[3]); }},
 			
-			new Runnable() { public void run() { RobotHardwareToInitialize.initMotor1(ports[4]); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initLeftDriveMotor(ports[5]); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initRightDriveMotor(ports[6]); }},
-			new Runnable() { public void run() { RobotHardwareToInitialize.initMotor2(ports[7]); }}
+			new Runnable() { public void run() { har.Motor1 = har.initMotor1(ports[4]); }},
+			new Runnable() { public void run() { har.LeftDriveMotor = har.initLeftDriveMotor(ports[5]); }},
+			new Runnable() { public void run() { har.RightDriveMotor = har.initRightDriveMotor(ports[6]); }},
+			new Runnable() { public void run() { har.Motor2 = har.initMotor2(ports[7]); }}
 		};
 		// @formatter:on
 
