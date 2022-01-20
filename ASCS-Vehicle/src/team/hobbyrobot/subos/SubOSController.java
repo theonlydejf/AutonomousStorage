@@ -167,6 +167,6 @@ public class SubOSController
 		PrintWriter pw = new PrintWriter(bw);
 		
 		mainLogger = new Logger();
-		mainLogger.registerOutpout(pw);
+		mainLogger.registerEndpoint(pw);
 	}
 }

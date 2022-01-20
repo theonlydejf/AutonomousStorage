@@ -13,9 +13,10 @@ public class Logger implements Closeable
 
 	public Logger()
 	{
-		Runtime.getRuntime().addShutdownHook(new Thread() {
+		Runtime.getRuntime().addShutdownHook(new Thread()
+		{
 			@Override
-			public void run() 
+			public void run()
 			{
 				log("Shutting down...");
 				try
@@ -29,28 +30,28 @@ public class Logger implements Closeable
 			}
 		});
 	}
-	
+
 	public String[] getLog()
 	{
 		return localLog.toArray(new String[localLog.size()]);
 	}
-	
-	public void registerOutpout(PrintWriter writer)
+
+	public void registerEndpoint(PrintWriter writer)
 	{
 		writers.add(writer);
 	}
-	
-	public void unregisterOutpout(PrintWriter writer)
+
+	public void unregisterEndpoint(PrintWriter writer)
 	{
 		writers.remove(writer);
 	}
-	
+
 	public void log(String message)
 	{
 		localLog.add(message);
-		
+
 		ArrayList<PrintWriter> badWriters = new ArrayList<PrintWriter>();
-		for(PrintWriter pw : writers)
+		for (PrintWriter pw : writers)
 		{
 			try
 			{
@@ -62,30 +63,30 @@ public class Logger implements Closeable
 				badWriters.add(pw);
 			}
 		}
-		
-		if(badWriters.size() > 0)
+
+		if (badWriters.size() > 0)
 		{
-			for(PrintWriter pw : badWriters)
+			for (PrintWriter pw : badWriters)
 				writers.remove(pw);
 			for (int i = 0; i < badWriters.size(); i++)
 				log("Writer for logger threw an exception");
 		}
 	}
-	
+
 	public void logException(Exception ex)
 	{
 		log("Exception was thrown: " + getExceptionInfo(ex));
 	}
-	
+
 	public static String getExceptionInfo(Exception ex)
 	{
 		String msg = "Error message: " + ex.getMessage() + "; Stack trace: ";
-		
-		for(StackTraceElement trace : ex.getStackTrace())
+
+		for (StackTraceElement trace : ex.getStackTrace())
 		{
 			msg += "\n\t" + trace.toString();
 		}
-		
+
 		msg += "\n; Cause: " + ex.getCause() + "; ToString: " + ex.toString();
 		return msg;
 	}
@@ -93,7 +94,7 @@ public class Logger implements Closeable
 	@Override
 	public void close() throws IOException
 	{
-		for(PrintWriter pw : writers)
+		for (PrintWriter pw : writers)
 			pw.close();
 	}
 }
