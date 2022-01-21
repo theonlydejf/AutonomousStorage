@@ -73,7 +73,7 @@ public class Logger implements Closeable
 		}
 	}
 
-	public void logException(Exception ex)
+	public synchronized void logException(Exception ex)
 	{
 		log("Exception was thrown: " + getExceptionInfo(ex));
 	}
