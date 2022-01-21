@@ -15,6 +15,7 @@ import lejos.utility.Stopwatch;
 import team.hobbyrobot.subos.Referenceable;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.hardware.RobotHardware;
+import team.hobbyrobot.subos.hardware.motor.EV3DCMediumRegulatedMotor;
 import team.hobbyrobot.subos.menu.IncludeInRobotInfo;
 
 public class ASCSVehicleHardware extends RobotHardware
@@ -75,7 +76,7 @@ public class ASCSVehicleHardware extends RobotHardware
 	protected RegulatedMotor initMotor1(Port port)
 	{
 		// TODO Auto-generated method stub
-		return new EV3MediumRegulatedMotor(port);
+		return new EV3DCMediumRegulatedMotor(port);
 	}
 
 	@Override
@@ -89,14 +90,14 @@ public class ASCSVehicleHardware extends RobotHardware
 	protected EncoderMotor initLeftDriveMotor(Port port)
 	{
 		// TODO Auto-generated method stub
-		return new UnregulatedMotor(port);
+		return new EV3DCMediumRegulatedMotor(port);
 	}
 
 	@Override
 	protected EncoderMotor initRightDriveMotor(Port port)
 	{
 		// TODO Auto-generated method stub
-		return new UnregulatedMotor(port);
+		return new EV3DCMediumRegulatedMotor(port);
 	}
 	
 	public void calibrateLifter()

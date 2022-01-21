@@ -2,6 +2,7 @@ package team.hobbyrobot.ascsvehicle.exe;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
@@ -11,12 +12,15 @@ import java.util.Map.Entry;
 import lejos.hardware.Battery;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
+import lejos.hardware.lcd.GraphicsLCD;
 import lejos.utility.Delay;
 import team.hobbyrobot.ascsvehicle.ASCSVehicleHardware;
 import team.hobbyrobot.subos.SubOSController;
+import team.hobbyrobot.subos.graphics.GraphicsController;
 import team.hobbyrobot.subos.graphics.infobar.BasicInfoBar;
 import team.hobbyrobot.subos.hardware.BrickHardware;
 import team.hobbyrobot.subos.hardware.LEDBlinkingStyle;
+import team.hobbyrobot.subos.hardware.motor.EV3DCMediumRegulatedMotor;
 import team.hobbyrobot.subos.logging.Logger;
 import team.hobbyrobot.subos.logging.SocketLoggerEndpointRegisterer;
 import team.hobbyrobot.subos.menu.MenuItem;
@@ -55,37 +59,49 @@ public class ASCSVehicleRun
 		//Dej najevo, že robot už je připraven k použití
 		BrickHardware.setLEDPattern(1, LEDBlinkingStyle.NONE, 0);
 		Sound.beepSequenceUp();
-		
-		/*int i = 0;
-		while(Button.ENTER.isUp())
-		{
-			SubOSController.mainLogger.log("TEST - " + i++ + " - TEST, clients cnt: " + loggerRegisterer.countRegisteredClients());
-			Delay.msDelay(500);
-		}
-		SubOSController.mainLogger.log("Repeated test ended");
-		loggerRegisterer.stopRegistering();
-		SubOSController.mainLogger.log("After registering stopped");*/
 
-		logger.log("waiting for client...");
-		ServerSocket server = new ServerSocket(2222);
-		Sound.beep();
-		Socket s = server.accept();
-		logger.log("client connected!");
-		Sound.twoBeeps();
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
-		int cnt = 0;
-		while(true)
+		Thread t = new Thread()
 		{
-			TDNRoot root = TDNRoot.readFromStream(br);
-			logRoot(root, logger);			
-			root.put("recievedCnr", new TDNValue(++cnt, new IntegerParser()));
-			root.writeToStream(bw);
-		}
+			public void run()
+			{
+				logger.log("waiting for client...");
+				ServerSocket server;
+				try
+				{
+					server = new ServerSocket(2222);
+					Sound.beep();
+					Socket s = server.accept();
+					
+					logger.log("client connected!");
+					Sound.twoBeeps();
+					
+					BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+					BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+					while(true)
+					{
+						TDNRoot root = TDNRoot.readFromStream(br);
+					}
+				}
+				catch (IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		t.setDaemon(true);
+		t.start();
+		
 		//Spust menu a opakuj ho do nekonecna
-		/*while (true)
+		GraphicsLCD g = GraphicsController.getNewDefaultMainGraphics();
+		g.clear();
+
+		GraphicsController.refreshScreen();
+		Delay.msDelay(1000);
+		while (true)
 		{
+			Sound.beep();
 			Button.waitForAnyPress();
 			//MenuScreen mainMenu = new MenuScreen(MainMenu);
 			//mainMenu.select();
@@ -94,7 +110,7 @@ public class ASCSVehicleRun
 			Button.waitForAnyPress();
 			Hardware.moveLifterTo(0);
 			Hardware.fltLifter();
-		}*/
+		}
 	}
 	
 	static void logRoot(TDNRoot root, Logger logger)
