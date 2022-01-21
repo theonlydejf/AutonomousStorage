@@ -36,17 +36,17 @@ public class Logger implements Closeable
 		return localLog.toArray(new String[localLog.size()]);
 	}
 
-	public void registerEndpoint(PrintWriter writer)
+	public synchronized void registerEndpoint(PrintWriter writer)
 	{
 		writers.add(writer);
 	}
 
-	public void unregisterEndpoint(PrintWriter writer)
+	public synchronized void unregisterEndpoint(PrintWriter writer)
 	{
 		writers.remove(writer);
 	}
 
-	public void log(String message)
+	public synchronized void log(String message)
 	{
 		localLog.add(message);
 

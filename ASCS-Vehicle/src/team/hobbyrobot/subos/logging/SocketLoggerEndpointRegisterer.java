@@ -53,7 +53,7 @@ public class SocketLoggerEndpointRegisterer
 		registeringThread.start();
 	}
 	
-	private void registerClient() throws IOException
+	private synchronized void registerClient() throws IOException
 	{
 		Socket client = null;
 		try
@@ -91,12 +91,12 @@ public class SocketLoggerEndpointRegisterer
 		return port;
 	}
 	
-	public int countRegisteredClients()
+	public synchronized int countRegisteredClients()
 	{
 		return registeredClients.size();
 	}
 	
-	public void closeRegisteredClients() throws IOException
+	public synchronized void closeRegisteredClients() throws IOException
 	{
 		for(Socket client : registeredClients)
 			client.close();
