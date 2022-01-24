@@ -10,7 +10,7 @@ public class Logger implements Closeable
 {
 	private ArrayList<PrintWriter> writers = new ArrayList<PrintWriter>();
 	private ArrayList<String> localLog = new ArrayList<String>();
-
+	
 	public Logger()
 	{
 		Runtime.getRuntime().addShutdownHook(new Thread()

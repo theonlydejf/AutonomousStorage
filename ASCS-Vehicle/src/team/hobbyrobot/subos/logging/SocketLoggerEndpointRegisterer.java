@@ -8,7 +8,9 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SocketLoggerEndpointRegisterer
+import team.hobbyrobot.subos.net.ClientRegisterer;
+
+public class SocketLoggerEndpointRegisterer implements ClientRegisterer
 {
 	private Logger logger;
 	private int port;
@@ -19,19 +21,20 @@ public class SocketLoggerEndpointRegisterer
 
 	private boolean shouldBeRunning = false;
 
-	public SocketLoggerEndpointRegisterer(Logger logger, int port) throws IOException
+	public SocketLoggerEndpointRegisterer(Logger logger, int port)
 	{
 		this.logger = logger;
 		this.port = port;
-
-		serverSocket = new ServerSocket(port);
 	}
 
-	public void startRegistering()
+	public void startRegisteringClients() throws IOException
 	{
-		if(isRunning())
+		if(isRegisteringClients())
 			return;
+		
+		serverSocket = new ServerSocket(getPort());
 		shouldBeRunning = true;
+		
 		registeringThread = new Thread()
 		{
 			public void run()
@@ -79,8 +82,10 @@ public class SocketLoggerEndpointRegisterer
 		registeredClients.add(client);
 	}
 
-	public void stopRegistering() throws IOException
+	public synchronized void stopRegisteringClients() throws IOException
 	{
+		if(!isRegisteringClients())
+			return;
 		shouldBeRunning = false;
 		serverSocket.close();
 		serverSocket = null;
@@ -103,7 +108,7 @@ public class SocketLoggerEndpointRegisterer
 		registeredClients.clear();
 	}
 
-	public boolean isRunning()
+	public boolean isRegisteringClients()
 	{
 		return registeringThread != null && registeringThread.isAlive();
 	}

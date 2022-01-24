@@ -15,6 +15,8 @@ import lejos.hardware.Sound;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.utility.Delay;
 import team.hobbyrobot.ascsvehicle.ASCSVehicleHardware;
+import team.hobbyrobot.ascsvehicle.api.MovementService;
+import team.hobbyrobot.ascsvehicle.api.TestService;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.graphics.GraphicsController;
 import team.hobbyrobot.subos.graphics.infobar.BasicInfoBar;
@@ -26,6 +28,7 @@ import team.hobbyrobot.subos.logging.SocketLoggerEndpointRegisterer;
 import team.hobbyrobot.subos.menu.MenuItem;
 import team.hobbyrobot.subos.menu.MenuScreen;
 import team.hobbyrobot.subos.menu.RobotInfoScreen;
+import team.hobbyrobot.subos.net.api.TDNAPIServer;
 import team.hobbyrobot.tdn.base.*;
 import team.hobbyrobot.tdn.core.*;
 
@@ -49,7 +52,7 @@ public class ASCSVehicleRun
 	{
 		logger = new Logger();
 		SocketLoggerEndpointRegisterer loggerRegisterer = new SocketLoggerEndpointRegisterer(logger, 1111);
-		loggerRegisterer.startRegistering();
+		loggerRegisterer.startRegisteringClients();
 		
 		SubOSController.LoadingScreenActions.add("0:team.hobbyrobot.ascsvehicle.ASCSVehicleHardware:calibrateDefaultLifter");
 		
@@ -60,45 +63,22 @@ public class ASCSVehicleRun
 		BrickHardware.setLEDPattern(1, LEDBlinkingStyle.NONE, 0);
 		Sound.beepSequenceUp();
 
+		TDNAPIServer api = new TDNAPIServer(2222);
+		api.registerService("TestService", new TestService());
+		api.registerService("MovementService", new MovementService(Hardware));
 		
-		Thread t = new Thread()
-		{
-			public void run()
-			{
-				logger.log("waiting for client...");
-				ServerSocket server;
-				try
-				{
-					server = new ServerSocket(2222);
-					Sound.beep();
-					Socket s = server.accept();
-					
-					logger.log("client connected!");
-					Sound.twoBeeps();
-					
-					BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
-					BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
-					while(true)
-					{
-						TDNRoot root = TDNRoot.readFromStream(br);
-					}
-				}
-				catch (IOException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		};
+		Thread t = new Thread(api);
 		t.setDaemon(true);
 		t.start();
+		
+		logger.log("started registering...");
+		api.startRegisteringClients();
 		
 		//Spust menu a opakuj ho do nekonecna
 		GraphicsLCD g = GraphicsController.getNewDefaultMainGraphics();
 		g.clear();
 
 		GraphicsController.refreshScreen();
-		Delay.msDelay(1000);
 		while (true)
 		{
 			Sound.beep();

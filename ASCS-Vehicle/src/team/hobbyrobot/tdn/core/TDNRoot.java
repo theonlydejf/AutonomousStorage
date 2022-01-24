@@ -73,9 +73,10 @@ public class TDNRoot implements Iterable<Entry<String, TDNValue>>
         return (TDNRoot)objVal.value;
     }
     
-    public void insertValue(String key, TDNValue value)
+    public TDNRoot insertValue(String key, TDNValue value)
     {
     	rootData.put(key, value);
+    	return this;
     }
 
 	@Override
