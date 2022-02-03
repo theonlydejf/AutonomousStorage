@@ -19,7 +19,7 @@ class ResponseFactory
 			.insertValue(TDNAPIServer.DATA_KEYWORD, new TDNValue(data, TDNParsers.ROOT));
 	}
 	
-	public static TDNRoot createSuccessRespons(TDNRoot data)
+	public static TDNRoot createSuccessResponse(TDNRoot data)
 	{
 		return createRawResponse(ErrorCode.SUCCESS.getIntValue(), data);
 	}

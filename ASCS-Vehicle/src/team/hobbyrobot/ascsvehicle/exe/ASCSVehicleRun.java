@@ -13,11 +13,16 @@ import lejos.hardware.Battery;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.GraphicsLCD;
+import lejos.robotics.chassis.Chassis;
+import lejos.robotics.chassis.Wheel;
+import lejos.robotics.chassis.WheeledChassis;
+import lejos.robotics.navigation.MovePilot;
 import lejos.utility.Delay;
 import team.hobbyrobot.ascsvehicle.ASCSVehicleHardware;
 import team.hobbyrobot.ascsvehicle.api.MovementService;
 import team.hobbyrobot.ascsvehicle.api.TestService;
 import team.hobbyrobot.subos.SubOSController;
+import team.hobbyrobot.subos.errorhandling.ErrorLogging;
 import team.hobbyrobot.subos.graphics.GraphicsController;
 import team.hobbyrobot.subos.graphics.infobar.BasicInfoBar;
 import team.hobbyrobot.subos.hardware.BrickHardware;
@@ -50,22 +55,23 @@ public class ASCSVehicleRun
 	
 	public static void main(String[] args) throws Exception
 	{
+		// Starts main logger
 		logger = new Logger();
 		SocketLoggerEndpointRegisterer loggerRegisterer = new SocketLoggerEndpointRegisterer(logger, 1111);
 		loggerRegisterer.startRegisteringClients();
 		
 		SubOSController.LoadingScreenActions.add("0:team.hobbyrobot.ascsvehicle.ASCSVehicleHardware:calibrateDefaultLifter");
 		
-		//Inicializuj senzory v robotovi a subOS
-		InfoBar = SubOSController.init(Hardware, BasicInfoBar.class, logger);
+		// Starts subOS
+		InfoBar = SubOSController.init(Hardware, BasicInfoBar.class, logger, "error_log.txt");
 
 		//Dej najevo, že robot už je připraven k použití
 		BrickHardware.setLEDPattern(1, LEDBlinkingStyle.NONE, 0);
 		Sound.beepSequenceUp();
 
-		TDNAPIServer api = new TDNAPIServer(2222);
+		TDNAPIServer api = new TDNAPIServer(2222, logger, SubOSController.errorLogger);
 		api.registerService("TestService", new TestService());
-		api.registerService("MovementService", new MovementService(Hardware));
+		api.registerService("MovementService", new MovementService(Hardware, logger));
 		
 		Thread t = new Thread(api);
 		t.setDaemon(true);
@@ -79,17 +85,20 @@ public class ASCSVehicleRun
 		g.clear();
 
 		GraphicsController.refreshScreen();
+		
+		logger.log("Creating pilot..");
+		Wheel lWheel = WheeledChassis.modelWheel((EV3DCMediumRegulatedMotor)Hardware.LeftDriveMotor, 4.95f).offset(5.5f);
+		Wheel rWheel = WheeledChassis.modelWheel((EV3DCMediumRegulatedMotor)Hardware.RightDriveMotor, 4.95f).offset(5.5f).invert(true);
+		Chassis chassis = new WheeledChassis(new Wheel[] { lWheel, rWheel }, WheeledChassis.TYPE_DIFFERENTIAL);
+		MovePilot pilot = new MovePilot(chassis);
+		logger.log("pilot done!");
+		
 		while (true)
 		{
+			pilot.travel(10);
+			pilot.rotate(90);
 			Sound.beep();
 			Button.waitForAnyPress();
-			//MenuScreen mainMenu = new MenuScreen(MainMenu);
-			//mainMenu.select();
-			Hardware.moveLifterTo(100);
-			Hardware.fltLifter();
-			Button.waitForAnyPress();
-			Hardware.moveLifterTo(0);
-			Hardware.fltLifter();
 		}
 	}
 	

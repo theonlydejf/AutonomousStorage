@@ -14,7 +14,7 @@ public class BasicMenuGraphics extends MenuGraphics
 
 	@Override
 	protected void draw()
-	{
+	{ 
 		g.clear();
 
 		String[] menuNames = new String[menuItems.length];

@@ -31,7 +31,7 @@ public class SubOSController
 {
 	/** KONSTANTA - Uroven, pod kterou kdyz baterka klesne tak robot na to upozorni */
 	public static final float BATTERY_THRESHOLD = 8f;
-	public static final String LOG_FILENAME = "subOSLog.txt";
+	public static String ERROR_LOG_FILENAME;
 
 	public static String CurrentViewName = "NONE";
 	
@@ -48,6 +48,7 @@ public class SubOSController
 	public static LoadingScreen loadingScreen;
 
 	public static Logger mainLogger;
+	public static Logger errorLogger;
 	
 	/** Ukazuje se uz ze je malo baterky? */
 	public static boolean startedBatteryLEDOverriding = false;
@@ -66,14 +67,16 @@ public class SubOSController
 	 * @throws IOException 
 	 */
 	public static <InfoBarType extends InfoBarData> InfoBarType init(RobotHardware hardware,
-		Class<InfoBarType> infoBarTypeClass, Logger logger) throws IOException
+		Class<InfoBarType> infoBarTypeClass, Logger logger, String errorLogeFileName) throws IOException
 	{
-		mainLogger = logger;
 		Stopwatch sw = new Stopwatch();
+		
+		ERROR_LOG_FILENAME = errorLogeFileName;
+		
 		//Inicializuj grafiku
 		GraphicsController.init();
 		
-		initLogger();
+		initLoggers(logger);
 				
 		//Nastav hardware robots, ktery se bude inicializovat
 		RobotHardware.RobotHardwareToInitialize = hardware;
@@ -146,9 +149,12 @@ public class SubOSController
 		return (InfoBarType) InfoBarController.infoBarData;
 	}
 
-	private static void initLogger() throws IOException
+	private static void initLoggers(Logger mainLogger) throws IOException
 	{
-		File logFile = new File(LOG_FILENAME);
+		SubOSController.mainLogger = mainLogger;
+
+		errorLogger = mainLogger.createSubLogger("ErrorLogger");
+		File logFile = new File(ERROR_LOG_FILENAME);
 		
 		if (!logFile.exists())
 		{
@@ -163,10 +169,10 @@ public class SubOSController
 				BrickHardware.setLEDPattern(2, LEDBlinkingStyle.DOUBLEBLINK, 2);
 			}
 		}
-		FileWriter fw = new FileWriter(LOG_FILENAME, true);
+		FileWriter fw = new FileWriter(ERROR_LOG_FILENAME, true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter pw = new PrintWriter(bw);
 		
-		mainLogger.registerEndpoint(pw);
+		errorLogger.registerEndpoint(pw);
 	}
 }

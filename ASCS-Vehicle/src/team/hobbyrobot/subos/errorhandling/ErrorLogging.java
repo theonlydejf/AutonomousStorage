@@ -21,6 +21,7 @@ import team.hobbyrobot.subos.logging.Logger;
  * @author David Krcmar
  * @version 1.0
  */
+//TODO predelat na errorlogger .jnm
 public class ErrorLogging
 {
 	/** KONSTANTA - Mezera mezi radky v error log screenu */
@@ -71,7 +72,7 @@ public class ErrorLogging
 		//Ziskej grafiku na kreselni
 		GraphicsLCD g = GraphicsController.getNewMainGraphics(GraphicsController.ERROR_LAYER);
 
-		String[] log = SubOSController.mainLogger.getLog();
+		String[] log = SubOSController.errorLogger.getLog();
 		
 		//Pokud nejsou zadne errory -> KONEC
 		if (log.length <= 0)
@@ -125,7 +126,7 @@ public class ErrorLogging
 	 */
 	public static void logError(String errorMsg)
 	{
-		SubOSController.mainLogger.log("[ERROR] " + errorMsg);
+		SubOSController.errorLogger.log(errorMsg);
 	}
 
 	/**
