@@ -2,6 +2,7 @@ package team.hobbyrobot.tdn.core;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TDNBufferedReader
@@ -20,7 +21,7 @@ public class TDNBufferedReader
 	
 
 	private final BufferedReader br;
-	private List<Character> charQueue = new ArrayList<Character>();
+	private LinkedList<Character> charQueue = new LinkedList<Character>();
 	public final TDNParserSettings settings;
 
 	/*public TDNBufferedReader(BufferedReader reader) 
@@ -52,10 +53,7 @@ public class TDNBufferedReader
 	{
 		int iChar = -1;
 		if (charQueue.size() > 0)
-		{
-			iChar = charQueue.get(0);
-			charQueue.remove(0);
-		}
+			iChar = charQueue.removeFirst();
 		else
 			iChar = br.read();
 
