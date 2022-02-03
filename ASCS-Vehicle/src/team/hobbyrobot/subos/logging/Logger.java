@@ -10,6 +10,7 @@ public class Logger implements Closeable
 {
 	private ArrayList<PrintWriter> writers = new ArrayList<PrintWriter>();
 	private ArrayList<String> localLog = new ArrayList<String>();
+	private boolean includeName = true;
 	
 	protected String name = null;
 	
@@ -44,6 +45,11 @@ public class Logger implements Closeable
 	{
 		return localLog.toArray(new String[localLog.size()]);
 	}
+	
+	public void setIncludeName(boolean val)
+	{
+		includeName = val;
+	}
 
 	public synchronized void registerEndpoint(PrintWriter writer)
 	{
@@ -58,7 +64,7 @@ public class Logger implements Closeable
 	public synchronized void log(String message)
 	{
 		String msg = message;
-		if(name != null)
+		if(includeName && name != null)
 			msg = name + ": " + msg;
 		
 		localLog.add(msg);
@@ -124,6 +130,7 @@ public class Logger implements Closeable
 			super();
 			this.name = name;
 			this.parent = parent;
+			setIncludeName(false);
 		}
 		
 		@Override
