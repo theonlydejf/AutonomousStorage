@@ -70,7 +70,8 @@ public class TDNBufferedReader
 			return read(false);
 		}
 
-		lastReadControlCharacter = settings.getCharacterType(c);
+        if(!isLastReadCharacterEscaped)
+        	lastReadControlCharacter = settings.getCharacterType(c);
 
 		return c;
 	}
