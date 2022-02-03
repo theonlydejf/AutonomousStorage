@@ -67,6 +67,8 @@ public class LoadingScreen
 	/** Grafika na kterou se bude kreslit */
 	public GraphicsLCD graphics;
 
+	private String title;
+	
 	/**
 	 * Vytvori instanci LoadingScreenu. LoadingScreen je pote potreba spusti funkci {@link #start()}
 	 * 
@@ -74,8 +76,9 @@ public class LoadingScreen
 	 *                       Popisy jsou v tomto formatu:
 	 *                       {@code <0-based index threadu>:<package>.<trida>:<funkce>[:nonFatal](<povinne>;[nepovinne])}
 	 */
-	public LoadingScreen(String[] LoadingActions)
+	public LoadingScreen(String title, String[] LoadingActions)
 	{
+		this.title = title;
 		this.actions = LoadingActions;
 
 		LoadingScreenGraphics ldg = new LoadingScreenGraphics();
@@ -207,7 +210,7 @@ public class LoadingScreen
 	/** Spusti Loading screen */
 	public void start()
 	{
-		SubOSController.CurrentViewName = "Loading";
+		SubOSController.setViewName(getTitle());
 		
 		graphics = GraphicsController.getNewDefaultMainGraphics();
 		
@@ -254,4 +257,13 @@ public class LoadingScreen
 		loadingScreenGraphics.draw(graphics);
 	}
 
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+	
+	public String getTitle()
+	{
+		return title;
+	}
 }

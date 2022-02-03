@@ -23,9 +23,9 @@ public class ASCSVehicleHardware extends RobotHardware
 	@IncludeInRobotInfo
 	public int LifterUp = 0;
 	
-	public ASCSVehicleHardware(float wheelDistance, float wheelRadius, float distanceMultiplier)
+	public ASCSVehicleHardware(float wheelDistance, float wheelRadius)
 	{
-		super(wheelDistance, wheelRadius, distanceMultiplier);
+		super(wheelDistance, wheelRadius);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -41,6 +41,8 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 	public static final String ERROR_CODE_KEYWORD = "error-code";
 	public static final String ERROR_DETAILS_KEYWORD = "details";
 	public static final String DATA_KEYWORD = "data";
+	
+	public static final int HEARTBEAT_TIMEOUT = 10000;
 
 	// - Variables for TCP server - //
 	/** Port on which the api server is listening */
@@ -80,10 +82,12 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 	public TDNAPIServer(int port, Logger infoLogger, Logger errorLogger)
 	{
 		this.port = port;
-		this.infoLogger = new VerbosityLogger(infoLogger);
+		this.infoLogger = new VerbosityLogger(infoLogger.createSubLogger("API"));
 		this.errorLogger = errorLogger;
 		services = new Hashtable<String, Service>();
 		clients = new ArrayList<APIEndpoint>();
+		
+		registerService("API", new APIService());
 	}
 
 	public TDNAPIServer(int port, Logger logger)
@@ -106,7 +110,11 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 			return;
 		shouldBeRunning = true;
 		
+		infoLogger.log("Started on port " + getPort(), VerbosityLogger.DETAILED_OVERVIEW);
 		
+		infoLogger.log("Waiting for request from " + countRegisteredClients() + " clients...", VerbosityLogger.DETAILED_OVERVIEW);
+		
+		LinkedList<APIEndpoint> clientsToRemove = new LinkedList<APIEndpoint>();
 		while (shouldBeRunning)
 		{
 			if (clients.size() <= 0)
@@ -116,12 +124,11 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 			try
 			{
 				Stopwatch sw = new Stopwatch();
-				LinkedList<APIEndpoint> clientsToRemove = new LinkedList<APIEndpoint>();
 				synchronized (clients)
 				{
 					for (APIEndpoint _client : clients)
 					{
-						if (_client.client.isClosed())
+						if (_client.heartbeatSw.elapsed() > HEARTBEAT_TIMEOUT)
 							clientsToRemove.add(_client);
 						if (_client.inputStream.available() > 0)
 						{
@@ -133,23 +140,33 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 
 					for (APIEndpoint disconnectedClient : clientsToRemove)
 					{
+						disconnectedClient.close();
 						clients.remove(disconnectedClient);
-						infoLogger.log("Client disconnected from API", VerbosityLogger.OVERVIEW);
+						infoLogger.log("Client disconnected: " + disconnectedClient.socket.getInetAddress().toString() + " " + disconnectedClient.socket.getPort(), VerbosityLogger.OVERVIEW);
 					}
+					if(clientsToRemove.size() > 0)
+						clientsToRemove.clear();
 				}
 				if (client == null)
 					continue;
+				
+				infoLogger.log("Processing request...", VerbosityLogger.DETAILED_OVERVIEW);
 				Stopwatch partSw = new Stopwatch();
 				TDNRoot request = TDNRoot.readFromStream(client.reader);
 				int parseTook = partSw.elapsed();
 				partSw.reset();
-				TDNRoot response = processRequest(request);
-				int responseTook = partSw.elapsed();
-				response.insertValue("took", new TDNValue(sw.elapsed(), TDNParsers.INTEGER));
-				response.insertValue("parseTook", new TDNValue(parseTook, TDNParsers.INTEGER));
-				response.insertValue("responseTook", new TDNValue(responseTook, TDNParsers.INTEGER));
-
-				response.writeToStream(client.writer);
+				TDNRoot response = processRequest(request, client);
+				if(response != null)
+				{
+					int responseTook = partSw.elapsed();
+					response.insertValue("took", new TDNValue(sw.elapsed(), TDNParsers.INTEGER));
+					response.insertValue("parseTook", new TDNValue(parseTook, TDNParsers.INTEGER));
+					response.insertValue("responseTook", new TDNValue(responseTook, TDNParsers.INTEGER));
+					
+					response.writeToStream(client.writer);					
+				}
+				
+				infoLogger.log("Waiting for request from " + countRegisteredClients() + " clients...", VerbosityLogger.DETAILED_OVERVIEW);
 			}
 			catch (IOException ex)
 			{
@@ -159,13 +176,18 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 		}
 	}
 
-	private synchronized TDNRoot processRequest(TDNRoot request)
+	private synchronized TDNRoot processRequest(TDNRoot request, APIEndpoint client)
 	{
 		TDNValue serviceStr = request.get(SERVICE_KEYWORD);
 		if (serviceStr == null || !serviceStr.parser().typeKey().equals(TDNParsers.STRING.typeKey()))
 			return ResponseFactory.createExceptionResponse(ErrorCode.UNKNOWN_SERVICE,
 				"Unable to find service in the root");
-
+		
+		boolean apiRequest = ((String) serviceStr.value).equals("API");
+		// Heartbeat
+		if(apiRequest)
+			client.heartbeatSw.reset();
+		
 		Service service = services.get((String) serviceStr.value);
 		if (service == null)
 			return ResponseFactory.createExceptionResponse(ErrorCode.UNKNOWN_SERVICE,
@@ -177,13 +199,15 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 				"Unable to find request in the root");
 
 		TDNValue params = request.get(PARAMS_KEYWORD);
-		if (params == null || !params.parser().typeKey().equals(TDNParsers.ROOT.typeKey()))
-			return ResponseFactory.createExceptionResponse(ErrorCode.PARAMS_ERROR, "Unable to find params in the root");
+		if(params != null)
+			if (!params.parser().typeKey().equals(TDNParsers.ROOT.typeKey()))
+				return ResponseFactory.createExceptionResponse(ErrorCode.PARAMS_ERROR, "Unable to find params in the root");
 
 		try
 		{
+			client.heartbeatSw.reset();
 			return ResponseFactory
-				.createSuccessResponse(service.processRequest((String) requestName.value, (TDNRoot) params.value));
+				.createSuccessResponse(service.processRequest((String) requestName.value, params == null ? null : (TDNRoot) params.value));
 		}
 		catch (UnknownRequestException e)
 		{
@@ -237,7 +261,7 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 	{
 		if (isRegisteringClients())
 			return;
-
+		
 		acceptingClients = true;
 		clients = new LinkedList<APIEndpoint>();
 		server = new ServerSocket(getPort());
@@ -246,6 +270,7 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 		{
 			public void run()
 			{
+				infoLogger.log("\tClientRegisterer starting...", VerbosityLogger.DETAILED_OVERVIEW);
 				while (acceptingClients)
 				{
 					if(getMaxClients() > -1 && clients.size() >= getMaxClients())
@@ -253,15 +278,17 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 					
 					acceptClient();
 				}
+				infoLogger.log("\tClientRegisterer stopped", VerbosityLogger.DETAILED_OVERVIEW);
 			}
 		};
 		clientRegistererThread.setDaemon(true);
 		clientRegistererThread.setPriority(Thread.MIN_PRIORITY);
-		clientRegistererThread.start();
+		clientRegistererThread.start();		
 	}
 
 	public synchronized void registerService(String serviceKey, Service service)
 	{
+		service.init();
 		services.put(serviceKey, service);
 	}
 
@@ -270,14 +297,13 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 		Socket client = null;
 		try
 		{
-			Sound.beep();
+			infoLogger.log("\tClientRegisterer wating for client...", VerbosityLogger.DETAILED_OVERVIEW);
 			client = server.accept();
-			Sound.twoBeeps();
 		}
 		catch (SocketException ex)
 		{
 			infoLogger.log("SocketException was thrown when waiting for a clinet"
-				+ " in ASCSVehicleAPIServer. This may indicate that the " + "registering server was closed. EXCEPTION: "
+				+ " in ASCSVehicleAPIServer. This may indicate that the registering server was closed. EXCEPTION: "
 				+ Logger.getExceptionInfo(ex), VerbosityLogger.DEFAULT);
 		}
 		catch (IOException ex)
@@ -294,7 +320,7 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 			{
 				clients.add(new APIEndpoint(client));				
 			}
-			infoLogger.log("client registered", VerbosityLogger.DETAILED_OVERVIEW);
+			infoLogger.log("\tClientRegisterer client registered", VerbosityLogger.DETAILED_OVERVIEW);
 		}
 		catch (IOException ex)
 		{
@@ -350,27 +376,67 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 		maxClients = max;
 	}
 
+	public Thread createThread()
+	{
+		Thread t = new Thread(this);
+		t.setDaemon(true);
+		t.setPriority(Thread.MAX_PRIORITY);
+		return t;
+	}
+	
+	public void setVerbosity(int verbosityLevel)
+	{
+		infoLogger.setVerbosityLevel(verbosityLevel);
+	}
+	
 	private static class APIEndpoint implements Closeable
 	{
-		public Socket client;
+		public Socket socket;
 		public BufferedReader reader;
 		public BufferedWriter writer;
 		public InputStream inputStream;
 		public OutputStream outputStream;
+		public Stopwatch heartbeatSw;
 
 		public APIEndpoint(Socket client) throws IOException
 		{
-			this.client = client;
+			this.socket = client;
 			inputStream = client.getInputStream();
 			outputStream = client.getOutputStream();
 			reader = new BufferedReader(new InputStreamReader(inputStream));
 			writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+			heartbeatSw = new Stopwatch();
 		}
 
 		@Override
 		public void close() throws IOException
 		{
-			client.close();
+			socket.close();
 		}
+	}
+	
+	private class APIService implements Service
+	{
+
+		@Override
+		public TDNRoot processRequest(String request, TDNRoot params)
+			throws UnknownRequestException, RequestParamsException, RequestGeneralException
+		{
+			if(request.equals("Heartbeat"))
+			{
+				infoLogger.log("API heartbeat", VerbosityLogger.DEBUGGING);
+				return null;
+			}
+			
+			return null;
+		}
+
+		@Override
+		public void init()
+		{
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }

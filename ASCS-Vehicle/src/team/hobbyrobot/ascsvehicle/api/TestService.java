@@ -22,4 +22,11 @@ public class TestService implements Service
 		return root;
 	}
 
+	@Override
+	public void init()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -90,11 +90,11 @@ public abstract class RobotHardware
 	/** Promenna do ve ktere je ulozena instance RobotHardware, ktera se bude pouzivat */
 	public static RobotHardware RobotHardwareToInitialize;
 
-	public RobotHardware(float wheelDistance, float wheelRadius, float distanceMultiplier)
+	public RobotHardware(float wheelDistance, float wheelRadius)
 	{
 		WheelDistance = wheelDistance;
 		WheelRadius = wheelRadius;
-		DistanceMultiplyer = distanceMultiplier;
+		DistanceMultiplyer = 2 * 3.14159f * wheelRadius;
 		RobotHardwareToInitialize = this;
 		
 		harPorts = new Port[] { SensorPort.S1, SensorPort.S2, SensorPort.S3, SensorPort.S4, 

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import lejos.hardware.Battery;
 import lejos.hardware.Button;
@@ -33,16 +34,9 @@ public class SubOSController
 	public static final float BATTERY_THRESHOLD = 8f;
 	public static String ERROR_LOG_FILENAME;
 
-	public static String CurrentViewName = "NONE";
+	private static String currentViewName = "NONE";
 	
-	public static ArrayList<String> LoadingScreenActions = new ArrayList<String>()
-	{
-		private static final long serialVersionUID = -150153077382600693L;
-
-		{
-			add("0:team.hobbyrobot.subos.hardware.RobotHardware:initRobotHardware");
-		}
-	};
+	private static String[] LoadingScreenActions = new String[] { "0:team.hobbyrobot.subos.hardware.RobotHardware:initRobotHardware" };
 	
 	/** LoadingScreen, ktery inicializuje dulezite veci pro robota (napr. RobotHardware) */
 	public static LoadingScreen loadingScreen;
@@ -126,7 +120,7 @@ public class SubOSController
 		subOSBackgroundThread.setPriority(Thread.MIN_PRIORITY);
 		subOSBackgroundThread.start();
 
-		loadingScreen = new LoadingScreen(LoadingScreenActions.toArray(new String[LoadingScreenActions.size()]));
+		loadingScreen = new LoadingScreen("Init hardware", LoadingScreenActions);
 		//Spust LoadingScreen
 		loadingScreen.start();
 
@@ -174,5 +168,15 @@ public class SubOSController
 		PrintWriter pw = new PrintWriter(bw);
 		
 		errorLogger.registerEndpoint(pw);
+	}
+	
+	public static void setViewName(String name)
+	{
+		currentViewName = name;
+	}
+	
+	public static String getViewName()
+	{
+		return currentViewName;
 	}
 }

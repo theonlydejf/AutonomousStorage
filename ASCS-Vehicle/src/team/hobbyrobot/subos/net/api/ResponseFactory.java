@@ -21,6 +21,8 @@ class ResponseFactory
 	
 	public static TDNRoot createSuccessResponse(TDNRoot data)
 	{
+		if(data == null)
+			return null;
 		return createRawResponse(ErrorCode.SUCCESS.getIntValue(), data);
 	}
 }

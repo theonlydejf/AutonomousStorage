@@ -8,4 +8,5 @@ import team.hobbyrobot.tdn.core.TDNRoot;
 public interface Service
 {
 	TDNRoot processRequest(String request, TDNRoot params) throws UnknownRequestException, RequestParamsException, RequestGeneralException;
+	void init();
 }

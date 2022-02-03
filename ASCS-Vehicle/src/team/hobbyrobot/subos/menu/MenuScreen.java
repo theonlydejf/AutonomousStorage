@@ -23,7 +23,7 @@ public class MenuScreen
 	
 	public int select()
 	{
-		SubOSController.CurrentViewName = Name;
+		SubOSController.setViewName(Name);
 		
 		GraphicsLCD graphics = GraphicsController.getNewDefaultMainGraphics();
 				
@@ -64,7 +64,7 @@ public class MenuScreen
 					break;
 					
 				case Button.ID_ENTER:
-					SubOSController.CurrentViewName = menuItems[selectedIndex].getName();
+					SubOSController.setViewName(menuItems[selectedIndex].getName());
 					menuItems[selectedIndex].open();
 					return selectedIndex;
 			}

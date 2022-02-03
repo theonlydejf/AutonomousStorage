@@ -74,7 +74,7 @@ public class BasicInfoBar extends InfoBarData
 	@Override
 	public String getMiddleText()
 	{
-		return SubOSController.CurrentViewName;
+		return SubOSController.getViewName();
 	}
 
 	@Override

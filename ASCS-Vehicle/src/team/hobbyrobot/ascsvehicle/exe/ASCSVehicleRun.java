@@ -21,6 +21,7 @@ import lejos.utility.Delay;
 import team.hobbyrobot.ascsvehicle.ASCSVehicleHardware;
 import team.hobbyrobot.ascsvehicle.api.MovementService;
 import team.hobbyrobot.ascsvehicle.api.TestService;
+import team.hobbyrobot.subos.LoadingScreen;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.errorhandling.ErrorLogging;
 import team.hobbyrobot.subos.graphics.GraphicsController;
@@ -30,9 +31,11 @@ import team.hobbyrobot.subos.hardware.LEDBlinkingStyle;
 import team.hobbyrobot.subos.hardware.motor.EV3DCMediumRegulatedMotor;
 import team.hobbyrobot.subos.logging.Logger;
 import team.hobbyrobot.subos.logging.SocketLoggerEndpointRegisterer;
+import team.hobbyrobot.subos.logging.VerbosityLogger;
 import team.hobbyrobot.subos.menu.MenuItem;
 import team.hobbyrobot.subos.menu.MenuScreen;
 import team.hobbyrobot.subos.menu.RobotInfoScreen;
+import team.hobbyrobot.subos.net.api.APIStaticFactory;
 import team.hobbyrobot.subos.net.api.TDNAPIServer;
 import team.hobbyrobot.tdn.base.*;
 import team.hobbyrobot.tdn.core.*;
@@ -47,11 +50,13 @@ public class ASCSVehicleRun
 	//@formatter:on
 
 	/**  Inicializovany Hardware robota */
-	public static ASCSVehicleHardware Hardware = new ASCSVehicleHardware(-1, -1, -1);
+	public static ASCSVehicleHardware Hardware = new ASCSVehicleHardware(121.6f, 49.5f);
 	/** Inicializovany InfoBar, ktery aktualne bezi */
 	public static BasicInfoBar InfoBar = null;
 
 	public static Logger logger;
+
+	public static TDNAPIServer api = null;
 	
 	public static void main(String[] args) throws Exception
 	{
@@ -59,49 +64,54 @@ public class ASCSVehicleRun
 		logger = new Logger();
 		SocketLoggerEndpointRegisterer loggerRegisterer = new SocketLoggerEndpointRegisterer(logger, 1111);
 		loggerRegisterer.startRegisteringClients();
-		
-		SubOSController.LoadingScreenActions.add("0:team.hobbyrobot.ascsvehicle.ASCSVehicleHardware:calibrateDefaultLifter");
-		
+
+		//SubOSController.LoadingScreenActions.add("0:team.hobbyrobot.ascsvehicle.ASCSVehicleHardware:calibrateDefaultLifter");
+
 		// Starts subOS
 		InfoBar = SubOSController.init(Hardware, BasicInfoBar.class, logger, "error_log.txt");
+		initVehicle();
 
 		//Dej najevo, že robot už je připraven k použití
 		BrickHardware.setLEDPattern(1, LEDBlinkingStyle.NONE, 0);
 		Sound.beepSequenceUp();
 
-		TDNAPIServer api = new TDNAPIServer(2222, logger, SubOSController.errorLogger);
-		api.registerService("TestService", new TestService());
-		api.registerService("MovementService", new MovementService(Hardware, logger));
-		
-		Thread t = new Thread(api);
-		t.setDaemon(true);
-		t.start();
-		
-		logger.log("started registering...");
-		api.startRegisteringClients();
-		
 		//Spust menu a opakuj ho do nekonecna
 		GraphicsLCD g = GraphicsController.getNewDefaultMainGraphics();
 		g.clear();
 
 		GraphicsController.refreshScreen();
-		
-		logger.log("Creating pilot..");
-		Wheel lWheel = WheeledChassis.modelWheel((EV3DCMediumRegulatedMotor)Hardware.LeftDriveMotor, 4.95f).offset(5.5f);
-		Wheel rWheel = WheeledChassis.modelWheel((EV3DCMediumRegulatedMotor)Hardware.RightDriveMotor, 4.95f).offset(5.5f).invert(true);
-		Chassis chassis = new WheeledChassis(new Wheel[] { lWheel, rWheel }, WheeledChassis.TYPE_DIFFERENTIAL);
-		MovePilot pilot = new MovePilot(chassis);
-		logger.log("pilot done!");
-		
+
 		while (true)
 		{
-			pilot.travel(10);
-			pilot.rotate(90);
-			Sound.beep();
 			Button.waitForAnyPress();
+			Hardware.moveLifterTo(100);
+			Button.waitForAnyPress();
+			Hardware.moveLifterTo(0);
 		}
 	}
-	
+
+	private static void initVehicle()
+	{
+		// Calibrate robot
+		new LoadingScreen("Calibration",
+			new String[] { "0:team.hobbyrobot.ascsvehicle.ASCSVehicleHardware:calibrateDefaultLifter" }).start();
+		
+		APIStaticFactory.setInfoLogger(logger);
+		APIStaticFactory.setVerbosity(VerbosityLogger.DEBUGGING);
+		
+		APIStaticFactory.reset();
+		APIStaticFactory.setAPILogger(logger);
+		APIStaticFactory.setPort(2222);
+		APIStaticFactory.settings.setStartServer(true);
+		APIStaticFactory.settings.setStartRegisteringClients(true);
+		APIStaticFactory.queueService("TestService", new TestService());
+		APIStaticFactory.queueService("MovementService", new MovementService(Hardware, logger));
+		
+		new LoadingScreen("Starting API", 
+			new String[] { "0:team.hobbyrobot.subos.net.api.APIStaticFactory:createAPI" }).start();
+		api = APIStaticFactory.getLastAPIServer();
+	}
+
 	static void logRoot(TDNRoot root, Logger logger)
 	{
 		logger.log("(");
@@ -129,7 +139,7 @@ public class ASCSVehicleRun
 					{
 						logger.log(sb.toString() + item);
 						sb = new StringBuilder();
-					}					
+					}
 					continue;
 				}
 				logger.log(sb.toString() + "]");
