@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApriltagSharp\ApriltagSharp.csproj" />
+    <ProjectReference Include="..\TransmissionDataNotation\TransmissionDataNotation.csproj" />
   </ItemGroup>
 
 </Project>
