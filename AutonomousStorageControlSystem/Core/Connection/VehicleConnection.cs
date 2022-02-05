@@ -17,6 +17,9 @@ namespace Team.HobbyRobot.ASCS.Core.Connection
         public const int API_PORT = 2222;
         public const int HEARTBEAT_INTERVAL = 9700;
 
+        public event EventHandler<LoggerConnectedEventArgs> LoggerConnected;
+        public event EventHandler<TDNAPIConnectedEventArgs> APIConnected;
+
         public IPAddress VehicleIP { get; }
 
         private Socket apiSocket;
@@ -74,9 +77,14 @@ namespace Team.HobbyRobot.ASCS.Core.Connection
             try
             {
                 Socket socket = (Socket)ar.AsyncState;
-                socket.EndConnect(ar);
-                loggerStream = new NetworkStream(socket);
-                Log("Logger connected");
+                if(socket.Connected)
+                {
+                    socket.EndConnect(ar);
+                    loggerStream = new NetworkStream(socket);
+                    Log("Logger connected");
+                    if (LoggerConnected != null)
+                        LoggerConnected.Invoke(this, new LoggerConnectedEventArgs(loggerStream));
+                }
             }
             catch (Exception e)
             {
@@ -90,11 +98,16 @@ namespace Team.HobbyRobot.ASCS.Core.Connection
             try
             {
                 Socket socket = (Socket)ar.AsyncState;
-                socket.EndConnect(ar);
-                Log("API connected");
-                apiStream = new NetworkStream(socket);
-                apiCommander = new TDNAPICommander(this, logger);
-                apiCommander.HeartbeatFailed += ApiCommander_HeartbeatFailed;
+                if(socket.Connected)
+                { 
+                    socket.EndConnect(ar);
+                    apiStream = new NetworkStream(socket);
+                    apiCommander = new TDNAPICommander(this, logger);
+                    apiCommander.HeartbeatFailed += ApiCommander_HeartbeatFailed;
+                    Log("API connected");
+                    if (APIConnected != null)
+                        APIConnected.Invoke(this, new TDNAPIConnectedEventArgs(apiStream));
+                }
             }
             catch (Exception e)
             {
@@ -127,63 +140,73 @@ namespace Team.HobbyRobot.ASCS.Core.Connection
         {
             VehicleConnection connection = new VehicleConnection(ip, logger);
 
-
-            Task connectLogger = Task.Run(() => ConnectLogger(connection, timeout, retryCnt));
-            Task connectAPI = Task.Run(() => ConnectAPI(connection, timeout, retryCnt));
-
-            await Task.WhenAll(connectLogger, connectAPI);
+            await connection.ConnectAsync(timeout, retryCnt);
 
             return connection;
         }
 
-        private static void ConnectLogger(VehicleConnection connection, int timeout, int retryCnt)
+        public async Task ConnectAsync(int timeout = -1, int retryCnt = 1)
         {
-            try
-            {
-                while (true)
-                {
-                    connection.BeginLoggerConnect();
-                    if (!connection.loggerConnected.WaitOne(timeout) || connection.loggerStream == null)
-                    {
-                        retryCnt--;
-                        if (retryCnt == 0)
-                            break;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                connection.Log("Exception was thrown when connecting to logger: " + ex.ToString());
-            }
+            Task connectLogger = Task.Run(() => ConnectLogger(timeout, retryCnt));
+            Task connectAPI = Task.Run(() => ConnectAPI(timeout, retryCnt));
+
+            await Task.WhenAll(connectLogger, connectAPI);
         }
 
-        private static void ConnectAPI(VehicleConnection connection, int timeout, int retryCnt)
+        private void ConnectLogger(int timeout, int retryCnt)
         {
-            try
+            while (true)
             {
-                while (true)
+                try
                 {
-                    connection.BeginAPIConnect();
-                    if (!connection.apiConnected.WaitOne(timeout) || connection.apiStream == null)
-                    {
-                        retryCnt--;
-                        if (retryCnt == 0)
-                            break;
-                    }
-                    else
-                    {
+                    BeginLoggerConnect();
+                }
+                catch (Exception ex)
+                {
+                    Log("Exception was thrown when connecting to logger: " + ex.ToString());
+                }
+
+                if (!loggerConnected.WaitOne(timeout) || loggerStream == null)
+                {
+                    retryCnt--;
+                    Log("Connecting logger failed, trying again..." + (retryCnt > 0 ? $" ({retryCnt} attempts remaining)" : ""));
+                    if (retryCnt == 0)
                         break;
-                    }
+                }
+                else
+                {
+                    break;
                 }
             }
-            catch (Exception ex)
+            Log("Connecting logger done");
+        }
+
+        private void ConnectAPI(int timeout, int retryCnt)
+        {
+            while (true)
             {
-                connection.Log("Exception was thrown when connecting to API: " + ex.ToString());
+                try
+                {
+                    BeginAPIConnect();
+                }
+                catch (Exception ex)
+                {
+                    Log("Exception was thrown when connecting to API: " + ex.ToString());
+                }
+
+                if (!apiConnected.WaitOne(timeout) || apiStream == null)
+                {
+                    retryCnt--;
+                    Log("Connecting API failed, trying again..." + (retryCnt > 0 ? $" ({retryCnt} attempts remaining)" : ""));
+                    if (retryCnt == 0)
+                        break;
+                }
+                else
+                {
+                    break;
+                }
             }
+            Log("Connecting API done");
         }
 
         private void Log(string msg)
@@ -214,6 +237,26 @@ namespace Team.HobbyRobot.ASCS.Core.Connection
                 apiSocket.Dispose();
             }
             IsDisposed = true;
+        }
+    }
+
+    public class TDNAPIConnectedEventArgs : EventArgs
+    {
+        public TDNAPIConnectedEventArgs(Stream stream)
+        {
+            Stream = stream;
+        }
+
+        public Stream Stream { get; }
+    }
+
+    public class LoggerConnectedEventArgs : EventArgs
+    {
+        public Stream Stream { get; }
+
+        public LoggerConnectedEventArgs(Stream stream)
+        {
+            Stream = stream;
         }
     }
 }

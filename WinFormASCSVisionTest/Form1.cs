@@ -23,7 +23,7 @@ namespace WinFormASCSVisionTest
         /// <summary>
         /// A detector that is used to detect apriltags in the frame
         /// </summary>
-        public static readonly ApriltagDetector detector = new ApriltagDetector(new Tag25h9Family());
+        public static readonly ApriltagDetector detector = new ApriltagDetector(new Tag25h9Family(), ApriltagDetector.ThresholdMethod.Canny, 0.9, 100);
 
         /// <summary>
         /// Filter used for filtering video devices
