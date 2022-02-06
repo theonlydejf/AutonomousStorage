@@ -8,12 +8,20 @@ namespace VehicleTerminal
 {
     public class TextBoxBasicReader
     {
+        private bool reading = false;
         public TextBoxBasicReader(TextBox txt, TextWriter writer)
         {
             this.writer = writer;
             this.txt = txt;
             txt.KeyPress += Txt_KeyPress;
             txt.KeyDown += Txt_KeyDown;
+            txt.LostFocus += Txt_LostFocus;
+        }
+
+        private void Txt_LostFocus(object sender, EventArgs e)
+        {
+            if (reading)
+                txt.Focus();
         }
 
         private void Txt_KeyDown(object sender, KeyEventArgs e)
@@ -40,15 +48,26 @@ namespace VehicleTerminal
 
         public async Task<char> Read()
         {
+            if (reading)
+                await Task.Run(() => { while (reading) {} });
+
+            txt.Focus();
+            reading = true;
             charEntered.Reset();
             await Task.Factory.StartNew(() => charEntered.WaitOne());
             txt.Clear();
             writer.Write(lastChar);
+            reading = false;
             return lastChar;
         }
 
         public async Task<string> ReadLine()
         {
+            if (reading)
+                await Task.Run(() => { while (reading) { } });
+
+            txt.Focus();
+            reading = true;
             enterPressed.Reset();
             await Task.Factory.StartNew(() => enterPressed.WaitOne());
             string text = txt.Text;
@@ -56,6 +75,7 @@ namespace VehicleTerminal
 
             txt.Clear();
             txt.Focus();
+            reading = false;
             return text;
         }
     }

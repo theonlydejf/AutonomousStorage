@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AutonomousStorageControlSystem\AutonomousStorageControlSystem.csproj" />
+    <ProjectReference Include="..\RemoteVehicleControls\RemoteVehicleControls.csproj" />
     <ProjectReference Include="..\TransmissionDataNotation\TransmissionDataNotation.csproj" />
-    <ProjectReference Include="..\WinFormASCSVisionTest\WinFormASCSVisionTest.csproj" />
   </ItemGroup>
 
 </Project>

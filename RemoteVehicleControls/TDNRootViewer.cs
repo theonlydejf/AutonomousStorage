@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Team.HobbyRobot.TDN.Base;
 using Team.HobbyRobot.TDN.Core;
 
-namespace VehicleTerminal
+namespace Team.HobbyRobot.ASCS.RemoteVehicleControls
 {
     public partial class TDNRootViewer : UserControl
     {
@@ -52,11 +52,16 @@ namespace VehicleTerminal
                 else if(keyValue.Value.Parser.TypeKey == TDNParsers.ARRAY.TypeKey)
                 {
                     TDNArray arr = keyValue.Value.As<TDNArray>();
-                    TreeNode arrNode = node.Nodes.Add($"[{keyValue.Value.Parser.TypeKey} - {arr.ItemParser.TypeKey}] {keyValue.Key}: {keyValue.Value.Value}");
+                    TreeNode arrNode = node.Nodes.Add($"[{keyValue.Value.Parser.TypeKey} - {arr.ItemParser.TypeKey}] {keyValue.Key}");
                     int i = 0;
                     foreach (object ii in arr)
                     {
-                        arrNode.Nodes.Add($"[{i++}] {keyValue.Value.Value}");
+                        if(ii is TDNRoot)
+                        {
+                            AddRootToNode(ii as TDNRoot, arrNode.Nodes.Add($"[{i++}]"));
+                            continue;
+                        }
+                        arrNode.Nodes.Add($"[{i++}] {ii}");
                     }
                     continue;
                 }

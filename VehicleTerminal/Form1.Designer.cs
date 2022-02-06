@@ -31,19 +31,17 @@ namespace VehicleTerminal
         {
             Team.HobbyRobot.TDN.Core.TDNRoot tdnRoot1 = new Team.HobbyRobot.TDN.Core.TDNRoot();
             Team.HobbyRobot.TDN.Core.TDNRoot tdnRoot2 = new Team.HobbyRobot.TDN.Core.TDNRoot();
-            this.RecievedRootViewer = new VehicleTerminal.TDNRootViewer();
             this.vehicleConnectionGroup = new System.Windows.Forms.GroupBox();
             this.ConnectionStatusLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ConnectBtn = new System.Windows.Forms.Button();
             this.IPLbl = new System.Windows.Forms.Label();
             this.IPTxt = new System.Windows.Forms.TextBox();
-            this.LocalLoggerTxt = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.RemoteLoggerTxt = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.CurrRootViewer = new VehicleTerminal.TDNRootViewer();
+            this.LocalLoggerConsole = new Team.HobbyRobot.ASCS.RemoteVehicleControls.ConsoleOutput();
+            this.RemoteLoggerWatcher = new Team.HobbyRobot.ASCS.RemoteVehicleControls.RemoteLoggerWatcher();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.ClearRootBtn = new System.Windows.Forms.Button();
@@ -52,11 +50,13 @@ namespace VehicleTerminal
             this.label6 = new System.Windows.Forms.Label();
             this.ParserCombo = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.TDNFactoryConsoleOutTxt = new System.Windows.Forms.RichTextBox();
             this.TDNFactoryConsoleInTxt = new System.Windows.Forms.TextBox();
             this.CreateValueBtn = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.CurrRootViewer = new Team.HobbyRobot.ASCS.RemoteVehicleControls.TDNRootViewer();
+            this.RecievedRootViewer = new Team.HobbyRobot.ASCS.RemoteVehicleControls.TDNRootViewer();
             this.SendBtn = new System.Windows.Forms.Button();
+            this.TDNFactoryConsoleOutput = new Team.HobbyRobot.ASCS.RemoteVehicleControls.ConsoleOutput();
             this.vehicleConnectionGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -67,17 +67,6 @@ namespace VehicleTerminal
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // RecievedRootViewer
-            // 
-            this.RecievedRootViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RecievedRootViewer.Location = new System.Drawing.Point(3, 21);
-            this.RecievedRootViewer.Name = "RecievedRootViewer";
-            this.RecievedRootViewer.Root = tdnRoot1;
-            this.RecievedRootViewer.Size = new System.Drawing.Size(225, 346);
-            this.RecievedRootViewer.TabIndex = 0;
             // 
             // vehicleConnectionGroup
             // 
@@ -140,22 +129,6 @@ namespace VehicleTerminal
             this.IPTxt.TabIndex = 0;
             this.IPTxt.Text = "192.168.1.109";
             // 
-            // LocalLoggerTxt
-            // 
-            this.LocalLoggerTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LocalLoggerTxt.BackColor = System.Drawing.Color.Black;
-            this.LocalLoggerTxt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LocalLoggerTxt.ForeColor = System.Drawing.Color.White;
-            this.LocalLoggerTxt.Location = new System.Drawing.Point(3, 23);
-            this.LocalLoggerTxt.Name = "LocalLoggerTxt";
-            this.LocalLoggerTxt.ReadOnly = true;
-            this.LocalLoggerTxt.Size = new System.Drawing.Size(383, 202);
-            this.LocalLoggerTxt.TabIndex = 2;
-            this.LocalLoggerTxt.Text = "";
-            this.LocalLoggerTxt.TextChanged += new System.EventHandler(this.AutoScrollRichTextbox_TextChanged);
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -165,22 +138,6 @@ namespace VehicleTerminal
             this.label2.Size = new System.Drawing.Size(75, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "Local logger:";
-            // 
-            // RemoteLoggerTxt
-            // 
-            this.RemoteLoggerTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoteLoggerTxt.BackColor = System.Drawing.Color.Black;
-            this.RemoteLoggerTxt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RemoteLoggerTxt.ForeColor = System.Drawing.Color.White;
-            this.RemoteLoggerTxt.Location = new System.Drawing.Point(3, 23);
-            this.RemoteLoggerTxt.Name = "RemoteLoggerTxt";
-            this.RemoteLoggerTxt.ReadOnly = true;
-            this.RemoteLoggerTxt.Size = new System.Drawing.Size(378, 202);
-            this.RemoteLoggerTxt.TabIndex = 4;
-            this.RemoteLoggerTxt.Text = "";
-            this.RemoteLoggerTxt.TextChanged += new System.EventHandler(this.AutoScrollRichTextbox_TextChanged);
             // 
             // label3
             // 
@@ -202,27 +159,47 @@ namespace VehicleTerminal
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.LocalLoggerTxt);
+            this.splitContainer1.Panel1.Controls.Add(this.LocalLoggerConsole);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.RemoteLoggerWatcher);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
-            this.splitContainer1.Panel2.Controls.Add(this.RemoteLoggerTxt);
             this.splitContainer1.Size = new System.Drawing.Size(776, 228);
             this.splitContainer1.SplitterDistance = 388;
             this.splitContainer1.TabIndex = 6;
             // 
-            // CurrRootViewer
+            // LocalLoggerConsole
             // 
-            this.CurrRootViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.LocalLoggerConsole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CurrRootViewer.Location = new System.Drawing.Point(3, 21);
-            this.CurrRootViewer.Name = "CurrRootViewer";
-            this.CurrRootViewer.Root = tdnRoot2;
-            this.CurrRootViewer.Size = new System.Drawing.Size(221, 346);
-            this.CurrRootViewer.TabIndex = 0;
+            this.LocalLoggerConsole.BackColor = System.Drawing.Color.Black;
+            this.LocalLoggerConsole.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LocalLoggerConsole.ForeColor = System.Drawing.Color.White;
+            this.LocalLoggerConsole.Location = new System.Drawing.Point(6, 23);
+            this.LocalLoggerConsole.Name = "LocalLoggerConsole";
+            this.LocalLoggerConsole.ReadOnly = true;
+            this.LocalLoggerConsole.Size = new System.Drawing.Size(379, 202);
+            this.LocalLoggerConsole.TabIndex = 4;
+            this.LocalLoggerConsole.Text = "";
+            // 
+            // RemoteLoggerWatcher
+            // 
+            this.RemoteLoggerWatcher.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoteLoggerWatcher.BackColor = System.Drawing.Color.Black;
+            this.RemoteLoggerWatcher.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.RemoteLoggerWatcher.ForeColor = System.Drawing.Color.White;
+            this.RemoteLoggerWatcher.Location = new System.Drawing.Point(3, 23);
+            this.RemoteLoggerWatcher.Name = "RemoteLoggerWatcher";
+            this.RemoteLoggerWatcher.ReadOnly = true;
+            this.RemoteLoggerWatcher.RefreshInterval = 100D;
+            this.RemoteLoggerWatcher.Size = new System.Drawing.Size(378, 202);
+            this.RemoteLoggerWatcher.TabIndex = 6;
+            this.RemoteLoggerWatcher.Text = "";
             // 
             // label4
             // 
@@ -297,21 +274,6 @@ namespace VehicleTerminal
             this.label7.TabIndex = 11;
             this.label7.Text = "Type:";
             // 
-            // TDNFactoryConsoleOutTxt
-            // 
-            this.TDNFactoryConsoleOutTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.TDNFactoryConsoleOutTxt.BackColor = System.Drawing.Color.Black;
-            this.TDNFactoryConsoleOutTxt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TDNFactoryConsoleOutTxt.ForeColor = System.Drawing.Color.White;
-            this.TDNFactoryConsoleOutTxt.Location = new System.Drawing.Point(12, 120);
-            this.TDNFactoryConsoleOutTxt.Name = "TDNFactoryConsoleOutTxt";
-            this.TDNFactoryConsoleOutTxt.ReadOnly = true;
-            this.TDNFactoryConsoleOutTxt.Size = new System.Drawing.Size(308, 202);
-            this.TDNFactoryConsoleOutTxt.TabIndex = 2;
-            this.TDNFactoryConsoleOutTxt.Text = "";
-            this.TDNFactoryConsoleOutTxt.TextChanged += new System.EventHandler(this.AutoScrollRichTextbox_TextChanged);
-            // 
             // TDNFactoryConsoleInTxt
             // 
             this.TDNFactoryConsoleInTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -345,8 +307,8 @@ namespace VehicleTerminal
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.CurrRootViewer);
             this.splitContainer2.Panel1.Controls.Add(this.label4);
+            this.splitContainer2.Panel1.Controls.Add(this.CurrRootViewer);
             // 
             // splitContainer2.Panel2
             // 
@@ -355,6 +317,28 @@ namespace VehicleTerminal
             this.splitContainer2.Size = new System.Drawing.Size(462, 370);
             this.splitContainer2.SplitterDistance = 227;
             this.splitContainer2.TabIndex = 14;
+            // 
+            // CurrRootViewer
+            // 
+            this.CurrRootViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CurrRootViewer.Location = new System.Drawing.Point(3, 19);
+            this.CurrRootViewer.Name = "CurrRootViewer";
+            this.CurrRootViewer.Root = tdnRoot1;
+            this.CurrRootViewer.Size = new System.Drawing.Size(221, 348);
+            this.CurrRootViewer.TabIndex = 5;
+            // 
+            // RecievedRootViewer
+            // 
+            this.RecievedRootViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RecievedRootViewer.Location = new System.Drawing.Point(3, 19);
+            this.RecievedRootViewer.Name = "RecievedRootViewer";
+            this.RecievedRootViewer.Root = tdnRoot2;
+            this.RecievedRootViewer.Size = new System.Drawing.Size(225, 348);
+            this.RecievedRootViewer.TabIndex = 5;
             // 
             // SendBtn
             // 
@@ -367,16 +351,30 @@ namespace VehicleTerminal
             this.SendBtn.UseVisualStyleBackColor = true;
             this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
             // 
+            // TDNFactoryConsoleOutput
+            // 
+            this.TDNFactoryConsoleOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.TDNFactoryConsoleOutput.BackColor = System.Drawing.Color.Black;
+            this.TDNFactoryConsoleOutput.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TDNFactoryConsoleOutput.ForeColor = System.Drawing.Color.White;
+            this.TDNFactoryConsoleOutput.Location = new System.Drawing.Point(12, 120);
+            this.TDNFactoryConsoleOutput.Name = "TDNFactoryConsoleOutput";
+            this.TDNFactoryConsoleOutput.ReadOnly = true;
+            this.TDNFactoryConsoleOutput.Size = new System.Drawing.Size(308, 202);
+            this.TDNFactoryConsoleOutput.TabIndex = 17;
+            this.TDNFactoryConsoleOutput.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 628);
+            this.Controls.Add(this.TDNFactoryConsoleOutput);
             this.Controls.Add(this.SendBtn);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.CreateValueBtn);
             this.Controls.Add(this.TDNFactoryConsoleInTxt);
-            this.Controls.Add(this.TDNFactoryConsoleOutTxt);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.ParserCombo);
             this.Controls.Add(this.label6);
@@ -408,20 +406,15 @@ namespace VehicleTerminal
         }
 
         #endregion
-
-        private TDNRootViewer RecievedRootViewer;
         private System.Windows.Forms.GroupBox vehicleConnectionGroup;
         private System.Windows.Forms.Button ConnectBtn;
         private System.Windows.Forms.Label IPLbl;
         private System.Windows.Forms.TextBox IPTxt;
         private System.Windows.Forms.Label ConnectionStatusLbl;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox LocalLoggerTxt;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox RemoteLoggerTxt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private TDNRootViewer CurrRootViewer;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button ClearRootBtn;
@@ -430,11 +423,15 @@ namespace VehicleTerminal
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox ParserCombo;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RichTextBox TDNFactoryConsoleOutTxt;
         private System.Windows.Forms.TextBox TDNFactoryConsoleInTxt;
         private System.Windows.Forms.Button CreateValueBtn;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button SendBtn;
+        private Team.HobbyRobot.ASCS.RemoteVehicleControls.TDNRootViewer CurrRootViewer;
+        private Team.HobbyRobot.ASCS.RemoteVehicleControls.TDNRootViewer RecievedRootViewer;
+        private Team.HobbyRobot.ASCS.RemoteVehicleControls.RemoteLoggerWatcher RemoteLoggerWatcher;
+        private Team.HobbyRobot.ASCS.RemoteVehicleControls.ConsoleOutput LocalLoggerConsole;
+        private Team.HobbyRobot.ASCS.RemoteVehicleControls.ConsoleOutput TDNFactoryConsoleOutput;
     }
 }
 

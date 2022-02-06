@@ -1,5 +1,5 @@
 ﻿
-namespace VehicleTerminal
+namespace Team.HobbyRobot.ASCS.RemoteVehicleControls
 {
     partial class TDNRootViewer
     {

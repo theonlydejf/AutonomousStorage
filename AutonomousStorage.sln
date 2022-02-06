@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormASCSVisionTest", "Wi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransmissionDataNotation", "TransmissionDataNotation\TransmissionDataNotation.csproj", "{E5F8F328-5CD9-4BEC-ABBB-4AD005A3F9F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleTerminal", "VehicleTerminal\VehicleTerminal.csproj", "{3EBEA5F4-F4BD-42B3-926C-F3616267C2FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleTerminal", "VehicleTerminal\VehicleTerminal.csproj", "{3EBEA5F4-F4BD-42B3-926C-F3616267C2FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteVehicleControls", "RemoteVehicleControls\RemoteVehicleControls.csproj", "{97880567-8705-40F1-AA81-6075DE4A5EA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3EBEA5F4-F4BD-42B3-926C-F3616267C2FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EBEA5F4-F4BD-42B3-926C-F3616267C2FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EBEA5F4-F4BD-42B3-926C-F3616267C2FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97880567-8705-40F1-AA81-6075DE4A5EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97880567-8705-40F1-AA81-6075DE4A5EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97880567-8705-40F1-AA81-6075DE4A5EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97880567-8705-40F1-AA81-6075DE4A5EA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

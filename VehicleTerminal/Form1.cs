@@ -20,38 +20,14 @@ namespace VehicleTerminal
     {
         private VehicleConnection connection = null;
         private Logger logger = new Logger();
+        TDNFactory tdnFactory;
 
         public Form1()
         {
             InitializeComponent();
-            var localLoggerEndpoint = new RichTextBoxTextWriter();
-            localLoggerEndpoint.AttachRtbOutput(LocalLoggerTxt);
-            logger.RegisterEndpoint(localLoggerEndpoint);
+            logger.RegisterEndpoint(LocalLoggerConsole.TextWriter);
 
-            var tdnFactoryConsole = new RichTextBoxTextWriter();
-            tdnFactoryConsole.AttachRtbOutput(TDNFactoryConsoleOutTxt);
-
-            tdnFactory = new TDNFactory(tdnFactoryConsole, new TextBoxBasicReader(TDNFactoryConsoleInTxt, tdnFactoryConsole));
-
-            TDNFactoryConsoleOutTxt.GotFocus += TDNFactoryConsoleOutTxt_GotFocus;
-
-            lastFocused = PathTxt;
-            PathTxt.GotFocus += Focusable_GotFocus;
-            TDNFactoryConsoleInTxt.GotFocus += Focusable_GotFocus;
-
-            LocalLoggerTxt.GotFocus += Unfocusable_GotFocus;
-            RemoteLoggerTxt.GotFocus += Unfocusable_GotFocus;
-        }
-
-        Control lastFocused;
-        private void Focusable_GotFocus(object sender, EventArgs e)
-        {
-            lastFocused = sender as Control;
-        }
-
-        private void Unfocusable_GotFocus(object sender, EventArgs e)
-        {
-            lastFocused.Focus();
+            tdnFactory = new TDNFactory(TDNFactoryConsoleOutput.TextWriter, new TextBoxBasicReader(TDNFactoryConsoleInTxt, TDNFactoryConsoleOutput.TextWriter));
         }
 
         private void TDNFactoryConsoleOutTxt_GotFocus(object sender, EventArgs e)
@@ -65,6 +41,22 @@ namespace VehicleTerminal
             foreach (string parser in new DefaultTDNParserSettings().Parsers.Keys)
                 ParserCombo.Items.Add(parser);
             ParserCombo.SelectedIndex = 0;
+
+            TDNRoot pt1 = new TDNRoot();
+            pt1["x"] = (ConvertibleTDNValue)2000f;
+            pt1["y"] = (ConvertibleTDNValue)0f;
+
+            TDNRoot pt2 = new TDNRoot();
+            pt2["x"] = (ConvertibleTDNValue)0f;
+            pt2["y"] = (ConvertibleTDNValue)0f;
+            pt2["heading"] = (ConvertibleTDNValue)0f;
+
+            TDNRoot root = new TDNRoot();
+            root["service"] = (ConvertibleTDNValue)"MovementService";
+            root["request"] = (ConvertibleTDNValue)"followPath";
+            root["params.path"] = (ConvertibleTDNValue)new TDNArray(new object[] { pt1, pt2 }, TDNParsers.ROOT);
+
+            CurrRootViewer.Root = root;
         }
 
         private async void ConnectBtn_Click(object sender, EventArgs e)
@@ -79,42 +71,14 @@ namespace VehicleTerminal
 
         private void Connection_LoggerConnected(object sender, LoggerConnectedEventArgs e)
         {
-            _ = Task.Run(() => WatchVehicleLogger());
-        }
-
-        private void WatchVehicleLogger()
-        {
-            StringBuilder block = new StringBuilder();
-            while(true)
+            RemoteLoggerWatcher.Invoke((MethodInvoker)delegate ()
             {
-                try
-                {
-                    int c = connection.LoggerStream.ReadByte();
-                    if (c > -1)
-                        RemoteLoggerTxt.Invoke((MethodInvoker) delegate() { RemoteLoggerTxt.AppendText(((char)c).ToString()); });
-                    else
-                    {
-                        RemoteLoggerTxt.Invoke((MethodInvoker)delegate ()
-                        {
-                            RemoteLoggerTxt.SelectionColor = Color.Red;
-                            RemoteLoggerTxt.AppendText("\n\nRemote logger disconnected\n\n");
-                            RemoteLoggerTxt.SelectionColor = Color.White;
-                            return;
-                        });
-                        return;
-                    }
-                }
-                catch(Exception ex)
-                {
-                    RemoteLoggerTxt.Invoke((MethodInvoker)delegate () 
-                    { 
-                        RemoteLoggerTxt.SelectionColor = Color.Red;
-                        RemoteLoggerTxt.AppendText("\n\nException was thrown when reading logger: " + ex.ToString() + "\n\n");
-                        RemoteLoggerTxt.SelectionColor = Color.White;
-                    });
-                    return;
-                }
-            }
+                RemoteLoggerWatcher.SelectionColor = Color.LimeGreen;
+                RemoteLoggerWatcher.AppendText("\n\nRemote logger connected\n\n");
+                RemoteLoggerWatcher.SelectionColor = Color.White;
+                return;
+            });
+            RemoteLoggerWatcher.Start(connection.LoggerStream);
         }
 
         private void UpdateConnectionStatus(bool connected)
@@ -151,7 +115,6 @@ namespace VehicleTerminal
             CurrRootViewer.SetRootValue(PathTxt.Text, null);
         }
 
-        TDNFactory tdnFactory;
         private async void CreateValueBtn_Click(object sender, EventArgs e)
         {
             CreateValueBtn.Enabled = false;
@@ -165,8 +128,9 @@ namespace VehicleTerminal
             object val = await tdnFactory.ReadAnyObject(typeKey, "root", new DefaultTDNParserSettings());
             CurrRootViewer.SetRootValue(PathTxt.Text, new TDNValue(val, parser));
 
-            TDNFactoryConsoleOutTxt.Clear();
+            TDNFactoryConsoleOutput.Clear();
             CreateValueBtn.Enabled = true;
+            PathTxt.Focus();
         }
 
         private void PathTxt_KeyDown(object sender, KeyEventArgs e)

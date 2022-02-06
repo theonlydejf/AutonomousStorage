@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>Team.HobbyRobot.ASCS.RemoteVehicleControls</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TransmissionDataNotation\TransmissionDataNotation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ConsoleOutput.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="TDNRootViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
