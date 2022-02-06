@@ -71,16 +71,15 @@ namespace VehicleTerminal
         {
             IPTxt.Enabled = false;
             ConnectBtn.Enabled = false;
-            connection = await VehicleConnection.CreateConnectionAsync(IPAddress.Parse(IPTxt.Text), logger);
+            connection = new VehicleConnection(IPAddress.Parse(IPTxt.Text), logger);
+            connection.LoggerConnected += Connection_LoggerConnected;
+            await connection.ConnectAsync(-1, -1);
             UpdateConnectionStatus(VehicleConnection.IsValid(connection));
+        }
 
-            IPTxt.Enabled = !VehicleConnection.IsValid(connection);
-            ConnectBtn.Enabled = !VehicleConnection.IsValid(connection);
-
-            if (VehicleConnection.IsValid(connection))
-            {
-                _ = Task.Run(() => WatchVehicleLogger());
-            }
+        private void Connection_LoggerConnected(object sender, LoggerConnectedEventArgs e)
+        {
+            _ = Task.Run(() => WatchVehicleLogger());
         }
 
         private void WatchVehicleLogger()
@@ -130,6 +129,9 @@ namespace VehicleTerminal
                 ConnectionStatusLbl.ForeColor = Color.Red;
                 ConnectionStatusLbl.Text = "Not connected";
             }
+
+            IPTxt.Enabled = !connected;
+            ConnectBtn.Enabled = !connected;
         }
 
         private void AutoScrollRichTextbox_TextChanged(object sender, EventArgs e)
