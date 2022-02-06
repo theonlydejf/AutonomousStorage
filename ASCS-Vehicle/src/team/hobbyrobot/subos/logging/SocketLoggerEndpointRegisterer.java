@@ -53,6 +53,8 @@ public class SocketLoggerEndpointRegisterer implements ClientRegisterer
 				}
 			}
 		};
+		registeringThread.setDaemon(true);
+		registeringThread.setPriority(Thread.MIN_PRIORITY);
 		registeringThread.start();
 	}
 	

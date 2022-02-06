@@ -12,6 +12,7 @@ public class RequestParamsException extends Exception
 	
 	public RequestParamsException(String message, String... badParams)
 	{
+		super(message);
 		this.message = message;
 		this.badParams = badParams;
 	}

@@ -11,6 +11,7 @@ public class RequestGeneralException extends Exception
 	
 	public RequestGeneralException(String details)
 	{
+		super(details);
 		this.details = details;
 	}
 }

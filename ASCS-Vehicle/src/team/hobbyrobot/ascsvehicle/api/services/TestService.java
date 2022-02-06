@@ -1,4 +1,4 @@
-package team.hobbyrobot.ascsvehicle.api;
+package team.hobbyrobot.ascsvehicle.api.services;
 
 import team.hobbyrobot.subos.net.api.Service;
 import team.hobbyrobot.subos.net.api.exceptions.RequestGeneralException;

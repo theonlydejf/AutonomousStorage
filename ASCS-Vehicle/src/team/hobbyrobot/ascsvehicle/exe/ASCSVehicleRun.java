@@ -19,8 +19,7 @@ import lejos.robotics.chassis.WheeledChassis;
 import lejos.robotics.navigation.MovePilot;
 import lejos.utility.Delay;
 import team.hobbyrobot.ascsvehicle.ASCSVehicleHardware;
-import team.hobbyrobot.ascsvehicle.api.MovementService;
-import team.hobbyrobot.ascsvehicle.api.TestService;
+import team.hobbyrobot.ascsvehicle.api.services.TestService;
 import team.hobbyrobot.subos.LoadingScreen;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.errorhandling.ErrorLogging;
@@ -37,6 +36,7 @@ import team.hobbyrobot.subos.menu.MenuScreen;
 import team.hobbyrobot.subos.menu.RobotInfoScreen;
 import team.hobbyrobot.subos.net.api.APIStaticFactory;
 import team.hobbyrobot.subos.net.api.TDNAPIServer;
+import team.hobbyrobot.subos.net.api.services.MovementService;
 import team.hobbyrobot.tdn.base.*;
 import team.hobbyrobot.tdn.core.*;
 
@@ -50,7 +50,7 @@ public class ASCSVehicleRun
 	//@formatter:on
 
 	/**  Inicializovany Hardware robota */
-	public static ASCSVehicleHardware Hardware = new ASCSVehicleHardware(121.6f, 49.5f);
+	public static ASCSVehicleHardware Hardware = new ASCSVehicleHardware(130, 49.5f);
 	/** Inicializovany InfoBar, ktery aktualne bezi */
 	public static BasicInfoBar InfoBar = null;
 
@@ -75,6 +75,8 @@ public class ASCSVehicleRun
 		BrickHardware.setLEDPattern(1, LEDBlinkingStyle.NONE, 0);
 		Sound.beepSequenceUp();
 
+		api.setVerbosity(VerbosityLogger.OVERVIEW);
+		
 		//Spust menu a opakuj ho do nekonecna
 		GraphicsLCD g = GraphicsController.getNewDefaultMainGraphics();
 		g.clear();

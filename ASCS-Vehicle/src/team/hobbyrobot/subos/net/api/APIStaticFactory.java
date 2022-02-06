@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Map.Entry;
 
-import team.hobbyrobot.ascsvehicle.api.MovementService;
-import team.hobbyrobot.ascsvehicle.api.TestService;
+import team.hobbyrobot.ascsvehicle.api.services.TestService;
 import team.hobbyrobot.subos.Referenceable;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.logging.Logger;
 import team.hobbyrobot.subos.logging.VerbosityLogger;
+import team.hobbyrobot.subos.net.api.services.MovementService;
 
 public class APIStaticFactory
 {

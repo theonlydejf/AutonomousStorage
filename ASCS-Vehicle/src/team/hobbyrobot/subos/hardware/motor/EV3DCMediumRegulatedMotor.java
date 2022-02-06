@@ -1,6 +1,7 @@
 package team.hobbyrobot.subos.hardware.motor;
 
 import lejos.hardware.motor.BaseRegulatedMotor;
+import lejos.hardware.motor.MotorRegulator;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.TachoMotorPort;
 import lejos.hardware.sensor.EV3SensorConstants;
@@ -76,4 +77,8 @@ public class EV3DCMediumRegulatedMotor extends BaseRegulatedMotor implements Enc
 		return power;
 	}
 
+	public MotorRegulator getRegulator()
+	{
+		return tachoPort.getRegulator();
+	}
 }
