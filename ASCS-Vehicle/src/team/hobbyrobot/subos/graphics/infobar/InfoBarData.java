@@ -6,26 +6,26 @@ package team.hobbyrobot.subos.graphics.infobar;
  * @author David Krcmar
  * @version 1.0
  */
-public abstract class InfoBarData
+public interface InfoBarData
 {
 	/**
 	 * Funkce, ktera vraci levy text InfoBaru
 	 * 
 	 * @return Levy text InfoBaru
 	 */
-	public abstract String getLeftText();
+	String getLeftText();
 
 	/**
 	 * Funkce, ktera vraci prostredni text InfoBaru
 	 * 
 	 * @return Prostredni text InfoBaru
 	 */
-	public abstract String getMiddleText();
+	String getMiddleText();
 
 	/**
 	 * Funkce, ktera vraci pravy text InfoBaru
 	 * 
 	 * @return Pravy text InfoBaru
 	 */
-	public abstract String getRightText();
+	String getRightText();
 }

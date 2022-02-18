@@ -17,7 +17,7 @@ import team.hobbyrobot.subos.hardware.RobotHardware;
  * @author David Krcmar
  * @version 1.0
  */
-public class BasicInfoBar extends InfoBarData
+public class BasicInfoBar implements InfoBarData
 {
 	/**
 	 * 0-based index senzoru, ktery se bude zobrazovat<br>
@@ -31,7 +31,7 @@ public class BasicInfoBar extends InfoBarData
 	public static final char SENSOR_PREFIX = 'G';
 
 	/** Senzory robota */
-	private SampleProvider[] hardwareInstances;
+	private SampleProvider[] _hardwareInstances;
 
 	/**
 	 * Vytvori instanci
@@ -44,9 +44,9 @@ public class BasicInfoBar extends InfoBarData
 		SampleProvider[] sensors = hardware.getSensors();
 		SampleProvider[] motors = hardware.getEncoders();
 		
-		hardwareInstances = new SampleProvider[sensors.length + motors.length];
-		System.arraycopy(sensors, 0, hardwareInstances, 0, sensors.length);
-		System.arraycopy(motors, 0, hardwareInstances, sensors.length, motors.length);
+		_hardwareInstances = new SampleProvider[sensors.length + motors.length];
+		System.arraycopy(sensors, 0, _hardwareInstances, 0, sensors.length);
+		System.arraycopy(motors, 0, _hardwareInstances, sensors.length, motors.length);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class BasicInfoBar extends InfoBarData
 	{
 		String data = "NULL";
 		//Senzor ze ktereho se bude cist
-		SampleProvider sensor = hardwareInstances[SENSOR_INDEX];
+		SampleProvider sensor = _hardwareInstances[SENSOR_INDEX];
 
 		if (sensor != null)
 		{

@@ -1,4 +1,4 @@
-package team.hobbyrobot.subos.net.api.services;
+package team.hobbyrobot.ascsvehicle.api.services;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -19,12 +19,16 @@ import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.navigation.MoveProvider;
 import lejos.robotics.navigation.NavigationListener;
 import lejos.robotics.navigation.Pose;
+import lejos.robotics.navigation.RotateMoveController;
 import lejos.robotics.navigation.Waypoint;
-import team.hobbyrobot.ascsvehicle.navigation.Navigator;
+import lejos.utility.GyroDirectionFinder;
+import team.hobbyrobot.ascsvehicle.ASCSVehicleHardware;
+import team.hobbyrobot.ascsvehicle.CompassDifferentialPilot;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.hardware.RobotHardware;
 import team.hobbyrobot.subos.hardware.motor.EV3DCMediumRegulatedMotor;
 import team.hobbyrobot.subos.logging.Logger;
+import team.hobbyrobot.subos.navigation.Navigator;
 import team.hobbyrobot.subos.net.api.Service;
 import team.hobbyrobot.subos.net.api.exceptions.RequestGeneralException;
 import team.hobbyrobot.subos.net.api.exceptions.RequestParamsException;
@@ -33,19 +37,20 @@ import team.hobbyrobot.tdn.base.TDNArray;
 import team.hobbyrobot.tdn.base.TDNParsers;
 import team.hobbyrobot.tdn.core.TDNRoot;
 import team.hobbyrobot.tdn.core.TDNValue;
+import lejos.robotics.localization.CompassPoseProvider;
 
 // TODO opravit
 public class MovementService implements Service, MoveListener, NavigationListener
 {
-	private RobotHardware hardware;
-	private MovePilot pilot;
+	private ASCSVehicleHardware hardware;
+	private RotateMoveController pilot;
 	private Logger logger;
 	private PoseProvider poseProvider;
 	private Navigator navigator;
 
 	Hashtable<String, RequestInvoker> requests = null;
 
-	public MovementService(RobotHardware hardware, Logger logger)
+	public MovementService(ASCSVehicleHardware hardware, Logger logger)
 	{
 		this.logger = logger.createSubLogger("MvService");
 		this.hardware = hardware;
@@ -83,20 +88,11 @@ public class MovementService implements Service, MoveListener, NavigationListene
 	@Override
 	public void init()
 	{
-		Wheel lWheel = WheeledChassis
-			.modelWheel((EV3DCMediumRegulatedMotor) hardware.LeftDriveMotor, hardware.WheelRadius)
-			.offset(hardware.WheelDistance / 2f).invert(true);
-		Wheel rWheel = WheeledChassis
-			.modelWheel((EV3DCMediumRegulatedMotor) hardware.RightDriveMotor, hardware.WheelRadius)
-			.offset(-hardware.WheelDistance / 2f);
-		Chassis chassis = new WheeledChassis(new Wheel[] { lWheel, rWheel }, WheeledChassis.TYPE_DIFFERENTIAL);
-		pilot = new MovePilot(chassis);
-		pilot.setAngularAcceleration(400);
-		pilot.setLinearAcceleration(400);
+		pilot = hardware.getPilot();
 		pilot.addMoveListener(this);
 		
-		poseProvider = new OdometryPoseProvider(pilot);
-		navigator = new Navigator(pilot, poseProvider, chassis, logger);
+		poseProvider = hardware.getPoseProvider();
+		navigator = new Navigator(pilot, poseProvider, hardware.getChassis(), logger);
 		navigator.addNavigationListener(this);
 
 		initRequests();
@@ -142,7 +138,7 @@ public class MovementService implements Service, MoveListener, NavigationListene
 					}
 				});
 
-				put("pose", new RequestInvoker()
+				put("getPose", new RequestInvoker()
 				{
 					@Override
 					public TDNRoot invoke(TDNRoot params)
@@ -154,7 +150,7 @@ public class MovementService implements Service, MoveListener, NavigationListene
 					}
 				});
 
-				put("arc", new RequestInvoker()
+				/*put("arc", new RequestInvoker()
 				{
 					@Override
 					public TDNRoot invoke(TDNRoot params) throws RequestParamsException
@@ -176,7 +172,7 @@ public class MovementService implements Service, MoveListener, NavigationListene
 
 						return new TDNRoot();
 					}
-				});
+				});*/
 
 				put("stop", new RequestInvoker()
 				{
@@ -329,6 +325,39 @@ public class MovementService implements Service, MoveListener, NavigationListene
 					public TDNRoot invoke(TDNRoot params) throws RequestParamsException
 					{
 						return new TDNRoot().insertValue("speed", new TDNValue((float)pilot.getLinearSpeed(), TDNParsers.FLOAT));
+					}
+				});
+				
+				put("resetGyroAt", new RequestInvoker()
+				{
+					@Override
+					public TDNRoot invoke(TDNRoot params) throws RequestParamsException
+					{
+						TDNValue angle = params.get("angle");
+						if(angle == null)
+							throw new RequestParamsException("No speed present in the current root", "speed");
+						
+						hardware.resetGyroAt((int)((float)angle.as()));
+						
+						return new TDNRoot();
+					}
+				});
+				
+				put("setPosition", new RequestInvoker()
+				{
+					@Override
+					public TDNRoot invoke(TDNRoot params) throws RequestParamsException
+					{
+						TDNValue x = params.get("x");
+						TDNValue y = params.get("y");
+						if (x == null)
+							throw new RequestParamsException("Full position isn't present in the current root", "x");
+						if (y == null)
+							throw new RequestParamsException("Full position isn't present in the current root", "y");
+						
+						Pose tmp = poseProvider.getPose();
+						poseProvider.setPose(new Pose((float)x.as(), (float)y.as(), tmp.getHeading()));
+						return new TDNRoot();
 					}
 				});
 			}

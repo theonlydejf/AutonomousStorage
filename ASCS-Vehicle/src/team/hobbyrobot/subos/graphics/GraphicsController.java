@@ -180,7 +180,7 @@ public class GraphicsController
 		if (isLayerLocked)
 		{
 			ErrorLogging.logError("Tried to change Graphics Layer from " + acGraphicsLayer + " to " + layerIndex
-				+ " when layers are locked.");
+				+ " when layers were locked.");
 			return;
 		}
 
@@ -200,9 +200,9 @@ public class GraphicsController
 	/**
 	 * Pocka na to, az se nebude vykreslovat neco na obrazovku. Pokud se nic nevykresluje v dobe zavolani
 	 * funkce, nebude se cekat.<br>
-	 * <strong>Doporucuji zavolat tuto funkci po kazdem vykresleni v loopu</strong> (Pokud nechcete spomalovat
+	 * <strong>Doporucuji zavolat tuto funkci po kazdem vykresleni v loopu</strong> (Pokud nechcete zpomalovat
 	 * loop, pro vyhnuti chybam pri vykreslovani kreslete jen pouze pokud vystup z funkce
-	 * isScreenRefreshing())
+	 * isScreenRefreshing() je true)
 	 */
 	private static void waitForNextFrame()
 	{

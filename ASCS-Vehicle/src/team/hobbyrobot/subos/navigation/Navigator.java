@@ -1,4 +1,4 @@
-package team.hobbyrobot.ascsvehicle.navigation;
+package team.hobbyrobot.subos.navigation;
 
 import java.util.ArrayList;
 
@@ -14,15 +14,13 @@ import team.hobbyrobot.subos.logging.Logger;
  * It's default mode for a new path is continuous movement (no stopping at waypoints) but see also
  * {@link #singleStep(boolean)}. To interrupt the path traversal, call stop().
  * It uses an inner class running its own thread to issue movement commands to its
- * {@link lejos.robotics.navigation.RotateMoveController},
- * which can be either a {@link lejos.robotics.navigation.DifferentialPilot}
- * or {@link lejos.robotics.navigation.SteeringPilot}.
+ * {@link lejos.robotics.navigation.RotateMoveController}
  * It also uses a {@link lejos.robotics.localization.PoseProvider}
  * Calls its {@link lejos.robotics.navigation.NavigationListener}s
  * when a Waypoint is reached or the robot stops.
  * This class has only one blocking method: {@link #waitForStop()} .
  * 
- * @author Roger Glassey
+ * @author Roger Glassey and David Krcmar
  */
 public class Navigator implements WaypointListener, MoveListener
 {
@@ -37,7 +35,6 @@ public class Navigator implements WaypointListener, MoveListener
 		this(pilot, null, chassis, logger);
 	}
 
-	private Logger logger;
 	/**
 	 * Allocates a Navigator object using a pilot and a custom poseProvider, rather than the default
 	 * OdometryPoseProvider.
@@ -48,7 +45,7 @@ public class Navigator implements WaypointListener, MoveListener
 	public Navigator(RotateMoveController pilot, PoseProvider poseProvider, Chassis chassis, Logger logger)
 	{
 		this._chassis = chassis;
-		this.logger = logger.createSubLogger("Nav");
+		this._logger = logger == null ? new Logger() : logger.createSubLogger("Nav");
 		_pilot = pilot;
 		if (poseProvider == null)
 			this.poseProvider = new OdometryPoseProvider(_pilot);
@@ -407,7 +404,7 @@ public class Navigator implements WaypointListener, MoveListener
 					if (!_keepGoing)
 						break;
 					
-					logger.log("Turning towards waypoint. Robot at " + _pose.toString());
+					_logger.log("Turning towards waypoint. Robot at " + _pose.toString());
 					_pilot.rotate(destinationRelativeBearing, true);
 					while (!_moveFinished && _keepGoing)
 						Thread.yield();
@@ -420,7 +417,7 @@ public class Navigator implements WaypointListener, MoveListener
 					if (!_keepGoing)
 						break;
 
-					logger.log("Moving towards waypoint. Robot at " + _pose.toString());
+					_logger.log("Moving towards waypoint. Robot at " + _pose.toString());
 					float startDeltaDestination = _pose.distanceTo(_destination);
 					float distance;
 					float endDeltaDestination;
@@ -439,7 +436,7 @@ public class Navigator implements WaypointListener, MoveListener
 						if(endDeltaDestination > 0)
 						{
 							distance -= endDeltaDestination;
-							logger.log("New travel limit set: " + lastTravelLimit);
+							_logger.log("New travel limit set: " + lastTravelLimit);
 						}
 						
 						if(startDeltaDestination == poseDeltaDestination)
@@ -464,7 +461,7 @@ public class Navigator implements WaypointListener, MoveListener
 					{
 						_interrupted = true;
 						_keepGoing = false;
-						logger.log("Trvelling to waypoint interrupted due to travel limit! traveLimit=" + _travelLimit);
+						_logger.log("Trvelling to waypoint interrupted due to travel limit! traveLimit=" + _travelLimit);
 					}
 					
 					// Update robot's pose
@@ -478,7 +475,7 @@ public class Navigator implements WaypointListener, MoveListener
 						_pose = poseProvider.getPose();
 						_destination.getHeading();
 						
-						logger.log("Turning to match waypoin's heading. Robot at " + _pose.toString());
+						_logger.log("Turning to match waypoin's heading. Robot at " + _pose.toString());
 						_pilot.rotate(_destination.getHeading() - _pose.getHeading(),
 							false);
 					}
@@ -527,6 +524,7 @@ public class Navigator implements WaypointListener, MoveListener
 	private PoseProvider poseProvider;
 	private Pose _pose = new Pose();
 	private Waypoint _destination;
+	private Logger _logger;
 	private int _sequenceNr;
 	private float _travelLimit = Float.POSITIVE_INFINITY;
 	private boolean _moveFinished = false;

@@ -443,8 +443,6 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 		@Override
 		public void init()
 		{
-			// TODO Auto-generated method stub
-
 		}
 
 	}

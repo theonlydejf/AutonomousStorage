@@ -19,8 +19,9 @@ import team.hobbyrobot.subos.logging.Logger;
  * <strong>Pred pouzitim dukladne prostudujte dokumentaci!</strong><br>
  * <p>
  * Vsechny funkce, na ktere se bude odkazovat, musi mit 2 parametry typu Object. Prvni parametr je pote
- * potreba precastovat do typu {@code Refereancable<Float>} do ktereho bude ukladat z kolika % je hotova a
- * druhy do typu {@code ArrayList<String>} do ktereho budou pridavat informace o prubehu funkce<br>
+ * potreba precastovat do typu {@code Refereancable<Float>}, do ktereho budete ukladat z kolika % je akce
+ * hotova (0 - 0%, 1 - 100%) a druhy do typu {@code ArrayList<String>} do ktereho budete zapisovat informace 
+ * o prubehu funkce<br>
  * Deklarace funkce tedy bude vypadat takto:<br>
  * {@code public static void <jmeno>(Objcet <jmeno>, Object <jmeno>)}<br>
  * <br>
@@ -35,10 +36,10 @@ public class LoadingScreen
 {
 	/** KONSTANTA - Pocet pokusu pro kazdou akci */
 	public static final int RETRY_COUNT = 3;
-	/** Dobe mezi aktualizaci dat na obrazovce */
+	/** Doba mezi aktualizaci dat na obrazovce */
 	public static final int UPDATE_GRAPHICS_PERIOD = 200; //ms
 
-	/**  Grafika pro LoadingScreen */
+	/** Grafika pro LoadingScreen */
 	public static Drawable loadingScreenGraphics;
 
 	/**
@@ -46,12 +47,12 @@ public class LoadingScreen
 	 * {@code <0-based index threadu>:<package>.<trida>:<funkce>[:nonFatal](<povinne>;[nepovinne])}
 	 */
 	public final String[] actions;
-	/** Pocet threadu ktere se budou pouzivat */
+	/** Pocet threadu, ktere se budou pouzivat */
 	public int threadCount;
 
 	/**
 	 * Array dlouhy stejne jako pocet threadu; Kazdy jeden index je rezervovany pro kazdy jeden Thread; Thread
-	 * do nej zapisuje z kolika procent (hodnoty float 0 - 1) je rozbehla akce hotova (Posila se do kazde akce
+	 * do nej zapisuje z kolika procent (hodnoty float 0 - 1) je bezici akce hotova (Posila se do kazde akce
 	 * - Proto v Referenceable)
 	 */
 	public Referenceable<Float>[] threadFinishedPercentage; //Hodnoty: 0 - 1
@@ -70,7 +71,7 @@ public class LoadingScreen
 	private String title;
 	
 	/**
-	 * Vytvori instanci LoadingScreenu. LoadingScreen je pote potreba spusti funkci {@link #start()}
+	 * Vytvori instanci LoadingScreenu. LoadingScreen je pote potreba spustit funkci {@link #start()}
 	 * 
 	 * @param LoadingActions Array ve kterem jsou popisy akci ktere jsou potreba udelat.<br>
 	 *                       Popisy jsou v tomto formatu:
@@ -121,17 +122,17 @@ public class LoadingScreen
 				for (String action : actions)
 				{
 					//Rozdel popis akce na klicova slova
-					String[] splittedActions = action.split(":");
+					String[] splitActions = action.split(":");
 
 					//Pokud akce nema byt spustena v tomto threadu
-					int tID = Integer.parseInt(splittedActions[0]);
+					int tID = Integer.parseInt(splitActions[0]);
 					if (tID != ID)
 						continue;
 
 					//Ziskej cestu k tride ve ktere metoda je
-					String classPath = splittedActions[1];
+					String classPath = splitActions[1];
 					//Ziskej jmeno metody
-					String funcName = splittedActions[2];
+					String funcName = splitActions[2];
 
 					//Flag ktery rika jestli metoda uspesne probrhla
 					boolean finished = false;
@@ -179,7 +180,7 @@ public class LoadingScreen
 							+ action + "!!";
 
 						//Pokud akce neni potreba pro beh programu -> logni to a upozorni na to
-						if (splittedActions.length > 3 && splittedActions[3].equalsIgnoreCase(("nonfatal")))
+						if (splitActions.length > 3 && splitActions[3].equalsIgnoreCase(("nonfatal")))
 						{
 							BrickHardware.setLEDPattern(3, LEDBlinkingStyle.DOUBLEBLINK, 2);
 							SystemSound.playNonFatalErrorSound(true);

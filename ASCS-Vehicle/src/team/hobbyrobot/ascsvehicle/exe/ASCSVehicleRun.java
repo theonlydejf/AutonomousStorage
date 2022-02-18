@@ -17,9 +17,12 @@ import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
 import lejos.robotics.chassis.WheeledChassis;
 import lejos.robotics.navigation.MovePilot;
+import lejos.robotics.navigation.RotateMoveController;
 import lejos.utility.Delay;
 import team.hobbyrobot.ascsvehicle.ASCSVehicleHardware;
+import team.hobbyrobot.ascsvehicle.api.services.MovementService;
 import team.hobbyrobot.ascsvehicle.api.services.TestService;
+import team.hobbyrobot.ascsvehicle.os.VehicleInfoBar;
 import team.hobbyrobot.subos.LoadingScreen;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.errorhandling.ErrorLogging;
@@ -36,7 +39,6 @@ import team.hobbyrobot.subos.menu.MenuScreen;
 import team.hobbyrobot.subos.menu.RobotInfoScreen;
 import team.hobbyrobot.subos.net.api.APIStaticFactory;
 import team.hobbyrobot.subos.net.api.TDNAPIServer;
-import team.hobbyrobot.subos.net.api.services.MovementService;
 import team.hobbyrobot.tdn.base.*;
 import team.hobbyrobot.tdn.core.*;
 
@@ -50,7 +52,7 @@ public class ASCSVehicleRun
 	//@formatter:on
 
 	/**  Inicializovany Hardware robota */
-	public static ASCSVehicleHardware Hardware = new ASCSVehicleHardware(130, 49.5f);
+	public static ASCSVehicleHardware Hardware = new ASCSVehicleHardware(111.7f, 56f / 2f, true, false);
 	/** Inicializovany InfoBar, ktery aktualne bezi */
 	public static BasicInfoBar InfoBar = null;
 
@@ -68,13 +70,43 @@ public class ASCSVehicleRun
 		//SubOSController.LoadingScreenActions.add("0:team.hobbyrobot.ascsvehicle.ASCSVehicleHardware:calibrateDefaultLifter");
 
 		// Starts subOS
-		InfoBar = SubOSController.init(Hardware, BasicInfoBar.class, logger, "error_log.txt");
-		initVehicle();
-
+		InfoBar = SubOSController.init(Hardware, VehicleInfoBar.class, logger, "error_log.txt");
+		//initVehicle();
+		BrickHardware.releasePriority(2, 0);
 		//Dej najevo, že robot už je připraven k použití
 		BrickHardware.setLEDPattern(1, LEDBlinkingStyle.NONE, 0);
 		Sound.beepSequenceUp();
-
+		
+		RotateMoveController pilot = Hardware.getPilot();
+		Hardware.resetDriveMotorsTachos();
+		
+		//pilot.forward();
+		//Button.waitForAnyPress();
+		
+		boolean b = true;
+		while(b)
+		{
+			Sound.playTone(600, 150);
+			Button.waitForAnyPress();
+			Hardware.resetGyroAt(0);
+			pilot.travel(1000, true);
+			
+			while(Button.getButtons() != 0)
+				Thread.yield();
+			while(pilot.isMoving())
+			{
+				if(Button.getButtons() != 0)
+				{
+					pilot.stop();					
+				}
+			}
+			while(Button.getButtons() != 0)
+				Thread.yield();
+			
+			//pilot.rotate(90);
+			//Sound.twoBeeps();
+		}
+				
 		api.setVerbosity(VerbosityLogger.OVERVIEW);
 		
 		//Spust menu a opakuj ho do nekonecna
@@ -94,10 +126,6 @@ public class ASCSVehicleRun
 
 	private static void initVehicle()
 	{
-		// Calibrate robot
-		new LoadingScreen("Calibration",
-			new String[] { "0:team.hobbyrobot.ascsvehicle.ASCSVehicleHardware:calibrateDefaultLifter" }).start();
-		
 		APIStaticFactory.setInfoLogger(logger);
 		APIStaticFactory.setVerbosity(VerbosityLogger.DEBUGGING);
 		
@@ -109,8 +137,13 @@ public class ASCSVehicleRun
 		APIStaticFactory.queueService("TestService", new TestService());
 		APIStaticFactory.queueService("MovementService", new MovementService(Hardware, logger));
 		
-		new LoadingScreen("Starting API", 
-			new String[] { "0:team.hobbyrobot.subos.net.api.APIStaticFactory:createAPI" }).start();
+		// Calibrate robot
+		new LoadingScreen("Init vehicle",
+			new String[] { "0:team.hobbyrobot.ascsvehicle.ASCSVehicleHardware:calibrateDefaultLifter",
+					"1:team.hobbyrobot.subos.net.api.APIStaticFactory:createAPI"}).start();
+		
+		/*new LoadingScreen("Starting API", 
+			new String[] {  }).start();*/
 		api = APIStaticFactory.getLastAPIServer();
 	}
 

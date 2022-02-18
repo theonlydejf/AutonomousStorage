@@ -30,7 +30,7 @@ public abstract class RobotHardware
 	public float WheelRadius = -1f;
 	/** KONSTANTA - Touto konstantou jsou vynasobeny vsechny vzdalenosti ktere robot ujel */
 	@IncludeInRobotInfo
-	public float DistanceMultiplyer = -1;
+	public float DistanceMultiplyer;
 
 	/** Promenna, ktera odkazuje na urcity senzor */
 	public BaseSensor Sensor1 = null, Sensor2 = null, Sensor3 = null, Sensor4 = null;
@@ -41,12 +41,29 @@ public abstract class RobotHardware
 	/** Promenna, odkazujici na regulovane motory, ktere se daji pouzit na neo jineho (nastavce...) */
 	public RegulatedMotor Motor1 = null, Motor2 = null;
 
-	/** Meni maximalni moznou rychlost leveho motoru. Pokud je hodnota zaporna, motor bude invertovany. */
 	@IncludeInRobotInfo
-	public float LeftMotorPowerMultiplyer = 1;
-	/** Meni maximalni moznou rychlost praveho motoru. Pokud je hodnota zaporna, motor bude invertovany. */
+	public boolean ReverseLeftMotor;
 	@IncludeInRobotInfo
-	public float RightMotorPowerMultiplyer = -1;
+	public boolean ReverseRightMotor;
+	
+	public float getDistanceMultiplier()
+	{
+		return WheelRadius * (float)Math.PI * 2;
+	}
+	
+	public int getLeftMotorDirection()
+	{
+		if(ReverseLeftMotor)
+			return -1;
+		return 1;
+	}
+	
+	public int getRightMotorDirection()
+	{
+		if(ReverseRightMotor)
+			return -1;
+		return 1;
+	}
 	
 	/**
 	 * Indexy senzoru a motoru, ktere se <strong>nemaji</strong> inicializovat<br>
@@ -90,11 +107,13 @@ public abstract class RobotHardware
 	/** Promenna do ve ktere je ulozena instance RobotHardware, ktera se bude pouzivat */
 	public static RobotHardware RobotHardwareToInitialize;
 
-	public RobotHardware(float wheelDistance, float wheelRadius)
+	public RobotHardware(float wheelDistance, float wheelRadius, boolean reverseLeft, boolean reverseRight)
 	{
+		ReverseLeftMotor = reverseLeft;
+		ReverseRightMotor = reverseRight;
 		WheelDistance = wheelDistance;
 		WheelRadius = wheelRadius;
-		DistanceMultiplyer = 2 * 3.14159f * wheelRadius;
+		DistanceMultiplyer = getDistanceMultiplier();
 		RobotHardwareToInitialize = this;
 		
 		harPorts = new Port[] { SensorPort.S1, SensorPort.S2, SensorPort.S3, SensorPort.S4, 
@@ -156,7 +175,7 @@ public abstract class RobotHardware
 	public int getLeftTacho()
 	{
 		int tacho = LeftDriveMotor.getTachoCount();
-		if (LeftMotorPowerMultiplyer < 0)
+		if (ReverseLeftMotor)
 			tacho *= -1;
 		return tacho;
 	}
@@ -166,22 +185,22 @@ public abstract class RobotHardware
 	 * 
 	 * @return Kolik ujel pravy motor
 	 */
-	public float getRightTacho()
+	public int getRightTacho()
 	{
 		int tacho = RightDriveMotor.getTachoCount();
-		if (LeftMotorPowerMultiplyer < 0)
+		if (ReverseRightMotor)
 			tacho *= -1;
 		return tacho;
 	}
 
 	public float getLeftDrivenDist()
 	{
-		return getLeftTacho() * DistanceMultiplyer * Math.signum(LeftMotorPowerMultiplyer);
+		return (getLeftTacho() / 360f) * DistanceMultiplyer;
 	}
 
 	public float getRightDrivenDist()
 	{
-		return getRightTacho() * DistanceMultiplyer * Math.signum(RightMotorPowerMultiplyer);
+		return (getRightTacho() / 360f) * DistanceMultiplyer;
 	}
 
 	/**
@@ -226,8 +245,6 @@ public abstract class RobotHardware
 		if (speed > 100)
 			speed = 100;
 
-		speed = (int) Math.round(speed * Math.abs(LeftMotorPowerMultiplyer));
-
 		LeftDriveMotor.setPower(speed);
 	}
 
@@ -243,8 +260,6 @@ public abstract class RobotHardware
 			speed = -100;
 		if (speed > 100)
 			speed = 100;
-
-		speed = (int) Math.round(speed * Math.abs(RightMotorPowerMultiplyer));
 
 		RightDriveMotor.setPower(speed);
 	}
@@ -267,7 +282,7 @@ public abstract class RobotHardware
 	 */
 	public void startLeftDriveMotor(Boolean forward)
 	{
-		if (forward ^ (LeftMotorPowerMultiplyer < 0))
+		if (forward ^ ReverseLeftMotor)
 			LeftDriveMotor.forward();
 		else
 			LeftDriveMotor.backward();
@@ -280,7 +295,7 @@ public abstract class RobotHardware
 	 */
 	public void startRightDriveMotor(Boolean forward)
 	{
-		if (forward ^ (RightMotorPowerMultiplyer < 0))
+		if (forward ^ ReverseRightMotor)
 			RightDriveMotor.forward();
 		else
 			RightDriveMotor.backward();
@@ -336,6 +351,11 @@ public abstract class RobotHardware
 		return smp;
 	}
 
+	protected void afterInit()
+	{
+		// Do stuff
+	}
+	
 	/**
 	 * <strong>Funkce delana na spousteni skrz {@link FLLMainProgram.subOS.LoadingScreen}</strong><br>
 	 * Inicializuje senzory robota podle instance RobotHardware v promenne
@@ -412,7 +432,7 @@ public abstract class RobotHardware
 							//Rekni to v msg feedu
 							msgFeed.add("harInit ERR; HAR ID: " + _i);
 							//Blikni
-							BrickHardware.blinkLED(2, 300, true, 1);
+							BrickHardware.blinkLED(2, 300, true, 10);
 							//Loguj chybu
 							ErrorLogging
 								.logError("Error when loading; Attempt number:" + j + ";" + Logger.getExceptionInfo(e));
@@ -456,5 +476,7 @@ public abstract class RobotHardware
 			if (allThreadsFinished)
 				break;
 		}
+		
+		RobotHardwareToInitialize.afterInit();
 	}
 }
