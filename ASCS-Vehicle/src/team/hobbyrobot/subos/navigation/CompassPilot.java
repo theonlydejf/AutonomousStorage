@@ -322,12 +322,15 @@ public class CompassPilot extends MoveHandler implements RotateMoveController, L
 	private class TravelProcessor implements MoveProcessor
 	{
 		public static final float DECEL_CONSTANT = .25f;
+		public static final int PID_CONTROL_PERIOD = 10; //ms
 		
 		public float targetAngle = 0;
 		
 		private PID _pid;
 		private float _distanceTravelledAtMoveStart = 0;
 		private Accelerator _accelerator;
+		private Stopwatch _pidSw;
+		private double _currPIDRate;
 		
 		public TravelProcessor()
 		{
@@ -335,6 +338,8 @@ public class CompassPilot extends MoveHandler implements RotateMoveController, L
 			try
 			{
 				_pid = new PIDTuner(0, 0, 0, 0, 1235);
+				_pid.setOutputLimits(100);
+				_pid.setMaxIOutput(50);
 				_pid.verbal = true;
 			}
 			catch (IOException e)
@@ -342,9 +347,7 @@ public class CompassPilot extends MoveHandler implements RotateMoveController, L
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			// Limit PID to realistic steering values
-			_pid.setOutputLimits(100);
+			_pidSw = new Stopwatch();
 		}
 		
 		@Override
@@ -369,10 +372,31 @@ public class CompassPilot extends MoveHandler implements RotateMoveController, L
 				currSpeed = decelSpeed;
 			
 			float currAng = hardware.getAngle();
-			double steering = _pid.getOutput(currAng, targetAngle);
-			//SubOSController.mainLogger.log(String.format("steering: %5.2f\tcurrAng: %5.2f\ttargetAng: %5.2f", steering, currAng, targetAngle));
-			//SubOSController.mainLogger.log(_pid.toString());
-			controlMotors((int)(currSpeed * Math.signum(travelTarget)), steering);
+			if(_pidSw.elapsed() >= MoveHandler.STEERING_CONTROL_LOOP_PERIOD)
+			{
+				_pidSw.reset();
+				_currPIDRate = _pid.getOutput(currAng, targetAngle);
+				
+				controlMotors((int)currSpeed, _currPIDRate);
+				/*int lPower = (int)(currSpeed * Math.signum(travelTarget));
+				
+				int rPower = (int)(currSpeed * Math.signum(travelTarget));
+				
+				// Calculate regulated motor powers
+				if (_currPIDRate > 0)
+					lPower -= (int) (Math.abs(_currPIDRate) * Math.signum(lPower));
+				else
+					rPower -= (int) (Math.abs(_currPIDRate) * Math.signum(rPower));
+
+				// Limit regulated motors to only slow down (never change direction of the motor by regulating it)
+				//if (lPower * Math.signum(travelTarget) < 0)
+				//	lPower = 0;
+				//if (rPower * Math.signum(travelTarget) < 0)
+				//	rPower = 0;
+
+				hardware.setDrivePowers(lPower, rPower);
+				hardware.startDriveMotors(true);*/
+			}
 			
 			boolean travelCompleted = distanceRemaining <= 0;
 			return travelCompleted;
@@ -386,7 +410,9 @@ public class CompassPilot extends MoveHandler implements RotateMoveController, L
 			_distanceTravelledAtMoveStart = hardware.getDrivenDist();
 			_accelerator = new Accelerator(_linearMinSpeed);
 			targetAngle = _expectedHeading;
-			_pid.setOutputLimits(50);
+			_pidSw.reset();
+			_pid.reset();
+			_currPIDRate = 0;
 		}
 
 	}

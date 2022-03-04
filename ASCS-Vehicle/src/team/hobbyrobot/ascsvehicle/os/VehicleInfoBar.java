@@ -23,6 +23,6 @@ public class VehicleInfoBar extends BasicInfoBar
 		DecimalFormat format = new DecimalFormat("#.##");
 		if(hardware != null && hardware.getDirectionFinder() == null)
 			return "NULL";
-		return format.format("G: " + hardware.getDirectionFinder().getDegreesCartesian());
+		return "G: " + format.format(hardware.getDirectionFinder().getDegreesCartesian());
 	}
 }

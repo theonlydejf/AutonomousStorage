@@ -19,7 +19,7 @@ public class MoveHandler implements MoveProvider
 	 * How often is motor controlled when regulated steering. Higher value means more precise regulation,
 	 * but smaller responsibility.
 	 */
-	public final static int STEERING_CONTROL_LOOP_PERIOD = 30; //ms
+	public final static int STEERING_CONTROL_LOOP_PERIOD = 50; //ms
 
 	/** All listeneres, that have signed up for listening to this MoveProvider */
 	protected List<MoveListener> _listeners;
@@ -66,6 +66,7 @@ public class MoveHandler implements MoveProvider
 		try
 		{
 			_steeringPID = new PIDTuner(70, 8, 0, 0, 1236);
+			_steeringPID.verbal = true;
 		}
 		catch (IOException e)
 		{
@@ -124,18 +125,19 @@ public class MoveHandler implements MoveProvider
 	 * where -100 means rotate to the right, 0 move straight and 100 means rotate to the left. Any number
 	 * in between makes the robot go in arc.<br>
 	 * This method is limited to be called only once every {@link #STEERING_CONTROL_LOOP_PERIOD}
-	 * milliseconds. If the method is called, before the required time has passed, it returns without
+	 * milliseconds. If the method is called, before the required time has passed, it returns false without
 	 * doing anything.
 	 * 
 	 * @param power    The desired power by which the robot should move (-100(backward) to 100(forward))
 	 * @param steering The steering by which the robot should move (-100(right) to 100(left))
+	 * @return True, if motors were updated
 	 */
-	public void controlMotors(int power, double steering)
+	public boolean controlMotors(int power, double steering)
 	{
 		// We need some time for tacho to acumulate -> if not enaugh time has passed yet, return without 
 		// doing anything
 		if (_steeringControlLoopSw.elapsed() < STEERING_CONTROL_LOOP_PERIOD)
-			return;
+			return false;
 		_steeringControlLoopSw.reset();
 
 		// Limit steering
@@ -158,12 +160,12 @@ public class MoveHandler implements MoveProvider
 				hardware.setRightDrivePower(power);
 				hardware.startRightDriveMotor(true);
 				hardware.stopLeftDriveMotor(true);
-				return;
+				return true;
 			}
 			hardware.setLeftDrivePower(power);
 			hardware.startLeftDriveMotor(true);
 			hardware.stopRightDriveMotor(true);
-			return;
+			return true;
 		}
 
 		// True, if according to steering, robot is steering to the left
@@ -186,6 +188,7 @@ public class MoveHandler implements MoveProvider
 		// True, if too slow to regulate
 		boolean tooSlow = (Math.abs(deltaLTacho) + Math.abs(deltaRTacho)) / 2 < 7;
 
+		//TODO add regulation..
 		// Calculate correction value, if the robot is moving too slowly to regulate, get 
 		// only integral part of the regulation (makes the pid error 0)
 		double pidRate = _steeringPID.getOutput(tooSlow ? _steering_expectedRatio : realRatio, _steering_expectedRatio);
@@ -239,6 +242,8 @@ public class MoveHandler implements MoveProvider
 		_steering_rTacho = hardware.getRightTacho();
 		_steering_expectedRatio = steeringMultiplier;
 		_steering_expectedLeft = steeringLeft;
+		
+		return true;
 	}
 
 	/**
