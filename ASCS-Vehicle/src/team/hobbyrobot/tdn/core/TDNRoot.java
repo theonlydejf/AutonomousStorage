@@ -21,18 +21,18 @@ public class TDNRoot implements Iterable<Entry<String, TDNValue>>
     public TDNValue get(String key)
     {
         String[] path = key.split("\\.");
-        Hashtable<String, TDNValue> root = GetRootData(path, false);
+        Hashtable<String, TDNValue> root = getRootData(path, false);
         return root.get(path[path.length - 1]);
     }
     
     public void put(String key, TDNValue value)
     {
         String[] path = key.split("\\.");
-        Hashtable<String, TDNValue> root = GetRootData(path, true);
+        Hashtable<String, TDNValue> root = getRootData(path, true);
         root.put(path[path.length - 1], value);
     }
 
-    private Hashtable<String, TDNValue> GetRootData(String[] path, boolean createNewRoots)
+    private Hashtable<String, TDNValue> getRootData(String[] path, boolean createNewRoots)
     {
     	String[] rootPath = Arrays.copyOf(path, path.length - 1);
 
