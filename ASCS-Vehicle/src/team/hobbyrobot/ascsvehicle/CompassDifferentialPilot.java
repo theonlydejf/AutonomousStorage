@@ -17,6 +17,7 @@ import lejos.utility.Stopwatch;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.hardware.motor.EV3DCMediumRegulatedMotor;
 
+@Deprecated
 public class CompassDifferentialPilot implements ArcRotateMoveController
 {
 	private double minRadius = 0;

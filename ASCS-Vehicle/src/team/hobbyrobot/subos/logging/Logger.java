@@ -9,19 +9,25 @@ import java.util.ArrayList;
 public class Logger implements Closeable
 {
 	private ArrayList<PrintWriter> writers = new ArrayList<PrintWriter>();
-	private ArrayList<String> localLog = new ArrayList<String>();
+	private ArrayList<String> localLog = null;
 	private boolean includeName = true;
 	
 	protected String name = null;
 	
 	public Logger()
 	{
-		this(null);
+		this(null, false);
 	}
 	
 	public Logger(String name)
 	{
+		this(name, false);
+	}
+	
+	public Logger(String name, boolean saveLogToMemory)
+	{
 		this.name = name;
+		this.localLog = saveLogToMemory ? new ArrayList<String>() : null;
 		
 		Runtime.getRuntime().addShutdownHook(new Thread()
 		{
@@ -67,7 +73,8 @@ public class Logger implements Closeable
 		if(includeName && name != null)
 			msg = name + ": " + msg;
 		
-		localLog.add(msg);
+		if(localLog != null)
+			localLog.add(msg);
 
 		ArrayList<PrintWriter> badWriters = new ArrayList<PrintWriter>();
 		for (PrintWriter pw : writers)

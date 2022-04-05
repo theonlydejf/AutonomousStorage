@@ -44,7 +44,6 @@ public class Navigator implements WaypointListener, MoveListener
 	 */
 	public Navigator(RotateMoveController pilot, PoseProvider poseProvider, Chassis chassis, Logger logger)
 	{
-		this._chassis = chassis;
 		this._logger = logger == null ? new Logger() : logger.createSubLogger("Nav");
 		_pilot = pilot;
 		if (poseProvider == null)
@@ -52,7 +51,7 @@ public class Navigator implements WaypointListener, MoveListener
 		else
 			this.poseProvider = poseProvider;
 		_pilot.addMoveListener(this);
-		
+
 		_nav = new Nav();
 		_nav.setDaemon(true);
 		_nav.start();
@@ -297,11 +296,6 @@ public class Navigator implements WaypointListener, MoveListener
 		_interrupted = true;
 		callListeners();
 	}
-	
-	public void setCurrentTravelLimit(float limit)
-	{
-		_travelLimit = limit;
-	}
 
 	/**
 	 * Returns the waypoint to which the robot is presently moving.
@@ -382,13 +376,41 @@ public class Navigator implements WaypointListener, MoveListener
 	{
 		_moveFinished = true;
 	}
-	
+
 	/**
 	 * This inner class runs the thread that processes the waypoint queue
 	 */
 	private class Nav extends Thread
 	{
 		boolean more = true;
+
+		/** If the move was limited by the user -> mark current travel as interrupted */
+		private void checkLimit()
+		{
+			// Check if pilot can be limitted and if it was limitted
+			if (_pilot instanceof LimitablePilot && ((LimitablePilot) _pilot).wasLastMoveLimited())
+			{
+				_interrupted = true;
+				_keepGoing = false;
+
+				LimitablePilot pilot = ((LimitablePilot) _pilot);
+				_logger.log("Trvelling to waypoint interrupted due to limit! traveLimit=" + pilot.getTravelLimit()
+					+ "; rotateLimit=" + pilot.getRotateLimit());
+			}
+		}
+		
+		private void waitMoveFinished()
+		{
+			// Wait until move has started or Navigator is interrupted
+			while (_moveFinished && _keepGoing)
+				Thread.yield();
+			// Wait until move has finished or Navigator is interrupted
+			while (!_moveFinished && _keepGoing)
+				Thread.yield();
+			
+			// Update robot's pose
+			_pose = poseProvider.getPose();
+		}
 
 		@Override
 		public void run()
@@ -403,81 +425,37 @@ public class Navigator implements WaypointListener, MoveListener
 					float destinationRelativeBearing = _pose.relativeBearing(_destination);
 					if (!_keepGoing)
 						break;
-					
+
 					_logger.log("Turning towards waypoint. Robot at " + _pose.toString());
 					_pilot.rotate(destinationRelativeBearing, true);
-					while (!_moveFinished && _keepGoing)
-						Thread.yield();
 					
-					if (!_keepGoing)
-						break;
-					
-					// Update robot's pose
-					_pose = poseProvider.getPose();
+					waitMoveFinished();
+					checkLimit();
+
+					// If interrupted -> stop
 					if (!_keepGoing)
 						break;
 
 					_logger.log("Moving towards waypoint. Robot at " + _pose.toString());
-					float startDeltaDestination = _pose.distanceTo(_destination);
-					float distance;
-					float endDeltaDestination;
+					float distance = _pose.distanceTo(_destination);
+					_pilot.travel(distance, true);
+
+					waitMoveFinished();
+					checkLimit();
 					
-					while (_keepGoing)
-					{
-						// Calculate distance to the destination
-						_pose = poseProvider.getPose();
-						float poseDeltaDestination = _pose.distanceTo(_destination);
-						distance = poseDeltaDestination;
-						float lastTravelLimit = _travelLimit;
-						
-						endDeltaDestination = startDeltaDestination - lastTravelLimit;
-						
-						// If travel limit ends before destination is reached => travel only until limit is reached
-						if(endDeltaDestination > 0)
-						{
-							distance -= endDeltaDestination;
-							_logger.log("New travel limit set: " + lastTravelLimit);
-						}
-						
-						if(startDeltaDestination == poseDeltaDestination)
-							_pilot.travel(distance, true);
-						else
-							_chassis.travel(distance);
-						
-						// Wait until move starts
-						while(_moveFinished)
-							Thread.yield();
-						
-						// Wait until either move finished, navigator is interrupted or trvael limit has changed
-						while (!_moveFinished && _keepGoing && lastTravelLimit == _travelLimit)
-							Thread.yield();
-						
-						if(_moveFinished)
-							break;
-					}
-					
-					// If travel limit ends before the destination is reached -> mark current travel as interrupted
-					if(_travelLimit < startDeltaDestination)
-					{
-						_interrupted = true;
-						_keepGoing = false;
-						_logger.log("Trvelling to waypoint interrupted due to travel limit! traveLimit=" + _travelLimit);
-					}
-					
-					// Update robot's pose
-					_pose = poseProvider.getPose();
 					if (!_keepGoing)
 						break;
 
 					// If heading is set in the waypoint, turn to it
 					if (_destination.isHeadingRequired())
 					{
-						_pose = poseProvider.getPose();
 						_destination.getHeading();
-						
+
 						_logger.log("Turning to match waypoin's heading. Robot at " + _pose.toString());
-						_pilot.rotate(_destination.getHeading() - _pose.getHeading(),
-							false);
+						_pilot.rotate(_destination.getHeading() - _pose.getHeading(), false);
+						
+						waitMoveFinished();
+						checkLimit();
 					}
 
 					if (_keepGoing && !_path.isEmpty())
@@ -496,7 +474,6 @@ public class Navigator implements WaypointListener, MoveListener
 
 					Thread.yield();
 				} // end while keepGoing
-				_travelLimit = Float.POSITIVE_INFINITY;
 				Thread.yield();
 			} // end while more
 		} // end run
@@ -520,13 +497,12 @@ public class Navigator implements WaypointListener, MoveListener
 	 */
 	private boolean _interrupted = false;
 	private RotateMoveController _pilot;
-	private Chassis _chassis;
 	private PoseProvider poseProvider;
 	private Pose _pose = new Pose();
 	private Waypoint _destination;
+	//TODO Verbosity logger
 	private Logger _logger;
 	private int _sequenceNr;
-	private float _travelLimit = Float.POSITIVE_INFINITY;
 	private boolean _moveFinished = false;
 	private ArrayList<NavigationListener> _listeners = new ArrayList<NavigationListener>();
 }

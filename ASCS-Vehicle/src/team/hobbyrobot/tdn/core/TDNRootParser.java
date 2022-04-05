@@ -22,6 +22,12 @@ public class TDNRootParser implements TDNTypeParser
 	}
 
 	@Override
+	public Object defaultValue()
+	{
+		return new TDNRoot();
+	}
+	
+	@Override
 	public TDNValue readFromStream(TDNBufferedReader reader) throws IOException
 	{
 		TDNRoot obj = new TDNRoot();

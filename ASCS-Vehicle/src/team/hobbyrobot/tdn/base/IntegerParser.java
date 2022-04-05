@@ -16,6 +16,12 @@ public class IntegerParser implements TDNTypeParser
 	}
 
 	@Override
+	public Object defaultValue()
+	{
+		return 0;
+	}
+	
+	@Override
 	public TDNValue readFromStream(TDNBufferedReader reader) throws IOException
 	{
 		String value = reader.readValue();

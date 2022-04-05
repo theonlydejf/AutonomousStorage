@@ -29,12 +29,7 @@ public class TDNValue
     public static <T> List<T> asList(TDNValue value)
     {
     	TDNArray tdnArr = (TDNArray)value.value;
-    	
-    	List<T> out = new ArrayList<T>();
-    	for(Object o : tdnArr)
-    		out.add((T)o);
-    	
-    	return out;
+    	return tdnArr.asList();
     }
     //((TDNArray)value.Value).Value.Select(x => (T)x.Value).ToArray();
 }

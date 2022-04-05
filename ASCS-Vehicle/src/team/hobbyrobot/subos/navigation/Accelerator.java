@@ -9,6 +9,7 @@ public class Accelerator
 {
 	private double currSpeed;
 	private long lastNano;
+	private boolean firstTime;
 	
 	/**
 	 * Creates instance of {@link Accelerator}
@@ -17,7 +18,7 @@ public class Accelerator
 	public Accelerator(double startSpeed)
 	{
 		currSpeed = startSpeed;
-		lastNano = System.nanoTime();
+		firstTime = true;
 	}
 	
 	/**
@@ -27,10 +28,22 @@ public class Accelerator
 	 */
 	public double getCurrentSpeed(double acceleration)
 	{
+		if(firstTime)
+		{
+			lastNano = System.nanoTime();
+			firstTime = false;
+		}
+		
 		double deltaTime = (System.nanoTime() - lastNano) / 1000000000D;
 		lastNano = System.nanoTime();
 					
 		currSpeed += acceleration * deltaTime;
 		return currSpeed;
+	}
+	
+	public void reset(double startSpeed)
+	{
+		currSpeed = startSpeed;
+		firstTime = true;
 	}
 }

@@ -1,5 +1,7 @@
 package team.hobbyrobot.ascsvehicle.api.services;
 
+import java.net.Socket;
+
 import team.hobbyrobot.subos.net.api.Service;
 import team.hobbyrobot.subos.net.api.exceptions.RequestGeneralException;
 import team.hobbyrobot.subos.net.api.exceptions.RequestParamsException;
@@ -11,7 +13,7 @@ import team.hobbyrobot.tdn.base.TDNParsers;
 public class TestService implements Service
 {
 	@Override
-	public TDNRoot processRequest(String request, TDNRoot params)
+	public TDNRoot processRequest(String request, TDNRoot params, Socket client)
 		throws UnknownRequestException, RequestParamsException, RequestGeneralException
 	{
 		TDNRoot root = new TDNRoot();

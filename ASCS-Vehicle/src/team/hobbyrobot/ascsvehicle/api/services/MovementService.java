@@ -1,6 +1,7 @@
 package team.hobbyrobot.ascsvehicle.api.services;
 
 import java.lang.reflect.Method;
+import java.net.Socket;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Hashtable;
@@ -28,6 +29,7 @@ import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.hardware.RobotHardware;
 import team.hobbyrobot.subos.hardware.motor.EV3DCMediumRegulatedMotor;
 import team.hobbyrobot.subos.logging.Logger;
+import team.hobbyrobot.subos.navigation.LimitablePilot;
 import team.hobbyrobot.subos.navigation.Navigator;
 import team.hobbyrobot.subos.net.api.Service;
 import team.hobbyrobot.subos.net.api.exceptions.RequestGeneralException;
@@ -59,7 +61,7 @@ public class MovementService implements Service, MoveListener, NavigationListene
 	}
 
 	@Override
-	public TDNRoot processRequest(String request, TDNRoot params)
+	public TDNRoot processRequest(String request, TDNRoot params, Socket client)
 		throws UnknownRequestException, RequestParamsException, RequestGeneralException
 	{
 		try
@@ -298,13 +300,16 @@ public class MovementService implements Service, MoveListener, NavigationListene
 				put("setNavTravelLimit", new RequestInvoker()
 				{
 					@Override
-					public TDNRoot invoke(TDNRoot params) throws RequestParamsException
+					public TDNRoot invoke(TDNRoot params) throws RequestParamsException, RequestGeneralException
 					{
+						if(!(pilot instanceof LimitablePilot))
+							throw new RequestGeneralException("Trying to limit a pilot, which is not able to limit its movements");
+						LimitablePilot pilot = (LimitablePilot)MovementService.this.pilot;
 						TDNValue limit = params.get("limit");
 						if(limit == null)
 							throw new RequestParamsException("No limit present in the current root", "limit");
 						
-						navigator.setCurrentTravelLimit((float) limit.as());
+						pilot.setTravelLimit((float) limit.as());
 						return new TDNRoot();
 					}
 				});
@@ -368,7 +373,7 @@ public class MovementService implements Service, MoveListener, NavigationListene
 	{
 		protected TDNRoot params;
 
-		public abstract TDNRoot invoke(TDNRoot params) throws RequestParamsException;
+		public abstract TDNRoot invoke(TDNRoot params) throws RequestParamsException, RequestGeneralException;
 	}
 
 	@Override

@@ -10,13 +10,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import lejos.hardware.Sound;
+import team.hobbyrobot.subos.Resources;
+import team.hobbyrobot.subos.errorhandling.ErrorLogging;
 import team.hobbyrobot.subos.logging.Logger;
 import team.hobbyrobot.subos.navigation.PID;
 
 public class PIDTuner extends PID
-{
+{	
 	private Tuner _tuner;
 	private int _port;
+	private boolean _autoSave = false;
 	
 	public PIDTuner(double p, double i, double d, double f, int port) throws IOException
 	{
@@ -25,6 +28,32 @@ public class PIDTuner extends PID
 		startTuner();
 	}
 
+	public static PIDTuner createPIDTunerFromRscs(String pidName, int port) throws IOException
+	{
+		String path = getRscsPathToPID(pidName);
+		
+		float p = Resources.global().getFloat(path + ".kP");
+		float i = Resources.global().getFloat(path + ".kI");
+		float d = Resources.global().getFloat(path + ".kD");
+		float f = Resources.global().getFloat(path + ".kF");
+		PIDTuner pid = new PIDTuner(p, i, d, f, port);
+		
+		pid.setName(pidName);
+		pid.setMaxIOutput(Resources.global().getFloat(path + ".maxI"));
+		pid.setOutputLimits(Resources.global().getFloat(path + ".outMin"), Resources.global().getFloat(path + ".outMax"));
+		pid.setOutputFilter(Resources.global().getFloat(path + ".outFilter"));
+		pid.setOutputRampRate(Resources.global().getFloat(path + ".outRampRate"));
+		pid.setDirection(Resources.global().getBoolean(path + ".reversed"));
+		pid.setSetpoint(Resources.global().getFloat(path + ".setpoint"));
+		pid.setSetpointRange(Resources.global().getFloat(path + ".setpointRange"));
+		return pid;
+	}
+	
+	public void setAutoSave(boolean autoSave)
+	{
+		_autoSave = autoSave;
+	}
+	
 	public void startTuner() throws IOException
 	{
 		if(_tuner != null && isTunerRunning())
@@ -32,6 +61,7 @@ public class PIDTuner extends PID
 		
 		_tuner = new Tuner(_port);
 		_tuner.setDaemon(true);
+		_tuner.setPriority(Thread.MIN_PRIORITY);
 		_tuner.start();
 	}
 	
@@ -61,9 +91,25 @@ public class PIDTuner extends PID
 			 _server = new ServerSocket(port);
 		}
 		
+		private void safeSave()
+		{
+			try
+			{
+				save();
+				Sound.playTone(1000, 200);							
+			}
+			catch(IOException ex)
+			{
+				ErrorLogging.logError("IOException occured when autosaving PID to rscs: " + Logger.getExceptionInfo(ex));
+			}
+		}
+		
 		@Override
 		public void run()
 		{
+			if(_autoSave)
+				safeSave();
+
 			try(Socket client = _server.accept())
 			{
 				BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -85,6 +131,7 @@ public class PIDTuner extends PID
 								
 							case "i":
 								PIDTuner.this.setI(Double.parseDouble(parts[1]));
+								PIDTuner.this.reset();
 								break;
 								
 							case "d":
@@ -125,6 +172,8 @@ public class PIDTuner extends PID
 						pr.println(PIDTuner.this.toString());
 						pr.flush();
 						Sound.beep();
+						if(_autoSave)
+							safeSave();
 					}
 					catch (Exception e)
 					{
@@ -138,7 +187,7 @@ public class PIDTuner extends PID
 			}
 			active = false;
 		}
-
+		
 		public void stopTuner() throws IOException
 		{
 			active = false;

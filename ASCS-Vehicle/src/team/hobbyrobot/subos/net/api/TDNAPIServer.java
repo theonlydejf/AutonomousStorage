@@ -42,6 +42,9 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 	public static final String ERROR_DETAILS_KEYWORD = "details";
 	public static final String DATA_KEYWORD = "data";
 
+    public static final String API_SERVICE_NAME = "API";
+    public static final String HEARTBEAT_REQUEST_NAME = "Heartbeat";
+	
 	public static final int HEARTBEAT_TIMEOUT = 10000;
 
 	// - Variables for TCP server - //
@@ -87,7 +90,7 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 		services = new Hashtable<String, Service>();
 		clients = new ArrayList<APIEndpoint>();
 
-		registerService("API", new APIService());
+		registerService(API_SERVICE_NAME, new APIService());
 	}
 
 	public TDNAPIServer(int port, Logger logger)
@@ -126,10 +129,18 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 				Stopwatch sw = new Stopwatch();
 				synchronized (clients)
 				{
+					// Check if any client has sent something
 					for (APIEndpoint _client : clients)
 					{
+						// If the current client has been quiet for a certain amount of time 
+						//   -> mark him and discnnect him later
 						if (_client.heartbeatSw.elapsed() > HEARTBEAT_TIMEOUT)
+						{
 							clientsToRemove.add(_client);
+							continue;
+						}
+						
+						// If the current client has sent something -> process the data he has sent
 						if (_client.inputStream.available() > 0)
 						{
 							client = _client;
@@ -137,7 +148,8 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 							break;
 						}
 					}
-
+					
+					// Disconnect all quiet clients
 					for (APIEndpoint disconnectedClient : clientsToRemove)
 					{
 						disconnectedClient.close();
@@ -149,11 +161,13 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 					if (clientsToRemove.size() > 0)
 						clientsToRemove.clear();
 				}
-				if (client == null)
+				
+				if (client == null) // If none of the clients have sent anything
 					continue;
-
+				
 				infoLogger.log("Processing request...", VerbosityLogger.DETAILED_OVERVIEW);
 				Stopwatch partSw = new Stopwatch();
+				// Read request
 				TDNRoot request = TDNRoot.readFromStream(client.reader);
 				int parseTook = partSw.elapsed();
 				partSw.reset();
@@ -183,26 +197,32 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 
 	private synchronized TDNRoot processRequest(TDNRoot request, APIEndpoint client)
 	{
+		// Check if a valid service is contained inside the request
 		TDNValue serviceStr = request.get(SERVICE_KEYWORD);
 		if (serviceStr == null || !serviceStr.parser().typeKey().equals(TDNParsers.STRING.typeKey()))
 			return ResponseFactory.createExceptionResponse(ErrorCode.UNKNOWN_SERVICE,
 				"Unable to find service in the root");
 
-		boolean apiRequest = ((String) serviceStr.value).equals("API");
+		// True if the user is requesting api service
+		boolean apiRequest = ((String) serviceStr.value).equals(API_SERVICE_NAME);
 		// Heartbeat
 		if (apiRequest)
 			client.heartbeatSw.reset();
-
+		
+		// Get the requested service
 		Service service = services.get((String) serviceStr.value);
+		// Check if the requested service is unknown
 		if (service == null)
 			return ResponseFactory.createExceptionResponse(ErrorCode.UNKNOWN_SERVICE,
 				"Service \"" + (String) serviceStr.value + "\" is not registered");
 
+		// Check if a valid request name is contained inside the request
 		TDNValue requestName = request.get(REQUEST_KEYWORD);
 		if (requestName == null || !requestName.parser().typeKey().equals(TDNParsers.STRING.typeKey()))
 			return ResponseFactory.createExceptionResponse(ErrorCode.UNKNOWN_REQUEST,
 				"Unable to find request in the root");
 
+		// Check if a valid params root is contained inside the request
 		TDNValue params = request.get(PARAMS_KEYWORD);
 		if (params != null)
 			if (!params.parser().typeKey().equals(TDNParsers.ROOT.typeKey()))
@@ -213,7 +233,7 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 		{
 			client.heartbeatSw.reset();
 			return ResponseFactory.createSuccessResponse(
-				service.processRequest((String) requestName.value, params == null ? new TDNRoot() : (TDNRoot) params.value));
+				service.processRequest((String) requestName.value, params == null ? new TDNRoot() : (TDNRoot) params.value, client.socket));
 		}
 		catch (UnknownRequestException e)
 		{
@@ -428,10 +448,10 @@ public class TDNAPIServer implements ClientRegisterer, Runnable
 	{
 
 		@Override
-		public TDNRoot processRequest(String request, TDNRoot params)
+		public TDNRoot processRequest(String request, TDNRoot params, Socket client)
 			throws UnknownRequestException, RequestParamsException, RequestGeneralException
 		{
-			if (request.equals("Heartbeat"))
+			if (request.equals(HEARTBEAT_REQUEST_NAME))
 			{
 				infoLogger.log("API heartbeat", VerbosityLogger.DEBUGGING);
 				return null;

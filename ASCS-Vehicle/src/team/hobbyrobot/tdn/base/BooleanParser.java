@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import team.hobbyrobot.tdn.core.TDNBufferedReader;
 import team.hobbyrobot.tdn.core.TDNBufferedWriter;
+import team.hobbyrobot.tdn.core.TDNRoot;
 import team.hobbyrobot.tdn.core.TDNTypeParser;
 import team.hobbyrobot.tdn.core.TDNValue;
 
@@ -16,6 +17,12 @@ public class BooleanParser implements TDNTypeParser
 		return "bln";
 	}
 
+	@Override
+	public Object defaultValue()
+	{
+		return false;
+	}
+	
 	@Override
 	public TDNValue readFromStream(TDNBufferedReader reader) throws IOException
 	{

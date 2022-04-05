@@ -1,43 +1,47 @@
 package team.hobbyrobot.subos.navigation;
 
+import java.io.IOException;
+
 import lejos.utility.Stopwatch;
+import team.hobbyrobot.subos.Resources;
 import team.hobbyrobot.subos.SubOSController;
 
 public class PID
 {
+	public static final String RSCS_PID_PATH = "pids";
+
 	//**********************************
 	// Class private variables
 	//**********************************
 
-	private double P = 0;
-	private double I = 0;
-	private double D = 0;
-	private double F = 0;
+	protected double P = 0;
+	protected double I = 0;
+	protected double D = 0;
+	protected double F = 0;
 
-	private double maxIOutput = 0;
-	private double maxError = 0;
-	private double errorSum = 0;
+	protected double maxIOutput = 0;
+	protected double maxError = 0;
+	protected double errorSum = 0;
 
-	private double maxOutput = 0;
-	private double minOutput = 0;
+	protected double maxOutput = 0;
+	protected double minOutput = 0;
 
-	private double setpoint = 0;
+	protected double setpoint = 0;
 
-	private double lastActual = 0;
+	protected double lastActual = 0;
 
-	private boolean firstRun = true;
-	private boolean reversed = false;
+	protected boolean firstRun = true;
+	protected boolean reversed = false;
 
-	private double outputRampRate = 0;
-	private double lastOutput = 0;
+	protected double outputRampRate = 0;
+	protected double lastOutput = 0;
 
-	private double outputFilter = 0;
+	protected double outputFilter = 0;
 
-	private double setpointRange = 0;
-
-	private long lastDNano;
+	protected double setpointRange = 0;
 
 	public boolean verbal = false;
+	private String _name = null;
 
 	//**********************************
 	// Constructor functions
@@ -46,7 +50,18 @@ public class PID
 	public String toString()
 	{
 		return "P=" + P + "\nI=" + I + "\nD=" + D + "\nF=" + F + "\nmaxI=" + maxIOutput + "\nmaxErr=" + maxError
-			+ "\nreversed=" + reversed + "\noutRampRate=" + outputRampRate + "\noutFilter=" + outputFilter;
+			+ "\nreversed=" + reversed + "\noutRampRate=" + outputRampRate + "\noutFilter=" + outputFilter + "\nmin="
+			+ minOutput + "\nmax=" + maxOutput;
+	}
+
+	public void setName(String name)
+	{
+		_name = name;
+	}
+
+	public String getName()
+	{
+		return _name;
 	}
 
 	/**
@@ -328,7 +343,6 @@ public class PID
 		// For last output, we can assume it's the current time-independent outputs. 
 		if (firstRun)
 		{
-			lastDNano = System.nanoTime() - 1;
 			lastActual = actual;
 			lastOutput = Poutput + Foutput;
 			firstRun = false;
@@ -338,7 +352,6 @@ public class PID
 		// Note, this is negative. This actually "slows" the system if it's doing
 		// the correct thing, and small values helps prevent output spikes and overshoot 
 		Doutput = (-D * (actual - lastActual));// / (double) (System.nanoTime() - lastDNano);
-		lastDNano = System.nanoTime();
 		lastActual = actual;
 
 		// The Iterm is more complex. There's several things to factor in to make it easier to deal with.
@@ -350,6 +363,9 @@ public class PID
 		{
 			Ioutput = constrain(Ioutput, -maxIOutput, maxIOutput);
 		}
+
+		if (Double.isNaN(Ioutput))
+			Ioutput = 0;
 		// And, finally, we can just add the terms up
 		output = Foutput + Poutput + Ioutput + Doutput;
 
@@ -394,8 +410,9 @@ public class PID
 		// Get a test printline with lots of details about the internal 
 		// calculations. This can be useful for debugging. 
 		if (verbal)
-			SubOSController.mainLogger.log(String.format("Error: %5.4f (%5.6f - %5.6f); Final output %5.2f [ %5.2f, %5.2f , %5.2f  ], eSum %.2f",
-				error, setpoint, actual, output, Poutput, Ioutput, Doutput, errorSum));
+			SubOSController.mainLogger.log((_name != null ? _name + ": " : "")
+				+ String.format("Error: %5.4f (%5.6f - %5.6f); Final output %5.2f [ %5.2f, %5.2f , %5.2f  ], eSum %.2f",
+					error, setpoint, actual, output, Poutput, Ioutput, Doutput, errorSum));
 		// System.out.printf("%5.2f\t%5.2f\t%5.2f\t%5.2f\n",output,Poutput, Ioutput, Doutput );
 
 		lastOutput = output;
@@ -504,6 +521,56 @@ public class PID
 		}
 	}
 
+	public void save() throws IOException
+	{
+		String path = getRscsPath();
+		Resources.global().setFloat(path + ".kP", (float) P);
+		Resources.global().setFloat(path + ".kI", (float) I);
+		Resources.global().setFloat(path + ".kD", (float) D);
+		Resources.global().setFloat(path + ".kF", (float) F);
+		Resources.global().setFloat(path + ".maxI", (float) maxIOutput);
+		Resources.global().setFloat(path + ".outMin", (float) minOutput);
+		Resources.global().setFloat(path + ".outMax", (float) maxOutput);
+		Resources.global().setFloat(path + ".outFilter", (float) outputFilter);
+		Resources.global().setFloat(path + ".outRampRate", (float) outputRampRate);
+		Resources.global().setBoolean(path + ".reversed", reversed);
+		Resources.global().setFloat(path + ".setpoint", (float) setpoint);
+		Resources.global().setFloat(path + ".setpointRange", (float) setpointRange);
+		Resources.global().push();
+	}
+
+	public static PID createPIDFromRscs(String pidName)
+	{
+		String path = getRscsPathToPID(pidName);
+
+		float p = Resources.global().getFloat(path + ".kP");
+		float i = Resources.global().getFloat(path + ".kI");
+		float d = Resources.global().getFloat(path + ".kD");
+		float f = Resources.global().getFloat(path + ".kF");
+		PID pid = new PID(p, i, d, f);
+
+		pid.setName(pidName);
+		pid.setMaxIOutput(Resources.global().getFloat(path + ".maxI"));
+		pid.setOutputLimits(Resources.global().getFloat(path + ".outMin"),
+			Resources.global().getFloat(path + ".outMax"));
+		pid.setOutputFilter(Resources.global().getFloat(path + ".outFilter"));
+		pid.setOutputRampRate(Resources.global().getFloat(path + ".outRampRate"));
+		pid.setDirection(Resources.global().getBoolean(path + ".reversed"));
+		pid.setSetpoint(Resources.global().getFloat(path + ".setpoint"));
+		pid.setSetpointRange(Resources.global().getFloat(path + ".setpointRange"));
+		return pid;
+	}
+
+	public String getRscsPath()
+	{
+		return getRscsPathToPID(getName());
+	}
+
+	public static String getRscsPathToPID(String name)
+	{
+		return RSCS_PID_PATH + "." + name;
+	}
+
 	//**************************************
 	// Helper functions
 	//**************************************
@@ -576,12 +643,12 @@ public class PID
 		}
 	}
 
-	private double getErrorSum()
+	public double getErrorSum()
 	{
 		return errorSum;
 	}
 
-	private void setErrorSum(double errorSum)
+	public void setErrorSum(double errorSum)
 	{
 		if (!Double.isNaN(errorSum))
 			this.errorSum = errorSum;

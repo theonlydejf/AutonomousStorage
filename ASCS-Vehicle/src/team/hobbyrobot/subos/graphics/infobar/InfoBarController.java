@@ -98,6 +98,8 @@ public class InfoBarController
 			}
 		});
 		
+		_updateThread.setPriority(Thread.MIN_PRIORITY);
+		_updateThread.setDaemon(true);
 		_updateThread.start();
 	}
 

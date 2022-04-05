@@ -20,8 +20,13 @@ public class TDNRoot implements Iterable<Entry<String, TDNValue>>
     
     public TDNValue get(String key)
     {
+    	return get(key, false);
+    }
+    
+    public TDNValue get(String key, boolean createNewRoots)
+    {
         String[] path = key.split("\\.");
-        Hashtable<String, TDNValue> root = getRootData(path, false);
+        Hashtable<String, TDNValue> root = getRootData(path, createNewRoots);
         return root.get(path[path.length - 1]);
     }
     

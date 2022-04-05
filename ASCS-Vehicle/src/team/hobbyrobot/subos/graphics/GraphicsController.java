@@ -126,6 +126,7 @@ public class GraphicsController
 			}
 		});
 		AutoRefreshThread.setPriority(Thread.MIN_PRIORITY);
+		AutoRefreshThread.setDaemon(true);
 	}
 
 	/**
@@ -301,7 +302,7 @@ public class GraphicsController
 			}
 
 		});
-
+		
 		t.start();
 	}
 

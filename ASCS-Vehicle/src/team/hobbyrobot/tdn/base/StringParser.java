@@ -22,6 +22,12 @@ public class StringParser implements TDNTypeParser
     }
     
 	@Override
+	public Object defaultValue()
+	{
+		return "";
+	}
+    
+	@Override
 	public String typeKey()
 	{
 		return "str";

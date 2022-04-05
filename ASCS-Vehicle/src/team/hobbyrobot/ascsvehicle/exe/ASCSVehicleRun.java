@@ -70,8 +70,8 @@ public class ASCSVehicleRun
 		//SubOSController.LoadingScreenActions.add("0:team.hobbyrobot.ascsvehicle.ASCSVehicleHardware:calibrateDefaultLifter");
 
 		// Starts subOS
-		InfoBar = SubOSController.init(Hardware, VehicleInfoBar.class, logger, "error_log.txt");
-		//initVehicle();
+		InfoBar = SubOSController.init(Hardware, VehicleInfoBar.class, logger, "error_log.txt", "ascsVehicle.rscs");
+		initVehicle();
 		BrickHardware.releasePriority(2, 0);
 		//Dej najevo, že robot už je připraven k použití
 		BrickHardware.setLEDPattern(1, LEDBlinkingStyle.NONE, 0);
@@ -83,7 +83,7 @@ public class ASCSVehicleRun
 		//pilot.forward();
 		//Button.waitForAnyPress();
 		
-		boolean b = true;
+		/*boolean b = true;
 		while(b)
 		{
 			Sound.playTone(600, 150);
@@ -91,21 +91,18 @@ public class ASCSVehicleRun
 			Hardware.resetGyroAt(0);
 			pilot.travel(1000, true);
 			
-			while(Button.getButtons() != 0)
-				Thread.yield();
+			while(Button.getButtons() != 0) ; 
+
 			while(pilot.isMoving())
 			{
 				if(Button.getButtons() != 0)
-				{
 					pilot.stop();					
-				}
 			}
-			while(Button.getButtons() != 0)
-				Thread.yield();
+			while(Button.getButtons() != 0) ;
 			
 			//pilot.rotate(90);
 			//Sound.twoBeeps();
-		}
+		}*/
 				
 		api.setVerbosity(VerbosityLogger.OVERVIEW);
 		
@@ -118,9 +115,12 @@ public class ASCSVehicleRun
 		while (true)
 		{
 			Button.waitForAnyPress();
-			Hardware.moveLifterTo(100);
-			Button.waitForAnyPress();
-			Hardware.moveLifterTo(0);
+			Hardware.resetGyroAt(0);
+			pilot.rotate(90);
+			Sound.beep();
+			//Hardware.moveLifterTo(100);
+			//Button.waitForAnyPress();
+			//Hardware.moveLifterTo(0);
 		}
 	}
 
@@ -147,7 +147,7 @@ public class ASCSVehicleRun
 		api = APIStaticFactory.getLastAPIServer();
 	}
 
-	static void logRoot(TDNRoot root, Logger logger)
+	public static void logRoot(TDNRoot root, Logger logger)
 	{
 		logger.log("(");
 		StringBuilder sb = new StringBuilder();

@@ -9,6 +9,8 @@ import java.util.List;
 import lejos.robotics.navigation.*;
 import lejos.robotics.navigation.Move.MoveType;
 import lejos.utility.Stopwatch;
+import team.hobbyrobot.ascsvehicle.exe.ASCSVehicleRun;
+import team.hobbyrobot.subos.Resources;
 import team.hobbyrobot.subos.SubOSController;
 import team.hobbyrobot.subos.hardware.GyroRobotHardware;
 import team.hobbyrobot.subos.net.PIDTuner;
@@ -33,10 +35,7 @@ public class MoveHandler implements MoveProvider
 	private int _steering_lTacho = 0;
 	/** Tachometer state of right motor, after last run of steering control loop */
 	private int _steering_rTacho = 0;
-	/** Steering the robot is expected to travel at, since last run of steering control loop */
-	private double _steering_expectedRatio = 0;
-	
-	private boolean _steering_expectedLeft = false;
+
 
 	/**
 	 * True, when the steering control loop is running for the first time, since the
@@ -60,30 +59,36 @@ public class MoveHandler implements MoveProvider
 		_listeners = new LinkedList<MoveListener>();
 
 		moveHandler = new Handler();
+		moveHandler.setPriority(Thread.MAX_PRIORITY);
 		moveHandler.setDaemon(true);
 		moveHandler.start();
 
 		try
 		{
-			_steeringPID = new PIDTuner(70, 8, 0, 0, 1236);
-			_steeringPID.verbal = true;
+			//_steeringPID = new PIDTuner(1.35f, .5f, 0, 0, 1236);
+			//_steeringPID.setName("steerDiff");
+			//TODO: Tune and remove tuner
+			_steeringPID = PIDTuner.createPIDTunerFromRscs("diffSteering", 1236);
+			((PIDTuner) _steeringPID).setAutoSave(true);
+			_steeringPID.setOutputRampRate(20);
+			//_steeringPID.verbal = true;
 		}
 		catch (IOException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		_steeringPID.setMaxIOutput(40);
 	}
 
 	@Override
 	public Move getMovement()
 	{
-		if (moveHandler.isMoving())
+		//if (moveHandler.isMoving())
 			return moveHandler.getDisplacement();
-		else
-			return new Move(Move.MoveType.STOP, 0, 0, false);
+		//else
+		//	return new Move(Move.MoveType.STOP, 0, 0, false);
 	}
 
 	@Override
@@ -115,7 +120,7 @@ public class MoveHandler implements MoveProvider
 		_steeringControlLoopSw.reset();
 
 		// Resets regulator and leaves the integral part intact
-		_steeringPID.reset(false);
+		_steeringPID.reset();
 
 		_steering_firstRun = true;
 	}
@@ -124,19 +129,19 @@ public class MoveHandler implements MoveProvider
 	 * Controls robot's drive motors, given power and steering. Steering is a number between -100 and 100,
 	 * where -100 means rotate to the right, 0 move straight and 100 means rotate to the left. Any number
 	 * in between makes the robot go in arc.<br>
-	 * This method is limited to be called only once every {@link #STEERING_CONTROL_LOOP_PERIOD}
-	 * milliseconds. If the method is called, before the required time has passed, it returns false without
-	 * doing anything.
+	 * If the parameter usePID == true, then this method is limited to be called only once every
+	 * {@link #STEERING_CONTROL_LOOP_PERIOD} milliseconds. If the method is called, before the required
+	 * time has passed, it returns false without, doing anything (=> keeping motor's powers unchanged).
 	 * 
 	 * @param power    The desired power by which the robot should move (-100(backward) to 100(forward))
 	 * @param steering The steering by which the robot should move (-100(right) to 100(left))
 	 * @return True, if motors were updated
 	 */
-	public boolean controlMotors(int power, double steering)
+	public boolean controlMotors(int power, double steering, boolean usePID)
 	{
 		// We need some time for tacho to acumulate -> if not enaugh time has passed yet, return without 
 		// doing anything
-		if (_steeringControlLoopSw.elapsed() < STEERING_CONTROL_LOOP_PERIOD)
+		if (usePID && _steeringControlLoopSw.elapsed() < STEERING_CONTROL_LOOP_PERIOD)
 			return false;
 		_steeringControlLoopSw.reset();
 
@@ -170,28 +175,29 @@ public class MoveHandler implements MoveProvider
 
 		// True, if according to steering, robot is steering to the left
 		boolean steeringLeft = steering > 0;
+		double steeringMultiplier = (Math.abs(steering) - 50) / -50;
+
+		double lPwRatio = steeringLeft ? steeringMultiplier : 1;
+		double rPwRatio = steeringLeft ? 1 : steeringMultiplier;
+
+		double baseLPower = power * lPwRatio;
+		double baseRPower = power * rPwRatio;
 
 		// Calculate real motor ratio since last control
 		int deltaLTacho = hardware.getLeftTacho() - _steering_lTacho;
 		int deltaRTacho = hardware.getRightTacho() - _steering_rTacho;
 
-		int innerTacho = steeringLeft ? deltaLTacho : deltaRTacho;
-		int outerTacho = steeringLeft ? deltaRTacho : deltaLTacho;
-
-		// If outer motor hasn't moved since last regulation, make it non zero value 
-		// (so a division by zero won't happen)
-		if (outerTacho == 0)
-			outerTacho = 1;
-
-		double realRatio = innerTacho / (double) outerTacho;
-
 		// True, if too slow to regulate
 		boolean tooSlow = (Math.abs(deltaLTacho) + Math.abs(deltaRTacho)) / 2 < 7;
 
 		//TODO add regulation..
+		double actual = deltaRTacho / rPwRatio - deltaLTacho / lPwRatio;
+		double pidRate = usePID ? _steeringPID.getOutput(actual, 0) : 0;
+
+		// OLD PID REGULATION - BAD!!
 		// Calculate correction value, if the robot is moving too slowly to regulate, get 
 		// only integral part of the regulation (makes the pid error 0)
-		double pidRate = _steeringPID.getOutput(tooSlow ? _steering_expectedRatio : realRatio, _steering_expectedRatio);
+		//double pidRate = _steeringPID.getOutput(tooSlow ? _steering_expectedRatio : realRatio, _steering_expectedRatio);
 		//SubOSController.mainLogger.log("steering integral: " + _steeringPID.Integral);
 		// TODO: remove
 		// log debug data to the main logger
@@ -209,25 +215,22 @@ public class MoveHandler implements MoveProvider
 			_steering_firstRun = false;
 		}
 
-		// Calculate current powers
-		double steeringMultiplier = (Math.abs(steering) - 50) / -50;
+		/*
+		 * if (_steering_expectedLPwRatio != lPwRatio || _steering_expectedRPwRatio != rPwRatio)
+		 * {
+		 * pidRate = 0;
+		 * _steeringPID.reset();
+		 * }
+		 */
 
-		int baseLPower = (int) (power * (steeringLeft ? steeringMultiplier : 1));
-		int baseRPower = (int) (power * (steeringLeft ? 1 : steeringMultiplier));
-		int lPower = baseLPower;
-		int rPower = baseRPower;
+		double lPower = baseLPower;
+		double rPower = baseRPower;
 
-		if(_steering_expectedRatio != steeringMultiplier && steeringLeft != _steering_expectedLeft)
-		{
-			pidRate = 0;
-			_steeringPID.reset();
-		}
-		
 		// Calculate regulated motor powers
-		if (pidRate > 0 ^ (steeringLeft ^ Math.signum(steeringMultiplier) != 1))
-			lPower -= (int) (Math.abs(pidRate) * Math.signum(lPower));
+		if (pidRate > 0)// ^ (steeringLeft ^ Math.signum(steeringMultiplier) != 1))
+			lPower -= Math.abs(pidRate) * Math.signum(lPower);
 		else
-			rPower -= (int) (Math.abs(pidRate) * Math.signum(rPower));
+			rPower -= Math.abs(pidRate) * Math.signum(rPower);
 
 		// Limit regulated motors to only slow down (never change direction of the motor by regulating it)
 		if (lPower * Math.signum(baseLPower) < 0)
@@ -235,14 +238,12 @@ public class MoveHandler implements MoveProvider
 		if (rPower * Math.signum(baseRPower) < 0)
 			rPower = 0;
 
-		hardware.setDrivePowers(lPower, rPower);
+		hardware.setDrivePowers((int) lPower, (int) rPower);
 		hardware.startDriveMotors(true);
 
 		_steering_lTacho = hardware.getLeftTacho();
 		_steering_rTacho = hardware.getRightTacho();
-		_steering_expectedRatio = steeringMultiplier;
-		_steering_expectedLeft = steeringLeft;
-		
+
 		return true;
 	}
 
@@ -293,9 +294,22 @@ public class MoveHandler implements MoveProvider
 		/** Angle robot has already rotated, when a new move has started */
 		private float _angleRotatedAtMoveStart = 0;
 
+		/** 
+		 * True, if the last travelled move was stopped before its requested target was reached, due to
+		 * a limit set by the user
+		 */
+		private boolean _lastMoveLimited = false;
+		
 		public Handler()
 		{
 			processors = new Hashtable<>();
+			Runtime.getRuntime().addShutdownHook(new Thread()
+			{
+				public void run()
+				{
+					stopMove();
+				}
+			});
 		}
 
 		/** Stops the robot and stops listening for move requests */
@@ -354,6 +368,11 @@ public class MoveHandler implements MoveProvider
 		{
 			return _distLimit;
 		}
+		
+		public boolean wasLastMoveLimited()
+		{
+			return _lastMoveLimited;
+		}
 
 		//TODO: add possibility to to specify a specific processor to use
 		/** Requests a new move and waits, until the current move (if any) is canceled */
@@ -385,16 +404,20 @@ public class MoveHandler implements MoveProvider
 		 */
 		public Move getDisplacement()
 		{
-			return new Move(hardware.getDrivenDist() - _distanceTravelledAtMoveStart,
-				hardware.getAngle() - _angleRotatedAtMoveStart, isMoving());
+			MoveType type = _currMove.getMoveType();
+			return new Move(type,
+				type.equals(MoveType.ROTATE) ? 0 : hardware.getDrivenDist() - _distanceTravelledAtMoveStart,
+				type.equals(MoveType.TRAVEL) ? 0 : hardware.getAngle() - _angleRotatedAtMoveStart, isMoving());
+			//return new Move(hardware.getDrivenDist() - _distanceTravelledAtMoveStart,
+			//	hardware.getAngle() - _angleRotatedAtMoveStart, isMoving());
 		}
 
 		/** Method which is called before start of any move */
 		private void movementStarted()
 		{
 			_distanceTravelledAtMoveStart = hardware.getDrivenDist();
-
 			_angleRotatedAtMoveStart = hardware.getAngle();
+
 			_moveActive = true;
 
 			// Notify listeners that new move has started
@@ -411,7 +434,7 @@ public class MoveHandler implements MoveProvider
 
 			// Notify listeners that move has finished
 			for (MoveListener ml : _listeners)
-				ml.moveStarted(displacement, MoveHandler.this);
+				ml.moveStopped(displacement, MoveHandler.this);
 		}
 
 		@Override
@@ -420,7 +443,7 @@ public class MoveHandler implements MoveProvider
 			_controllerActive = true;
 			while (_controllerActive)
 			{
-				SubOSController.mainLogger.log("Waiting for move...");
+				//SubOSController.mainLogger.log("Waiting for move...");
 				// Waits until a new move is requested
 				while (!_moveRequested && _controllerActive)
 					Thread.yield();
@@ -451,11 +474,18 @@ public class MoveHandler implements MoveProvider
 					continue;
 				}
 
+				// Reset limits
+				_limitChanged = false;
+				_angLimit = Double.POSITIVE_INFINITY;
+				_distLimit = Double.POSITIVE_INFINITY;
+				_lastMoveLimited = false;
+				
 				// Prepare for handling
 				processor.reset();
 				movementStarted();
 
-				SubOSController.mainLogger.log("Move started");
+				//SubOSController.mainLogger.log("Move started");
+				Stopwatch sw = new Stopwatch();
 				while (!_moveRequested && _controllerActive)
 				{
 					// When a limit has changed -> update the targeted move to fit inside of the limit
@@ -470,7 +500,10 @@ public class MoveHandler implements MoveProvider
 							_currMove.isMoving()
 						);
 						//@formatter:on
-
+						
+						_lastMoveLimited = _distLimit < Math.abs(_currMove.getDistanceTraveled()) ||
+							_angLimit < Math.abs(_currMove.getAngleTurned());
+						
 						_limitChanged = false;
 					}
 
@@ -480,14 +513,9 @@ public class MoveHandler implements MoveProvider
 				}
 
 				hardware.stopDriveMotors(!_moveRequested);
-				SubOSController.mainLogger.log("Move finished. Replaced: " + _moveRequested);
+				//SubOSController.mainLogger.log("Move finished. Steps/sec=" + (cnt / (double) sw.elapsed()) * 1000 + " Replaced: " + _moveRequested);
 
 				movementEnded();
-
-				// Reset limits
-				_limitChanged = false;
-				_angLimit = Double.POSITIVE_INFINITY;
-				_distLimit = Double.POSITIVE_INFINITY;
 			}
 		}
 	}

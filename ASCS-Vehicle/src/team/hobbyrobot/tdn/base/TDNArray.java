@@ -1,6 +1,8 @@
 package team.hobbyrobot.tdn.base;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import team.hobbyrobot.tdn.core.TDNTypeParser;
 import team.hobbyrobot.tdn.core.TDNValue;
@@ -29,6 +31,15 @@ public class TDNArray implements Iterable<Object>
     public int size()
     {
     	return value.length;
+    }
+    
+    public <T> List<T> asList()
+    {    	
+    	List<T> out = new ArrayList<T>();
+    	for(Object o : this)
+    		out.add((T)o);
+    	
+    	return out;
     }
     
 	@Override

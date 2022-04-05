@@ -4,12 +4,13 @@ import java.io.IOException;
 
 import team.hobbyrobot.tdn.core.TDNBufferedReader;
 import team.hobbyrobot.tdn.core.TDNBufferedWriter;
+import team.hobbyrobot.tdn.core.TDNRoot;
 import team.hobbyrobot.tdn.core.TDNTypeParser;
 import team.hobbyrobot.tdn.core.TDNValue;
 
 public class ArrayParser implements TDNTypeParser
 {
-    private static final IntegerParser intParser = new IntegerParser();
+    private static final TDNTypeParser intParser = TDNParsers.INTEGER;
 
 	@Override
 	public String typeKey()
@@ -17,6 +18,12 @@ public class ArrayParser implements TDNTypeParser
 		return "arr";
 	}
 
+	@Override
+	public Object defaultValue()
+	{
+		return new TDNArray(new Object[0], intParser);
+	}
+	
 	@Override
 	public TDNValue readFromStream(TDNBufferedReader reader) throws IOException
 	{

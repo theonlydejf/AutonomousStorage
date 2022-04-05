@@ -101,7 +101,9 @@ public class ASCSVehicleHardware extends GyroRobotHardware
 	@Override
 	protected RegulatedMotor initMotor1(Port port)
 	{
-		return new EV3DCMediumRegulatedMotor(port);
+		EV3DCMediumRegulatedMotor motor = new EV3DCMediumRegulatedMotor(port);
+		motor.setRegulatorState(true);
+		return motor;
 	}
 
 	@Override
@@ -245,8 +247,8 @@ public class ASCSVehicleHardware extends GyroRobotHardware
 	
 	private void createPoseProvider()
 	{
-		_poseProvider = new OdometryPoseProvider(getPilot());
-		//if (getPilot() != null && getDirectionFinder() != null)
-		//	_poseProvider = new CompassPoseProvider(getPilot(), getDirectionFinder());
+		//_poseProvider = new OdometryPoseProvider(getPilot());
+		if (getPilot() != null && getDirectionFinder() != null)
+			_poseProvider = new CompassPoseProvider(getPilot(), getDirectionFinder());
 	}
 }

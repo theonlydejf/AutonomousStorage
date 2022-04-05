@@ -6,5 +6,7 @@ public interface LimitablePilot
 	double getTravelLimit();
 	
 	void setRotateLimit(double limit);
-	double getRotateLimit(double limit);
+	double getRotateLimit();
+	
+	boolean wasLastMoveLimited();
 }

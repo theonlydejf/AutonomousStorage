@@ -17,6 +17,12 @@ public class FloatParser implements TDNTypeParser
 	}
 
 	@Override
+	public Object defaultValue()
+	{
+		return 0f;
+	}
+	
+	@Override
 	public TDNValue readFromStream(TDNBufferedReader reader) throws IOException
 	{
 		String value = reader.readValue();

@@ -31,7 +31,7 @@ public class BasicInfoBar implements InfoBarData
 	public static final char SENSOR_PREFIX = 'G';
 
 	/** Senzory robota */
-	private SampleProvider[] _hardwareInstances;
+	protected SampleProvider[] _hardwareInstances;
 
 	/**
 	 * Vytvori instanci

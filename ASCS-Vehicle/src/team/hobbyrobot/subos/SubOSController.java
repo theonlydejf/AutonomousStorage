@@ -34,6 +34,8 @@ public class SubOSController
 	public static final float BATTERY_THRESHOLD = 8f;
 	public static String ERROR_LOG_FILENAME;
 
+	private static Resources _resources;
+	
 	private static String currentViewName = "NONE";
 	
 	private static String[] LoadingScreenActions = new String[] { "0:team.hobbyrobot.subos.hardware.RobotHardware:initRobotHardware" };
@@ -61,17 +63,19 @@ public class SubOSController
 	 * @throws IOException 
 	 */
 	public static <InfoBarType extends InfoBarData> InfoBarType init(RobotHardware hardware,
-		Class<InfoBarType> infoBarTypeClass, Logger logger, String errorLogeFileName) throws IOException
+		Class<InfoBarType> infoBarTypeClass, Logger logger, String errorLogefileName, String resourcesFilename) throws IOException
 	{
 		Stopwatch sw = new Stopwatch();
 		
-		ERROR_LOG_FILENAME = errorLogeFileName;
+		ERROR_LOG_FILENAME = errorLogefileName;
 		
 		//Inicializuj grafiku
 		GraphicsController.init();
 		
 		initLoggers(logger);
-				
+		
+		_resources = Resources.loadGlobalResources(resourcesFilename);
+		
 		//Nastav hardware robots, ktery se bude inicializovat
 		RobotHardware.RobotHardwareToInitialize = hardware;
 
@@ -85,7 +89,7 @@ public class SubOSController
 		}
 		catch (Exception e)
 		{
-			ErrorLogging.logFatalError("Error when creating instance of InfoBar!;" + Logger.getExceptionInfo(e));
+			ErrorLogging.logFatalError("Error when creating instance of InfoBar!; " + Logger.getExceptionInfo(e));
 			ErrorLogging.startErrorLogScreen();
 			e.printStackTrace();
 		}
@@ -178,5 +182,10 @@ public class SubOSController
 	public static String getViewName()
 	{
 		return currentViewName;
+	}
+	
+	public static Resources getSobOSResources()
+	{
+		return _resources;
 	}
 }
