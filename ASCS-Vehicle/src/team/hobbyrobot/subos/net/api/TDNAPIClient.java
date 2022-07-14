@@ -56,13 +56,13 @@ public class TDNAPIClient implements TimerListener
 		}
 	}
 	
-	public TDNRoot RawRequest(TDNRoot request) throws IOException
+	public TDNRoot rawRequest(TDNRoot request) throws IOException
     {
         request.writeToStream(_writer);
         return TDNRoot.readFromStream(_reader);
     }
 
-    public static TDNRoot CreateAPIRequest(String service, String request, TDNRoot params)
+    public static TDNRoot createAPIRequest(String service, String request, TDNRoot params)
     {
         TDNRoot tdnRequest = new TDNRoot();
         tdnRequest.put(TDNAPIServer.SERVICE_KEYWORD, new TDNValue(service, TDNParsers.STRING));
@@ -71,9 +71,9 @@ public class TDNAPIClient implements TimerListener
         return tdnRequest;
     }
 
-    public TDNRoot Request(String service, String request, TDNRoot _params) throws IOException
+    public TDNRoot request(String service, String request, TDNRoot _params) throws IOException
     {
-        return RawRequest(CreateAPIRequest(service, request, _params));
+        return rawRequest(createAPIRequest(service, request, _params));
     }
     
 	public void setVerbosity(int verbosityLevel)
